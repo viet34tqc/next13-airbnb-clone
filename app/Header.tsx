@@ -5,6 +5,7 @@ type Props = {};
 
 const Header = (props: Props) => {
   const session = useSession();
+  console.log('session', session);
   return <div>{session?.data?.user?.name}</div>;
 };
 
