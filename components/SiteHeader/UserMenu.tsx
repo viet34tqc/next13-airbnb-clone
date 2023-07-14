@@ -1,11 +1,18 @@
 'use client';
 
+/*
+TODO
+- Dropdown menu is not good, replace it with radix dropdown
+*/
+
 import BarIcon from '@/icons/BarIcon';
 import UserCircleIcon from '@/icons/UserCircleIcon';
+import { useReducer } from 'react';
+import MenuItem from './MenuItem';
 
-type Props = {};
+const UserMenu = () => {
+  const [isOpen, toggle] = useReducer(state => !state, false);
 
-const UserMenu = (props: Props) => {
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -28,7 +35,7 @@ const UserMenu = (props: Props) => {
         </button>
 
         <div
-          onClick={() => {}}
+          onClick={toggle}
           className="
           p-4
           md:py-1
@@ -51,6 +58,30 @@ const UserMenu = (props: Props) => {
           </div>
         </div>
       </div>
+
+      {isOpen && (
+        <div
+          className="
+            absolute
+            rounded-xl
+            shadow-md
+            w-[40vw]
+            md:w-3/4
+            bg-white
+            overflow-hidden
+            right-0
+            top-12
+            text-sm
+          "
+        >
+          <div className="flex flex-col cursor-pointer">
+            <>
+              <MenuItem label="Login" onClick={() => {}} />
+              <MenuItem label="Sign up" onClick={() => {}} />
+            </>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
