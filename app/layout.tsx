@@ -1,3 +1,4 @@
+import SiteHeader from '@/components/SiteHeader';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { NextAuthProvider } from './providers';
@@ -17,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <NextAuthProvider>
+          <SiteHeader />
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
   );
