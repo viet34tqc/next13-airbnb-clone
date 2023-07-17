@@ -1,4 +1,5 @@
 import SiteHeader from '@/components/SiteHeader';
+import RegisterModal from '@/components/modals/RegisterModal';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { NextAuthProvider } from './providers';
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <RegisterModal />
         <NextAuthProvider>
           <SiteHeader />
           {children}

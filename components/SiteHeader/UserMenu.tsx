@@ -5,6 +5,8 @@ TODO
 - Dropdown menu is not good, replace it with radix dropdown
 */
 
+import useLoginModal from '@/hooks/useLoginModal';
+import useRegisterModal from '@/hooks/useRegisterModal';
 import BarIcon from '@/icons/BarIcon';
 import UserCircleIcon from '@/icons/UserCircleIcon';
 import { useReducer } from 'react';
@@ -12,6 +14,9 @@ import MenuItem from './MenuItem';
 
 const UserMenu = () => {
   const [isOpen, toggle] = useReducer(state => !state, false);
+
+  const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
 
   return (
     <div className="relative">
@@ -76,8 +81,8 @@ const UserMenu = () => {
         >
           <div className="flex flex-col cursor-pointer">
             <>
-              <MenuItem label="Login" onClick={() => {}} />
-              <MenuItem label="Sign up" onClick={() => {}} />
+              <MenuItem label="Login" onClick={loginModal.onOpen} />
+              <MenuItem label="Sign up" onClick={registerModal.onOpen} />
             </>
           </div>
         </div>
