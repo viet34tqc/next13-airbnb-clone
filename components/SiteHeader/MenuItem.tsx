@@ -1,23 +1,28 @@
+import { HTMLAttributes, forwardRef } from 'react';
+
 type Props = {
-  onClick: () => void;
   label: string;
 };
 
-const MenuItem = ({ onClick, label }: Props) => {
-  return (
-    <div
-      onClick={onClick}
-      className="
+const MenuItem = forwardRef<HTMLDivElement, Props>(
+  ({ label }: Props, ref) => {
+    return (
+      <div
+        ref={ref}
+        className="
         px-4
         py-3
         hover:bg-neutral-100
         transition
         font-semibold
       "
-    >
-      {label}
-    </div>
-  );
-};
+      >
+        {label}
+      </div>
+    );
+  }
+);
+
+MenuItem.displayName = 'MenuItem';
 
 export default MenuItem;

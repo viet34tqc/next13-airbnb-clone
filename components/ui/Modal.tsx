@@ -1,177 +1,116 @@
-/*
-TODO: Optimize this modal
-*/
-
 import CloseIcon from '@/icons/CloseIcon';
-import { ReactNode, useCallback, useEffect, useState } from 'react';
-import Button from './Button';
+import { cn } from '@/lib/utils';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import React from 'react';
 
-type Props = {
-  isOpen?: boolean;
-  onClose: () => void;
-  onSubmit: () => void;
-  title?: string;
-  body?: ReactNode; // Why not use ReactElement: <https://www.totaltypescript.com/jsx-element-vs-react-reactnode>
-  footer?: ReactNode;
-  actionLabel: string;
-  disabled?: boolean;
-  secondaryAction?: () => void;
-  secondaryActionLabel?: string;
+const CustomDialog = DialogPrimitive.Root;
+
+const CustomDialogTrigger = DialogPrimitive.Trigger;
+
+const CustomDialogPortal = ({
+  className,
+  ...props
+}: DialogPrimitive.DialogPortalProps) => (
+  <DialogPrimitive.Portal className={cn(className)} {...props} />
+);
+CustomDialogPortal.displayName = DialogPrimitive.Portal.displayName;
+
+const CustomDialogOverlay = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Overlay
+    ref={ref}
+    className={cn('fixed inset-0 z-50 bg-black/40 backdrop-blur-sm', className)}
+    {...props}
+  />
+));
+CustomDialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
+
+const CustomDialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DialogPrimitive.Content
+    ref={ref}
+    className={cn(
+      'bg-white overflow-y-auto max-h-full fixed z-50 grid w-full max-w-[900px] scale-100 gap-4 border p-6 opacity-100 shadow-lg sm:rounded-lg',
+      className
+    )}
+    {...props}
+  >
+    {children}
+    <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+      <CloseIcon className="h-4 w-4" />
+      <span className="sr-only">Close</span>
+    </DialogPrimitive.Close>
+  </DialogPrimitive.Content>
+));
+CustomDialogContent.displayName = DialogPrimitive.Content.displayName;
+
+const CustomDialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      'flex flex-col space-y-1.5 text-center sm:text-left',
+      className
+    )}
+    {...props}
+  />
+);
+CustomDialogHeader.displayName = 'CustomDialogHeader';
+
+const CustomDialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+      className
+    )}
+    {...props}
+  />
+);
+CustomDialogFooter.displayName = 'CustomDialogFooter';
+
+const CustomDialogTitle = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Title
+    ref={ref}
+    className={cn(
+      'text-lg font-semibold leading-none tracking-tight',
+      className
+    )}
+    {...props}
+  />
+));
+CustomDialogTitle.displayName = DialogPrimitive.Title.displayName;
+
+const CustomDialogDescription = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    className={cn('text-sm text-muted-foreground', className)}
+    {...props}
+  />
+));
+CustomDialogDescription.displayName = DialogPrimitive.Description.displayName;
+
+export {
+  CustomDialog,
+  CustomDialogContent,
+  CustomDialogDescription,
+  CustomDialogFooter,
+  CustomDialogHeader,
+  CustomDialogOverlay,
+  CustomDialogPortal,
+  CustomDialogTitle,
+  CustomDialogTrigger,
 };
-
-const Modal = ({
-  isOpen,
-  onClose,
-  title,
-  body,
-  footer,
-  disabled,
-  secondaryAction,
-  secondaryActionLabel,
-}: Props) => {
-  const [showModal, setShowModal] = useState(isOpen);
-
-  useEffect(() => {
-    setShowModal(isOpen);
-  }, [isOpen]);
-
-  const handleClose = useCallback(() => {
-    if (disabled) {
-      return;
-    }
-
-    setShowModal(false);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  }, [onClose, disabled]);
-
-  const handleSecondaryAction = useCallback(() => {
-    if (disabled || !secondaryAction) {
-      return;
-    }
-
-    secondaryAction();
-  }, [secondaryAction, disabled]);
-
-  if (!isOpen) {
-    return null;
-  }
-  return (
-    <div
-      className="
-          justify-center
-          items-center
-          flex
-          overflow-x-hidden
-          overflow-y-auto
-          fixed
-          inset-0
-          z-50
-          outline-none
-          focus:outline-none
-          bg-neutral-800/70
-        "
-    >
-      <div
-        className="
-          relative
-          w-full
-          md:w-4/6
-          lg:w-3/6
-          xl:w-2/5
-          my-6
-          mx-auto
-          h-full
-          lg:h-auto
-          md:h-auto
-          "
-      >
-        {/*content*/}
-        <div
-          className={`
-            translate
-            duration-300
-            h-full
-            ${showModal ? 'translate-y-0' : 'translate-y-full'}
-            ${showModal ? 'opacity-100' : 'opacity-0'}
-          `}
-        >
-          <div
-            className="
-              translate
-              h-full
-              lg:h-auto
-              md:h-auto
-              border-0
-              rounded-lg
-              shadow-lg
-              relative
-              flex
-              flex-col
-              w-full
-              bg-white
-              outline-none
-              focus:outline-none
-            "
-          >
-            {/*header*/}
-            <div
-              className="
-                flex
-                items-center
-                p-6
-                rounded-t
-                justify-center
-                relative
-                border-b-[1px]
-                "
-            >
-              <button
-                className="
-                    p-1
-                    border-0
-                    hover:opacity-70
-                    transition
-                    absolute
-                    left-9
-                  "
-                onClick={handleClose}
-              >
-                <CloseIcon />
-              </button>
-              <div className="text-lg font-semibold">{title}</div>
-            </div>
-            {/*body*/}
-            <div className="relative p-6 flex-auto">{body}</div>
-            {/*footer*/}
-            <div className="flex flex-col gap-2 p-6">
-              <div
-                className="
-                    flex
-                    flex-row
-                    items-center
-                    gap-4
-                    w-full
-                  "
-              >
-                {secondaryAction && secondaryActionLabel && (
-                  <Button
-                    disabled={disabled}
-                    onClick={handleSecondaryAction}
-                    isOutline
-                  >
-                    {secondaryActionLabel}
-                  </Button>
-                )}
-              </div>
-              {footer}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Modal;

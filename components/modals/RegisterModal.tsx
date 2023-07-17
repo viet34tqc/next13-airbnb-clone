@@ -16,7 +16,11 @@ import FieldControl from '../ui/Form/FieldControl';
 import FieldMess from '../ui/Form/FieldMess';
 import Input from '../ui/Form/Input';
 import Label from '../ui/Form/Label';
-import Modal from '../ui/Modal';
+import {
+  CustomDialogContent,
+  CustomDialogOverlay,
+  CustomDialogPortal,
+} from '../ui/Modal';
 import ModalHeading from '../ui/ModalHeading';
 
 type Props = {};
@@ -134,16 +138,15 @@ const RegisterModal = (props: Props) => {
     </div>
   );
   return (
-    <Modal
-      disabled={isLoading}
-      isOpen={registerModal.isOpen}
-      title="Register"
-      actionLabel="Continue"
-      onClose={registerModal.onClose}
-      onSubmit={handleSubmit(onSubmit)}
-      body={bodyContent}
-      footer={footerContent}
-    />
+    <CustomDialogPortal>
+      <div className="fixed inset-0 z-50 flex justify-center items-center">
+        <CustomDialogOverlay />
+        <CustomDialogContent>
+          {bodyContent}
+          {footerContent}
+        </CustomDialogContent>
+      </div>
+    </CustomDialogPortal>
   );
 };
 

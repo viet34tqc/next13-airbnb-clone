@@ -10,6 +10,8 @@ import useRegisterModal from '@/hooks/useRegisterModal';
 import BarIcon from '@/icons/BarIcon';
 import UserCircleIcon from '@/icons/UserCircleIcon';
 import { useReducer } from 'react';
+import RegisterModal from '../modals/RegisterModal';
+import { CustomDialog, CustomDialogTrigger } from '../ui/Modal';
 import MenuItem from './MenuItem';
 
 const UserMenu = () => {
@@ -80,10 +82,13 @@ const UserMenu = () => {
           "
         >
           <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItem label="Login" onClick={loginModal.onOpen} />
-              <MenuItem label="Sign up" onClick={registerModal.onOpen} />
-            </>
+            <MenuItem label="Login" />
+            <CustomDialog>
+              <CustomDialogTrigger className="text-left">
+                <MenuItem label="Sign up" />
+              </CustomDialogTrigger>
+              <RegisterModal />
+            </CustomDialog>
           </div>
         </div>
       )}
