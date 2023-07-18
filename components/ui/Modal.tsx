@@ -34,7 +34,7 @@ const CustomDialogContent = React.forwardRef<
   <DialogPrimitive.Content
     ref={ref}
     className={cn(
-      'bg-white overflow-y-auto max-h-full fixed z-50 grid w-full max-w-[900px] scale-100 gap-4 border p-6 opacity-100 shadow-lg sm:rounded-lg',
+      'bg-white overflow-y-auto max-h-full fixed z-50 grid w-full max-w-[800px] scale-100 gap-4 border p-6 opacity-100 shadow-lg sm:rounded-lg',
       className
     )}
     {...props}
@@ -47,6 +47,22 @@ const CustomDialogContent = React.forwardRef<
   </DialogPrimitive.Content>
 ));
 CustomDialogContent.displayName = DialogPrimitive.Content.displayName;
+
+const CustomDialogClose = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Close>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>
+>(({ className, children, ...props }, ref) => (
+  <DialogPrimitive.Close
+    className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+    ref={ref}
+    {...props}
+  >
+    <CloseIcon className="h-4 w-4" />
+    <span className="sr-only">Close</span>
+  </DialogPrimitive.Close>
+));
+
+CustomDialogClose.displayName = DialogPrimitive.Close.displayName;
 
 const CustomDialogHeader = ({
   className,
@@ -105,6 +121,7 @@ CustomDialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   CustomDialog,
+  CustomDialogClose,
   CustomDialogContent,
   CustomDialogDescription,
   CustomDialogFooter,

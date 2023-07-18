@@ -1,6 +1,5 @@
 'use client';
 
-import { useModalStoreActions } from '@/store/useModalStore';
 import { signIn } from 'next-auth/react';
 import { useCallback, useState } from 'react';
 import {
@@ -16,7 +15,6 @@ import FieldMess from '../ui/Form/FieldMess';
 import Input from '../ui/Form/Input';
 import Label from '../ui/Form/Label';
 import {
-  CustomDialogClose,
   CustomDialogContent,
   CustomDialogOverlay,
   CustomDialogPortal,
@@ -25,9 +23,7 @@ import ModalHeading from '../ui/ModalHeading';
 
 type Props = {};
 
-const RegisterModal = (props: Props) => {
-  const { setModalView } = useModalStoreActions();
-
+const LoginModal = (props: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<FieldValues>({
@@ -60,7 +56,7 @@ const RegisterModal = (props: Props) => {
   const bodyContent = (
     <FormProvider {...methods}>
       <div className="flex flex-col gap-4">
-        <ModalHeading title="Welcome to Airbnb" subtitle="Create an account!" />
+        <ModalHeading title="Welcome back" subtitle="Login to your account!" />
         <FieldControl>
           <Input
             id="name"
@@ -92,7 +88,7 @@ const RegisterModal = (props: Props) => {
           <FieldMess name="password" />
         </FieldControl>
         <Button disabled={isLoading} onClick={handleSubmit(onSubmit)}>
-          Register
+          Login
         </Button>
       </div>
     </FormProvider>
@@ -116,17 +112,16 @@ const RegisterModal = (props: Props) => {
         "
       >
         <p>
-          Already have an account?
+          First time using Airbnb?
           <span
-            onClick={() => setModalView('LOGIN')}
+            onClick={onToggle}
             className="
               text-neutral-800
               cursor-pointer
               hover:underline
             "
           >
-            {' '}
-            Log in
+            Create an account
           </span>
         </p>
       </div>
@@ -139,11 +134,10 @@ const RegisterModal = (props: Props) => {
         <CustomDialogContent>
           {bodyContent}
           {footerContent}
-          <CustomDialogClose />
         </CustomDialogContent>
       </div>
     </CustomDialogPortal>
   );
 };
 
-export default RegisterModal;
+export default LoginModal;

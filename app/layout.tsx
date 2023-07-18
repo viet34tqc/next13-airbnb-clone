@@ -1,4 +1,5 @@
 import SiteHeader from '@/components/SiteHeader';
+import ModalController from '@/components/ui/ModalController';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { NextAuthProvider } from './providers';
@@ -21,6 +22,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <SiteHeader />
           {children}
+          <ModalController />
         </NextAuthProvider>
       </body>
     </html>
