@@ -2,7 +2,7 @@
 
 import { useModalStoreActions } from '@/store/useModalStore';
 import { signIn } from 'next-auth/react';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import {
   FieldValues,
   FormProvider,
@@ -20,8 +20,8 @@ import {
   CustomDialogContent,
   CustomDialogOverlay,
   CustomDialogPortal,
-} from '../ui/Modal';
-import ModalHeading from '../ui/ModalHeading';
+} from '../ui/Modal/Modal';
+import ModalHeading from '../ui/Modal/ModalHeading';
 
 type Props = {};
 
@@ -55,8 +55,6 @@ const RegisterModal = (props: Props) => {
       });
   };
 
-  const onToggle = useCallback(() => {}, []);
-
   const bodyContent = (
     <FormProvider {...methods}>
       <div className="flex flex-col gap-4">
@@ -78,7 +76,7 @@ const RegisterModal = (props: Props) => {
             {...register('email')}
             required
           />
-          <Label htmlFor="email">Name</Label>
+          <Label htmlFor="email">Email Address</Label>
           <FieldMess name="email" />
         </FieldControl>
         <FieldControl>
@@ -88,7 +86,7 @@ const RegisterModal = (props: Props) => {
             {...register('password')}
             required
           />
-          <Label htmlFor="password">Name</Label>
+          <Label htmlFor="password">Password</Label>
           <FieldMess name="password" />
         </FieldControl>
         <Button disabled={isLoading} onClick={handleSubmit(onSubmit)}>

@@ -1,5 +1,5 @@
 import SiteHeader from '@/components/SiteHeader';
-import ModalController from '@/components/ui/ModalController';
+import ModalController from '@/components/ui/Modal/ModalController';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { NextAuthProvider } from './providers';

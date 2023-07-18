@@ -8,8 +8,8 @@ import {
 import dynamic from 'next/dynamic';
 import { CustomDialog } from './Modal';
 
-const LoginModal = dynamic(() => import('../modals/LoginModal'));
-const RegisterModal = dynamic(() => import('../modals/RegisterModal'));
+const LoginModal = dynamic(() => import('../../modals/LoginModal'));
+const RegisterModal = dynamic(() => import('../../modals/RegisterModal'));
 
 const ModalController = () => {
   const modalView = useModalView();

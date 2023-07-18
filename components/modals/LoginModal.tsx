@@ -18,8 +18,8 @@ import {
   CustomDialogContent,
   CustomDialogOverlay,
   CustomDialogPortal,
-} from '../ui/Modal';
-import ModalHeading from '../ui/ModalHeading';
+} from '../ui/Modal/Modal';
+import ModalHeading from '../ui/Modal/ModalHeading';
 
 type Props = {};
 
