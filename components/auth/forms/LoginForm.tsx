@@ -15,16 +15,19 @@ import {
   useForm,
 } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import type { z } from 'zod';
+import { loginSchema } from '../authSchema';
 import AuthFormFooter from './AuthFormFooter';
+
+type TLoginInputs = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
   const { setModalView } = useModalStoreActions();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const methods = useForm<FieldValues>({
+  const methods = useForm<TLoginInputs>({
     defaultValues: {
-      name: '',
       email: '',
       password: '',
     },

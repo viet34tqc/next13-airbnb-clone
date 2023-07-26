@@ -5,7 +5,10 @@ import Input from '@/components/ui/Form/Input';
 import Label from '@/components/ui/Form/Label';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import { useModalStoreActions } from '@/store/useModalStore';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import type { z } from 'zod';
+
 import {
   FieldValues,
   FormProvider,
@@ -13,16 +16,18 @@ import {
   useForm,
 } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { registerSchema } from '../authSchema';
 import AuthFormFooter from './AuthFormFooter';
 
-type Props = {};
+type TRegisterInputs = z.infer<typeof registerSchema>;
 
-const RegisterForm = (props: Props) => {
+const RegisterForm = () => {
   const { setModalView } = useModalStoreActions();
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const methods = useForm<FieldValues>({
+  const methods = useForm<TRegisterInputs>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       name: '',
       email: '',
