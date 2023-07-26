@@ -12,11 +12,7 @@ const FieldMess = ({ name, message, className, ...props }: Props) => {
     formState: { errors },
   } = useFormContext();
   if (!name) return null;
-  const body = name
-    ? errors[name]?.message // Need to force the error message to be string.
-    : message
-    ? message
-    : '';
+  const body = name ? errors[name]?.message : message ? message : '';
   if (!body) return null;
   return (
     <p

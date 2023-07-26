@@ -7,7 +7,7 @@ const Input = forwardRef<HTMLInputElement, ComponentPropsWithoutRef<'input'>>(
     const {
       formState: { errors },
     } = useFormContext();
-    const error = id ? String(errors?.[id]?.message) : '';
+    const error = id ? errors?.[id]?.message : '';
     return (
       <input
         className={cn(
@@ -19,6 +19,7 @@ const Input = forwardRef<HTMLInputElement, ComponentPropsWithoutRef<'input'>>(
         )}
         ref={ref}
         type={type}
+        placeholder=" " /* Need this placeholder to perform animation with label */
         {...props}
       />
     );

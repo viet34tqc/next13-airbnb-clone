@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 type TModalStore = {
-  modalView: string | null;
+  modalView: 'LOGIN' | 'REGISTER' | null;
   isOpen: boolean;
   actions: {
     setModalView: (view: TModalStore['modalView']) => void;
@@ -10,11 +10,11 @@ type TModalStore = {
 };
 
 const useModalStore = create<TModalStore>(set => ({
-  modalView: '',
+  modalView: null,
   isOpen: false,
   // https://tkdodo.eu/blog/working-with-zustand#separate-actions-from-state
   actions: {
-    setModalView: (view: string | null) => set({ modalView: view }),
+    setModalView: (view: TModalStore['modalView']) => set({ modalView: view }),
     setIsOpen: () =>
       set(state => ({
         isOpen: !state.isOpen,
