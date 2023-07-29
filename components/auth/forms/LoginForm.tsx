@@ -63,24 +63,28 @@ const LoginForm = () => {
             subtitle="Login to your account!"
           />
           <FieldControl>
-            <Input
-              id="email"
-              disabled={isLoading}
-              {...register('email')}
-              required
-            />
-            <Label htmlFor="email">Email Address</Label>
+            <div className="relative">
+              <Input
+                id="email"
+                disabled={isLoading}
+                {...register('email')}
+                required
+              />
+              <Label htmlFor="email">Email Address</Label>
+            </div>
             <FieldMess name="email" />
           </FieldControl>
           <FieldControl>
-            <Input
-              id="password"
-              type="password"
-              disabled={isLoading}
-              {...register('password')}
-              required
-            />
-            <Label htmlFor="password">Password</Label>
+            <div className='relative'>
+              <Input
+                id="password"
+                type="password"
+                disabled={isLoading}
+                {...register('password')}
+                required
+              />
+              <Label htmlFor="password">Password</Label>
+            </div>
             <FieldMess name="password" />
           </FieldControl>
           <Button disabled={isLoading} onClick={handleSubmit(onSubmit)}>

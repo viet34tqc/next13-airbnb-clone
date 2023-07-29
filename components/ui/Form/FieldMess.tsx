@@ -15,10 +15,7 @@ const FieldMess = ({ name, message, className, ...props }: Props) => {
   const body = name ? errors[name]?.message : message ? message : '';
   if (!body) return null;
   return (
-    <p
-      className={cn('text-sm font-medium text-destructive', className)}
-      {...props}
-    >
+    <p className={cn('text-sm font-medium text-red-600', className)} {...props}>
       {String(body)}
     </p>
   );

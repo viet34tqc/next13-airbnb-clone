@@ -12,7 +12,7 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = loginSchema.extend({
-  name: z.string(),
+  name: z.string().min(1, 'Name field is required'),
 });
 
 export const checkEmailSchema = z.object({

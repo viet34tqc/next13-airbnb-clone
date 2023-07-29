@@ -1,6 +1,7 @@
 import SiteHeader from '@/components/SiteHeader';
 import ModalController from '@/components/ui/Modal/ModalController';
 import { Inter } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 import './globals.css';
 import { NextAuthProvider } from './providers';
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NextAuthProvider>
+          <Toaster />
           <SiteHeader />
           {children}
           <ModalController />
