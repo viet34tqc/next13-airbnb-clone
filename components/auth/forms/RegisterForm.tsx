@@ -103,7 +103,7 @@ const RegisterForm = () => {
               </div>
               <FieldMess name="password" />
             </FieldControl>
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} isLoading={isLoading}>
               Register
             </Button>
           </div>

@@ -13,10 +13,11 @@ const Label = ({
   } = useFormContext();
   const error = htmlFor ? String(errors?.[htmlFor]?.message) : '';
   return (
+    // Pointer event none is used only in this project
     <label
       htmlFor={htmlFor}
       className={cn(
-        'absolute text-md duration-150 transform top-[50%] scale-75 -translate-y-7 left-4 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-[-50%] peer-focus:scale-75 peer-focus:-translate-y-7 text-rose-500',
+        'absolute text-md duration-150 transform top-[50%] scale-75 -translate-y-7 left-4 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-[-50%] peer-focus:scale-75 peer-focus:-translate-y-7 text-rose-500 pointer-events-none',
         {
           'text-rose-500': error,
         },

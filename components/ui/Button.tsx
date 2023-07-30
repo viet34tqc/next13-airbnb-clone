@@ -6,11 +6,18 @@ import { ComponentProps } from 'react';
 type BaseProps = {
   isOutline?: boolean;
   isSmall?: boolean;
+  isLoading?: boolean;
 };
 
 type ButtonProps = BaseProps & ComponentProps<'button'> & ComponentProps<'a'>;
 
-const Button = ({ isOutline, isSmall, ...props }: ButtonProps) => {
+const Button = ({
+  isOutline,
+  isSmall,
+  isLoading,
+  children,
+  ...props
+}: ButtonProps) => {
   const newProps = { ...props };
 
   // Here you can add style from tailwind, below is the demo
@@ -33,7 +40,7 @@ const Button = ({ isOutline, isSmall, ...props }: ButtonProps) => {
     newProps['type'] = newProps.type ? newProps.type : 'button';
   }
 
-  return <As {...newProps} />;
+  return <As {...newProps}>{isLoading ? <>Loading...</> : children}</As>;
 };
 
 export default Button;
