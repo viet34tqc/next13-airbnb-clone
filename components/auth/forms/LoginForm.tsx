@@ -8,12 +8,7 @@ import { useModalStoreActions } from '@/store/useModalStore';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import {
-  FieldValues,
-  FormProvider,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import type { z } from 'zod';
 import { loginSchema } from '../authSchema';
@@ -22,7 +17,7 @@ import AuthFormFooter from './AuthFormFooter';
 type TLoginInputs = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
-  const { setModalView } = useModalStoreActions();
+  const { setIsOpen, setModalView } = useModalStoreActions();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -35,7 +30,7 @@ const LoginForm = () => {
 
   const { register, handleSubmit } = methods;
 
-  const onSubmit: SubmitHandler<FieldValues> = data => {
+  const onSubmit = (data: TLoginInputs) => {
     setIsLoading(true);
 
     signIn('credentials', {
@@ -44,53 +39,54 @@ const LoginForm = () => {
     }).then(callback => {
       setIsLoading(false);
 
-      if (callback?.ok) {
-        toast.success('Logged in');
-        router.refresh();
-      }
-
       if (callback?.error) {
         toast.error(callback.error);
+      } else {
+        toast.success('Logged in');
+        setIsOpen();
+        router.refresh();
       }
     });
   };
   return (
     <>
       <FormProvider {...methods}>
-        <div className="flex flex-col gap-4">
-          <ModalHeading
-            title="Welcome back"
-            subtitle="Login to your account!"
-          />
-          <FieldControl>
-            <div className="relative">
-              <Input
-                id="email"
-                disabled={isLoading}
-                {...register('email')}
-                required
-              />
-              <Label htmlFor="email">Email Address</Label>
-            </div>
-            <FieldMess name="email" />
-          </FieldControl>
-          <FieldControl>
-            <div className='relative'>
-              <Input
-                id="password"
-                type="password"
-                disabled={isLoading}
-                {...register('password')}
-                required
-              />
-              <Label htmlFor="password">Password</Label>
-            </div>
-            <FieldMess name="password" />
-          </FieldControl>
-          <Button disabled={isLoading} onClick={handleSubmit(onSubmit)}>
-            Login
-          </Button>
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col gap-4">
+            <ModalHeading
+              title="Welcome back"
+              subtitle="Login to your account!"
+            />
+            <FieldControl>
+              <div className="relative">
+                <Input
+                  id="email"
+                  disabled={isLoading}
+                  {...register('email')}
+                  required
+                />
+                <Label htmlFor="email">Email Address</Label>
+              </div>
+              <FieldMess name="email" />
+            </FieldControl>
+            <FieldControl>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type="password"
+                  disabled={isLoading}
+                  {...register('password')}
+                  required
+                />
+                <Label htmlFor="password">Password</Label>
+              </div>
+              <FieldMess name="password" />
+            </FieldControl>
+            <Button type="submit" disabled={isLoading} isLoading={isLoading}>
+              Login
+            </Button>
+          </div>
+        </form>
       </FormProvider>
       <AuthFormFooter>
         <p>
