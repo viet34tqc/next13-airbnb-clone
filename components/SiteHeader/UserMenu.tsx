@@ -18,7 +18,7 @@ import MenuItem from './MenuItem';
 
 const UserMenu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { setModalView, setIsOpen } = useModalStoreActions();
+  const { setModalView, toggleModal } = useModalStoreActions();
 
   return (
     <div className="relative">
@@ -80,15 +80,15 @@ const UserMenu = () => {
               <MenuItem
                 label="Login"
                 onClick={() => {
-                  setIsDropdownOpen(false)
-                  setIsOpen(), setModalView('LOGIN');
+                  setIsDropdownOpen(false);
+                  toggleModal(), setModalView('LOGIN');
                 }}
               />
               <MenuItem
                 label="Sign up"
                 onClick={() => {
                   setIsDropdownOpen(false);
-                  setIsOpen(), setModalView('REGISTER');
+                  toggleModal(), setModalView('REGISTER');
                 }}
               />
             </div>

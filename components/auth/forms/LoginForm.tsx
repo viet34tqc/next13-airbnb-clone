@@ -17,7 +17,7 @@ import AuthFormFooter from './AuthFormFooter';
 type TLoginInputs = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
-  const { setIsOpen, setModalView } = useModalStoreActions();
+  const { toggleModal, setModalView } = useModalStoreActions();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -43,7 +43,7 @@ const LoginForm = () => {
         toast.error(callback.error);
       } else {
         toast.success('Logged in');
-        setIsOpen();
+        toggleModal();
         router.refresh();
       }
     });

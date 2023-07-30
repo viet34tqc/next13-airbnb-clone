@@ -14,10 +14,10 @@ const RegisterModal = dynamic(() => import('../../auth/modals/RegisterModal'));
 const ModalController = () => {
   const modalView = useModalView();
   const isOpen = useModalIsOpen();
-  const { setIsOpen } = useModalStoreActions();
+  const { toggleModal } = useModalStoreActions();
   if (!isOpen) return null;
   return (
-    <CustomDialog open={isOpen} onOpenChange={setIsOpen}>
+    <CustomDialog open={isOpen} onOpenChange={toggleModal}>
       {modalView === 'REGISTER' && <RegisterModal />}
       {modalView === 'LOGIN' && <LoginModal />}
     </CustomDialog>

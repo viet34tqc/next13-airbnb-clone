@@ -5,7 +5,7 @@ type TModalStore = {
   isOpen: boolean;
   actions: {
     setModalView: (view: TModalStore['modalView']) => void;
-    setIsOpen: () => void;
+    toggleModal: () => void;
   };
 };
 
@@ -15,7 +15,7 @@ const useModalStore = create<TModalStore>(set => ({
   // https://tkdodo.eu/blog/working-with-zustand#separate-actions-from-state
   actions: {
     setModalView: (view: TModalStore['modalView']) => set({ modalView: view }),
-    setIsOpen: () =>
+    toggleModal: () =>
       set(state => ({
         isOpen: !state.isOpen,
         // Reset modalView
