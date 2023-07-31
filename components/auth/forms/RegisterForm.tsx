@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { registerSchema } from '../authSchema';
-import AuthFormFooter from './AuthFormFooter';
+import AuthFormFooter from './OauthLogin';
 
 type TRegisterInputs = z.infer<typeof registerSchema>;
 

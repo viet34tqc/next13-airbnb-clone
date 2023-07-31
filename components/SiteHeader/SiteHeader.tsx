@@ -1,11 +1,14 @@
+import { SafeUser } from '@/lib/types/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import HeaderSearch from './HeaderSearch';
-import UserMenu from './UserMenu';
+import UserMenu from './UserMenu/UserMenu';
 
-type Props = {};
+type Props = {
+  user: SafeUser | null;
+};
 
-const SiteHeader = (props: Props) => {
+const SiteHeader = ({ user }: Props) => {
   return (
     <header className="sticky bg-white z-10 shadow-sm py-4">
       <div className="container flex justify-between">
@@ -20,7 +23,7 @@ const SiteHeader = (props: Props) => {
           />
         </Link>
         <HeaderSearch />
-        <UserMenu />
+        <UserMenu user={user} />
       </div>
     </header>
   );

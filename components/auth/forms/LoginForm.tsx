@@ -12,7 +12,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import type { z } from 'zod';
 import { loginSchema } from '../authSchema';
-import AuthFormFooter from './AuthFormFooter';
+import AuthFormFooter from './OauthLogin';
 
 type TLoginInputs = z.infer<typeof loginSchema>;
 

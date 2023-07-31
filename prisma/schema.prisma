@@ -40,6 +40,7 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+// Missing updatedAt and createdAt
 model User {
   id            String    @id @default(cuid())
   name          String?
