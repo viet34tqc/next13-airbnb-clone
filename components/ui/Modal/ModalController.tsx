@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  useModalIsOpen,
-  useModalStoreActions,
-  useModalView,
-} from '@/store/useModalStore';
+import { useModalStoreActions, useModalView } from '@/store/useModalStore';
 import dynamic from 'next/dynamic';
 import { CustomDialog } from './Modal';
 
@@ -13,11 +9,11 @@ const RegisterModal = dynamic(() => import('../../auth/modals/RegisterModal'));
 
 const ModalController = () => {
   const modalView = useModalView();
-  const isOpen = useModalIsOpen();
-  const { toggleModal } = useModalStoreActions();
+  const isOpen = !!modalView;
+  const { setModalView } = useModalStoreActions();
   if (!isOpen) return null;
   return (
-    <CustomDialog open={isOpen} onOpenChange={toggleModal}>
+    <CustomDialog open={isOpen} onOpenChange={() => setModalView(null)}>
       {modalView === 'REGISTER' && <RegisterModal />}
       {modalView === 'LOGIN' && <LoginModal />}
     </CustomDialog>

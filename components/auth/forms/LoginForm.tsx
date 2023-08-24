@@ -17,7 +17,7 @@ import AuthFormFooter from './OauthLogin';
 type TLoginInputs = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
-  const { toggleModal, setModalView } = useModalStoreActions();
+  const { setModalView } = useModalStoreActions();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -37,13 +37,18 @@ const LoginForm = () => {
       ...data,
       redirect: false,
     }).then(callback => {
+      console.log('callback', callback);
       setIsLoading(false);
 
       if (callback?.error) {
-        toast.error(callback.error);
+        if (callback.error === 'CredentialsSignin') {
+          toast.error('Wrong credentials'); // TODO: put this into constants
+        } else {
+          toast.error(callback.error);
+        }
       } else {
         toast.success('Logged in');
-        toggleModal();
+        setModalView(null);
         router.refresh();
       }
     });

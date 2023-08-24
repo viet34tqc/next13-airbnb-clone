@@ -18,7 +18,7 @@ type Props = {
 
 const UserMenuDropdown = ({ user }: Props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { setModalView, toggleModal } = useModalStoreActions();
+  const { setModalView } = useModalStoreActions();
 
   return (
     <CustomDropdown open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
@@ -82,14 +82,14 @@ const UserMenuDropdown = ({ user }: Props) => {
                 label="Login"
                 onClick={() => {
                   setIsDropdownOpen(false);
-                  toggleModal(), setModalView('LOGIN');
+                  setModalView('LOGIN');
                 }}
               />
               <MenuItem
                 label="Sign up"
                 onClick={() => {
                   setIsDropdownOpen(false);
-                  toggleModal(), setModalView('REGISTER');
+                  setModalView('REGISTER');
                 }}
               />
             </>

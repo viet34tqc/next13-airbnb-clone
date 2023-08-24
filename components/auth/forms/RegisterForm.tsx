@@ -54,6 +54,7 @@ const RegisterForm = () => {
       }
       toast.success('Registered!');
       router.replace('/');
+      setModalView(null);
     } catch (error) {
       if (error instanceof Error) {
         toast(error.message);

@@ -1,12 +1,13 @@
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import { compare } from 'bcryptjs';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { db as prisma } from './db';
+import type { Adapter } from 'next-auth/adapters'; // This is workaround: https://github.com/nextauthjs/next-auth/issues/6106
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as Adapter,
   // Choose how you want to save the user session.
   // If you login via credentials, session is saved in session cookie
   // If you login via OAuth, session is saved in database
