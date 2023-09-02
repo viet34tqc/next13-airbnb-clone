@@ -1,19 +1,15 @@
 'use client';
 
-/*
-TODO
-- Dropdown menu is not good, replace it with radix dropdown
-*/
-
+import { useModalStoreActions } from '@/store/useModalStore';
 import { User } from 'next-auth';
 import UserMenuDropdown from './UserMenuDropdown';
 
 const UserMenu = ({ user }: { user: User | null }) => {
+  const { setModalView } = useModalStoreActions();
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <button
-          onClick={() => {}}
           className="
             hidden
             md:block
@@ -26,6 +22,7 @@ const UserMenu = ({ user }: { user: User | null }) => {
             transition
             cursor-pointer
           "
+          onClick={() => setModalView( !user ? 'LOGIN' : 'RENT')}
         >
           Airbnb your home
         </button>

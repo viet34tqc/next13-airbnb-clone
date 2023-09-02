@@ -6,6 +6,7 @@ import { CustomDialog } from './Modal';
 
 const LoginModal = dynamic(() => import('../../auth/modals/LoginModal'));
 const RegisterModal = dynamic(() => import('../../auth/modals/RegisterModal'));
+const RentModal = dynamic(() => import('@/components/modals/RentModal'));
 
 const ModalController = () => {
   const modalView = useModalView();
@@ -16,6 +17,7 @@ const ModalController = () => {
     <CustomDialog open={isOpen} onOpenChange={() => setModalView(null)}>
       {modalView === 'REGISTER' && <RegisterModal />}
       {modalView === 'LOGIN' && <LoginModal />}
+      {modalView === 'RENT' && <RentModal />}
     </CustomDialog>
   );
 };

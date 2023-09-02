@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 type TModalStore = {
-  modalView: 'LOGIN' | 'REGISTER' | null;
+  modalView: 'LOGIN' | 'REGISTER' | 'RENT' | null;
   actions: {
     setModalView: (view: TModalStore['modalView']) => void;
   };
