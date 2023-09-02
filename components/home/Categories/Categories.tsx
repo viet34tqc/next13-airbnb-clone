@@ -1,7 +1,5 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
-
 import CategoryBox from './CategoryBox';
 import { categories } from './constants';
 
@@ -19,11 +17,7 @@ const Categories = () => {
         "
       >
         {categories.map(item => (
-          <CategoryBox
-            key={item.label}
-            label={item.label}
-            icon={item.icon}
-          />
+          <CategoryBox key={item.label} label={item.label} icon={item.icon} />
         ))}
       </div>
     </div>

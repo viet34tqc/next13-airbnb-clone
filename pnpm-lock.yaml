@@ -23,6 +23,9 @@ dependencies:
   '@radix-ui/react-dropdown-menu':
     specifier: ^2.0.5
     version: 2.0.5(@types/react-dom@18.2.4)(@types/react@18.2.11)(react-dom@18.2.0)(react@18.2.0)
+  '@react-icons/all-files':
+    specifier: ^4.1.0
+    version: 4.1.0(react@18.2.0)
   '@types/node':
     specifier: 20.2.6
     version: 20.2.6
@@ -38,9 +41,6 @@ dependencies:
   bcrypt:
     specifier: ^5.1.1
     version: 5.1.1
-  bcryptjs:
-    specifier: ^2.4.3
-    version: 2.4.3
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
@@ -74,9 +74,6 @@ dependencies:
   react-hot-toast:
     specifier: ^2.4.1
     version: 2.4.1(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
-  react-icons:
-    specifier: ^4.10.1
-    version: 4.10.1(react@18.2.0)
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -938,6 +935,14 @@ packages:
       '@babel/runtime': 7.22.11
     dev: false
 
+  /@react-icons/all-files@4.1.0(react@18.2.0):
+    resolution: {integrity: sha512-hxBI2UOuVaI3O/BhQfhtb4kcGn9ft12RWAFVMUeNjqqhLsHvFtzIkFaptBJpFDANTKoDfdVoHTKZDlwKCACbMQ==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@rushstack/eslint-patch@1.3.3:
     resolution: {integrity: sha512-0xd7qez0AQ+MbHatZTlI1gu5vkG8r7MYRUJAHPAHJBmGLs16zpkrpAVLvjQKQOqaXPDUBwOiJzNc00znHSCVBw==}
     dev: false
@@ -1274,10 +1279,6 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
-    dev: false
-
-  /bcryptjs@2.4.3:
-    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
     dev: false
 
   /binary-extensions@2.2.0:
@@ -3105,14 +3106,6 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - csstype
-    dev: false
-
-  /react-icons@4.10.1(react@18.2.0):
-    resolution: {integrity: sha512-/ngzDP/77tlCfqthiiGNZeYFACw85fUjZtLbedmJ5DTlNDIwETxhwBzdOJ21zj4iJdvc0J3y7yOsX3PpxAJzrw==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /react-is@16.13.1:

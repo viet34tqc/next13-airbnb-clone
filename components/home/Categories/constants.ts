@@ -1,23 +1,23 @@
-import { BsSnow } from 'react-icons/bs';
-import { FaSkiing } from 'react-icons/fa';
-import {
-  GiBarn,
-  GiBoatFishing,
-  GiCactus,
-  GiCastle,
-  GiCaveEntrance,
-  GiForestCamp,
-  GiIsland,
-  GiWindmill,
-} from 'react-icons/gi';
-import { IoDiamond } from 'react-icons/io5';
-import { MdOutlineVilla } from 'react-icons/md';
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
+import { BsBag } from '@react-icons/all-files/bs/BsBag';
+import { FaSkiing } from '@react-icons/all-files/fa/FaSkiing';
+import { GiBarn } from '@react-icons/all-files/gi/GiBarn';
+import { GiBoatFishing } from '@react-icons/all-files/gi/GiBoatFishing';
+import { GiCactus } from '@react-icons/all-files/gi/GiCactus';
+import { GiCastle } from '@react-icons/all-files/gi/GiCastle';
+import { GiCaveEntrance } from '@react-icons/all-files/gi/GiCaveEntrance';
+import { GiForestCamp } from '@react-icons/all-files/gi/GiForestCamp';
+import { GiIsland } from '@react-icons/all-files/gi/GiIsland';
+import { GiWindmill } from '@react-icons/all-files/gi/GiWindmill';
+import { IoIosAdd } from '@react-icons/all-files/io/IoIosAdd';
+import { Md3DRotation } from '@react-icons/all-files/md/Md3DRotation';
+import { TiAdjustBrightness } from '@react-icons/all-files/ti/TiAdjustBrightness';
+import { TiAdjustContrast } from '@react-icons/all-files/ti/TiAdjustContrast';
+import { TiAnchor } from '@react-icons/all-files/ti/TiAnchor';
 
 export const categories = [
   {
     label: 'Beach',
-    icon: TbBeach,
+    icon: TiAdjustBrightness,
     description: 'This property is close to the beach!',
   },
   {
@@ -27,17 +27,17 @@ export const categories = [
   },
   {
     label: 'Modern',
-    icon: MdOutlineVilla,
+    icon: Md3DRotation,
     description: 'This property is modern!',
   },
   {
     label: 'Countryside',
-    icon: TbMountain,
+    icon: TiAdjustContrast,
     description: 'This property is in the countryside!',
   },
   {
     label: 'Pools',
-    icon: TbPool,
+    icon: TiAnchor,
     description: 'This is property has a beautiful pool!',
   },
   {
@@ -72,7 +72,7 @@ export const categories = [
   },
   {
     label: 'Arctic',
-    icon: BsSnow,
+    icon: BsBag,
     description: 'This property is in arctic environment!',
   },
   {
@@ -87,7 +87,7 @@ export const categories = [
   },
   {
     label: 'Lux',
-    icon: IoDiamond,
+    icon: IoIosAdd,
     description: 'This property is brand new and luxurious!',
   },
 ];

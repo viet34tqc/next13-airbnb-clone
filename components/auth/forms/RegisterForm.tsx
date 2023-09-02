@@ -84,6 +84,7 @@ const RegisterForm = () => {
               <div className="relative">
                 <Input
                   id="email"
+                  type="email"
                   disabled={isLoading}
                   {...register('email')}
                   required
@@ -96,6 +97,7 @@ const RegisterForm = () => {
               <div className="relative">
                 <Input
                   id="password"
+                  type="password"
                   disabled={isLoading}
                   {...register('password')}
                   required

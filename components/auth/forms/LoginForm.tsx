@@ -66,6 +66,7 @@ const LoginForm = () => {
               <div className="relative">
                 <Input
                   id="email"
+                  type="email"
                   disabled={isLoading}
                   {...register('email')}
                   required
