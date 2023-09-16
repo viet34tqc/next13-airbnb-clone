@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  CustomDialogClose,
   CustomDialogContent,
   CustomDialogOverlay,
   CustomDialogPortal,
@@ -14,6 +15,7 @@ const LoginModal = () => {
         <CustomDialogOverlay />
         <CustomDialogContent>
           <LoginForm />
+          <CustomDialogClose />
         </CustomDialogContent>
       </div>
     </CustomDialogPortal>

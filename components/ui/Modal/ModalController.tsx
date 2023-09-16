@@ -6,7 +6,9 @@ import { CustomDialog } from './Modal';
 
 const LoginModal = dynamic(() => import('../../auth/modals/LoginModal'));
 const RegisterModal = dynamic(() => import('../../auth/modals/RegisterModal'));
-const RentModal = dynamic(() => import('@/components/modals/RentModal'));
+const RentModal = dynamic(
+  () => import('@/components/modals/RentModal/RentModal')
+);
 
 const ModalController = () => {
   const modalView = useModalView();

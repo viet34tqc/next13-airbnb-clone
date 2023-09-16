@@ -9,7 +9,6 @@ type TModalStore = {
 
 const useModalStore = create<TModalStore>(set => ({
   modalView: null,
-  isOpen: false,
   // https://tkdodo.eu/blog/working-with-zustand#separate-actions-from-state
   actions: {
     setModalView: (view: TModalStore['modalView']) => set({ modalView: view }),

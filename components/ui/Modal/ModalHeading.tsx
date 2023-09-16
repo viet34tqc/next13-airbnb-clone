@@ -1,11 +1,11 @@
 'use client';
 
-interface HeadingProps {
+interface ModalHeadingProps {
   title: string;
   subtitle?: string;
 }
 
-const Heading = ({ title, subtitle }: HeadingProps) => {
+const ModalHeading = ({ title, subtitle }: ModalHeadingProps) => {
   return (
     <div className="text-center">
       <div className="text-2xl font-bold">{title}</div>
@@ -14,4 +14,4 @@ const Heading = ({ title, subtitle }: HeadingProps) => {
   );
 };
 
-export default Heading;
+export default ModalHeading;

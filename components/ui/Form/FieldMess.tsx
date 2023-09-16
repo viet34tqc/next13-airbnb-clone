@@ -12,7 +12,7 @@ const FieldMess = ({ name, message, className, ...props }: Props) => {
     formState: { errors },
   } = useFormContext();
   if (!name) return null;
-  const body = name ? errors[name]?.message : message ? message : '';
+  const body = name ? errors[name]?.message : message ?? '';
   if (!body) return null;
   return (
     <p className={cn('text-sm font-medium text-red-600', className)} {...props}>
