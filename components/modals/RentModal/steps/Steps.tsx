@@ -1,3 +1,4 @@
+import { CountrySelectValue } from '@/components/shared/CountrySelect';
 import dynamic from 'next/dynamic';
 import { FormProvider, useForm } from 'react-hook-form';
 import { STEPS } from '../constant';
@@ -8,7 +9,7 @@ type Props = {
 
 type RentModalValues = {
   category: string;
-  location: string | null;
+  location: CountrySelectValue | null;
   guestCount: number;
   roomCount: number;
   bathroomCount: number;
