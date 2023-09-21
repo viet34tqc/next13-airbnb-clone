@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 const Map = dynamic(() => import('@/components/shared/Map'), {
-  ssr: false,
+  ssr: false, // Need this to make the map to re-render when we change the location
 });
 
 const LocationStep = () => {
