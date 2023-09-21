@@ -2,9 +2,7 @@ import { categories } from '@/components/home/Categories/constants';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import CategoryStepItem from './CategoryStepItem';
 
-type Props = {};
-
-const CategoryStep = (props: Props) => {
+const CategoryStep = () => {
   return (
     <>
       <ModalHeading

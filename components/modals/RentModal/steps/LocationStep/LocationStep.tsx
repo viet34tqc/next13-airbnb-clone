@@ -1,11 +1,18 @@
+'use client';
+
 import CountrySelect from '@/components/shared/CountrySelect';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
+import dynamic from 'next/dynamic';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-type Props = {};
+const Map = dynamic(() => import('@/components/shared/Map'), {
+  ssr: false,
+});
 
-const LocationStep = (props: Props) => {
+const LocationStep = () => {
   const { setValue } = useFormContext();
+  const location = useWatch({ name: 'location' });
+
   return (
     <>
       <ModalHeading
@@ -13,6 +20,7 @@ const LocationStep = (props: Props) => {
         subtitle="Help guests find you!"
       />
       <CountrySelect onChange={value => setValue('location', value)} />
+      {location && <Map center={location?.latlng} />}
     </>
   );
 };
