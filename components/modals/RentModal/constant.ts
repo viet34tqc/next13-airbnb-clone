@@ -2,7 +2,7 @@ export const STEPS = [
   'Category',
   'Location',
   'Info',
-  'Images',
+  'Image',
   'Description',
   'Price',
 ] as const;
