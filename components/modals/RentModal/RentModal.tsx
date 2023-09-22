@@ -31,12 +31,12 @@ const RentModal = () => {
         <CustomDialogContent>
           <Steps step={step} />
           <div className="flex justify-center gap-2">
-            <Button onClick={handleNextStep}>{actionLabel}</Button>
             {secondaryActionLabel && (
               <Button isOutline onClick={handlePreviousStep}>
                 {secondaryActionLabel}
               </Button>
             )}
+            <Button onClick={handleNextStep}>{actionLabel}</Button>
           </div>
           <CustomDialogClose />
         </CustomDialogContent>
