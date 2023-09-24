@@ -14,14 +14,25 @@ const DescriptionStep = () => {
         subtitle="Short and sweet works best!"
       />
       <FieldControl>
-        <Label>Title</Label>
-        <Input {...register('title')} required />
+        <div className="relative">
+          <Label>Title</Label>
+          <Input {...register('title')} required />
+        </div>
         <FieldMess name="title" />
       </FieldControl>
       <FieldControl>
-        <Label>Description</Label>
-        <Input {...register('description')} required />
+        <div className="relative">
+          <Label>Description</Label>
+          <Input {...register('description')} required />
+        </div>
         <FieldMess name="description" />
+      </FieldControl>
+      <FieldControl>
+        <div className="relative">
+          <Label>Price($)</Label>
+          <Input type="number" {...register('price')} required min={0} />
+        </div>
+        <FieldMess name="price" />
       </FieldControl>
     </>
   );

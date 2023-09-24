@@ -2,21 +2,33 @@
 
 import useCountries from '@/hooks/useCountries';
 import { ChangeEvent } from 'react';
+import { z } from 'zod';
 import Select from '../ui/Form/Select';
 
-export type CountrySelectValue = {
-  flag: string;
-  label: string;
-  latlng: number[];
-  region: string;
-  value: string;
+export const CountrySelectSchema = z.object({
+  flag: z.string(),
+  label: z.string(),
+  latlng: z.array(z.number()),
+  region: z.string(),
+  value: z.string(),
+});
+
+export const defaultCountryOption = {
+  flag: '',
+  label: '',
+  latlng: [0, 0],
+  region: '',
+  value: '',
 };
 
+export type CountrySelectValue = z.infer<typeof CountrySelectSchema>;
+
 type Props = {
+  selectedCountry: CountrySelectValue;
   onChange: (value: CountrySelectValue) => void;
 };
 
-const CountrySelect = ({ onChange }: Props) => {
+const CountrySelect = ({ selectedCountry, onChange }: Props) => {
   const { getAll } = useCountries();
   const options = [
     { value: '', label: 'Select country' },
@@ -24,6 +36,10 @@ const CountrySelect = ({ onChange }: Props) => {
   ];
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    if (!e.target.value) {
+      onChange(defaultCountryOption);
+      return;
+    }
     const selectedItem = getAll().find(
       country => country.value === e.target.value
     );
@@ -36,6 +52,7 @@ const CountrySelect = ({ onChange }: Props) => {
     <div>
       <Select
         placeholder="Anywhere"
+        value={selectedCountry.value}
         options={options}
         onChange={handleChange}
       />

@@ -1,6 +1,7 @@
 'use client';
 
 import CountrySelect from '@/components/shared/CountrySelect';
+import FieldMess from '@/components/ui/Form/FieldMess';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import dynamic from 'next/dynamic';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -19,8 +20,12 @@ const LocationStep = () => {
         title="Where is your place located?"
         subtitle="Help guests find you!"
       />
-      <CountrySelect onChange={value => setValue('location', value)} />
-      {location && <Map center={location?.latlng} />}
+      <CountrySelect
+        selectedCountry={location}
+        onChange={value => setValue('location', value)}
+      />
+      <FieldMess name="location.value" />
+      {location.value && <Map center={location?.latlng} />}
     </>
   );
 };

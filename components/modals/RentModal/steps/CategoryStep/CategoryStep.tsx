@@ -1,14 +1,20 @@
 import { categories } from '@/components/home/Categories/constants';
+import FieldMess from '@/components/ui/Form/FieldMess';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
+import { useFormContext } from 'react-hook-form';
 import CategoryStepItem from './CategoryStepItem';
 
 const CategoryStep = () => {
+  const {
+    formState: { errors },
+  } = useFormContext();
   return (
     <>
       <ModalHeading
         title="Which of these best describes your place?"
         subtitle="Pick a category"
       />
+      <FieldMess name="category" className="text-center" />
       <div
         className="
           grid
