@@ -19,7 +19,6 @@ const ModalController = () => {
     <CustomDialog open={isOpen} onOpenChange={() => setModalView(null)}>
       {modalView === 'REGISTER' && <RegisterModal />}
       {modalView === 'LOGIN' && <LoginModal />}
-      {modalView === 'RENT' && <RentModal />}
     </CustomDialog>
   );
 };

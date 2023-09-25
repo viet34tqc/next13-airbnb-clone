@@ -1,8 +1,10 @@
 import { defaultCountryOption } from '@/components/shared/CountrySelect';
+import { useModalStoreActions, useModalView } from '@/store/useModalStore';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import {
+  CustomDialog,
   CustomDialogClose,
   CustomDialogContent,
   CustomDialogOverlay,
@@ -33,21 +35,27 @@ const RentModal = () => {
     resolver: zodResolver(rentModalSchema),
   });
 
+  const modalView = useModalView();
+  const isOpen = !!modalView;
+  const { setModalView } = useModalStoreActions();
+
   return (
-    <CustomDialogPortal>
-      <div className="fixed inset-0 z-50 flex justify-center items-center">
-        <CustomDialogOverlay />
-        <CustomDialogContent>
-          <StepsContextProvider>
-            <FormProvider {...methods}>
-              <Steps />
-              <StepsNavigation />
-            </FormProvider>
-          </StepsContextProvider>
-          <CustomDialogClose />
-        </CustomDialogContent>
-      </div>
-    </CustomDialogPortal>
+    <CustomDialog open={isOpen} onOpenChange={() => setModalView(null)}>
+      <CustomDialogPortal>
+        <div className="fixed inset-0 z-50 flex justify-center items-center">
+          <CustomDialogOverlay />
+          <CustomDialogContent>
+            <StepsContextProvider>
+              <FormProvider {...methods}>
+                <Steps />
+                <StepsNavigation />
+              </FormProvider>
+            </StepsContextProvider>
+            <CustomDialogClose />
+          </CustomDialogContent>
+        </div>
+      </CustomDialogPortal>
+    </CustomDialog>
   );
 };
 
