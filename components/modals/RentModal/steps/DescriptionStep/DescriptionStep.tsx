@@ -30,7 +30,12 @@ const DescriptionStep = () => {
       <FieldControl>
         <div className="relative">
           <Label>Price($)</Label>
-          <Input type="number" {...register('price')} required min={0} />
+          <Input
+            type="number"
+            {...register('price', { valueAsNumber: true })}
+            required
+            min={0}
+          />
         </div>
         <FieldMess name="price" />
       </FieldControl>

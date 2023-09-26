@@ -37,7 +37,6 @@ const LoginForm = () => {
       ...data,
       redirect: false,
     }).then(callback => {
-      console.log('callback', callback);
       setIsLoading(false);
 
       if (callback?.error) {

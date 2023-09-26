@@ -5,9 +5,8 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma" // Only need for planetscale: https://stackoverflow.com/questions/74769279/prisma-next-auth-planetscale-foreign-key-constraints-are-not-allowed
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
 }
 
 model Account {
@@ -47,6 +46,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  listings Listing[]
+
   @@map(name: "users")
 }
 
@@ -56,4 +57,21 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Listing {
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  imageSrc      String
+  createdAt     DateTime @default(now())
+  category      String
+  roomCount     Int
+  bathroomCount Int
+  guestCount    Int
+  locationValue String
+  userId        String
+  price         Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

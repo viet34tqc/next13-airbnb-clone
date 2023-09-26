@@ -15,7 +15,7 @@ import StepsContextProvider from './context/StepsContext';
 import Steps from './steps/Steps';
 import { rentModalSchema } from './validationSchema';
 
-type RentModalValues = z.infer<typeof rentModalSchema>;
+export type RentModalValues = z.infer<typeof rentModalSchema>;
 
 const defaultValues = {
   category: '',
