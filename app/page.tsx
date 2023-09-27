@@ -1,4 +1,4 @@
-import Categories from '@/components/home/Categories/Categories';
+import Categories from '@/modules/HomePage/components/Categories/Categories';
 
 export default function Home() {
   return (

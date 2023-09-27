@@ -1,4 +1,4 @@
-import SiteHeader from '@/components/SiteHeader';
+import SiteHeader from '@/components/shared/SiteHeader';
 import ModalController from '@/components/ui/Modal/ModalController';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';

@@ -6,11 +6,12 @@ import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+
 import {
   CustomDropdown,
   CustomDropdownContent,
   CustomDropdownTrigger,
-} from '../../ui/DropDown';
+} from '@/components/ui/DropDown';
 import MenuItem from '../MenuItem';
 type Props = {
   user: User | null;
