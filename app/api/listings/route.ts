@@ -6,15 +6,15 @@ export async function POST(req: Request) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return NextResponse.error();
+    return NextResponse.json({ error: 'User not found' }, { status: 401 });
   }
 
   const body = await req.json();
 
-  // If no
+  // If there is empty value return error
   const isAllHaveValue = Object.values(body).every(value => !!value);
   if (!isAllHaveValue) {
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Missing data' }, { status: 401 });
   }
 
   const {
