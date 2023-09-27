@@ -36,7 +36,7 @@ const RentModal = () => {
   });
 
   const modalView = useModalView();
-  const isOpen = !!modalView;
+  const isOpen = modalView === 'RENT';
   const { setModalView } = useModalStoreActions();
 
   return (
