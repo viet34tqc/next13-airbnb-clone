@@ -1,6 +1,7 @@
 import useCountries from '@/hooks/useCountries';
 import { Listing } from '@prisma/client';
 import Image from 'next/image';
+import FavoriteButton from './FavoriteButton';
 
 type Props = {
   data: Listing;
@@ -31,6 +32,15 @@ const ListingCard = ({ data }: Props) => {
           src={data.imageSrc}
           alt="Listing"
         />
+        <div
+          className="
+            absolute
+            top-3
+            right-3
+          "
+        >
+          <FavoriteButton listingId={data.id} />
+        </div>
       </div>
       <div className="font-semibold text-lg">
         {location?.region}, {location?.label}
