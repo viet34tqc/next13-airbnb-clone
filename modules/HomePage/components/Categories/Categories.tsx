@@ -5,10 +5,9 @@ import { categories } from './constants';
 
 const Categories = () => {
   return (
-    <div className="container">
+    <div className="container mt-4">
       <div
         className="
-          pt-4
           flex
           flex-row
           items-center

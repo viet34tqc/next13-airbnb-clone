@@ -8,11 +8,8 @@ const CustomDialog = DialogPrimitive.Root;
 const CustomDialogTrigger = DialogPrimitive.Trigger;
 
 const CustomDialogPortal = ({
-  className,
   ...props
-}: DialogPrimitive.DialogPortalProps) => (
-  <DialogPrimitive.Portal className={cn(className)} {...props} />
-);
+}: DialogPrimitive.DialogPortalProps) => <DialogPrimitive.Portal {...props} />;
 CustomDialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
 const CustomDialogOverlay = React.forwardRef<
