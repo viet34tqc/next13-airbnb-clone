@@ -17,9 +17,10 @@ const ListingCard = ({ data }: Props) => {
   });
   return (
     <div className="flex flex-col gap-2">
-      <div className="aspect-square relative overflow-hidden rounded-xl">
+      <div className="aspect-square group relative overflow-hidden rounded-xl">
         <Image
           fill
+          sizes="(min-width: 768px) 50vw, (min-width: 1200px) 20vw, 100vw"
           className="
               object-cover
               h-full
