@@ -1,11 +1,11 @@
-import { SafeUser } from '@/lib/types/auth';
+import { User } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import HeaderSearch from './HeaderSearch';
 import UserMenu from './UserMenu/UserMenu';
 
 type Props = {
-  user: SafeUser | null;
+  user: User | null;
 };
 
 const SiteHeader = ({ user }: Props) => {

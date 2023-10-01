@@ -1,3 +1,4 @@
+import getCurrentUser from '@/app/actions/getCurrentUser';
 import useCountries from '@/hooks/useCountries';
 import { Listing } from '@prisma/client';
 import Image from 'next/image';
@@ -7,9 +8,10 @@ type Props = {
   data: Listing;
 };
 
-const ListingCard = ({ data }: Props) => {
-  const { getByValue } = useCountries();
+const ListingCard = async ({ data }: Props) => {
+  const currentUser = await getCurrentUser();
 
+  const { getByValue } = useCountries();
   const location = getByValue(data.locationValue);
   let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -39,16 +41,14 @@ const ListingCard = ({ data }: Props) => {
             right-3
           "
         >
-          <FavoriteButton listingId={data.id} />
+          <FavoriteButton currentUser={currentUser} listingId={data.id} />
         </div>
       </div>
       <div className="font-semibold text-lg">
         {location?.region}, {location?.label}
       </div>
       <div className="font-light text-neutral-500">{data.category}</div>
-      <div className="flex flex-row items-center gap-1">
-        <div className="font-semibold">{USDollar.format(data.price)}</div>
-      </div>
+      <span className="font-semibold">{USDollar.format(data.price)}</span>
     </div>
   );
 };
