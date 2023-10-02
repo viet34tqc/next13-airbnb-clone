@@ -1,6 +1,6 @@
 import FieldMess from '@/components/ui/Form/FieldMess';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
-import { categories } from '@/modules/HomePage/components/Categories/constants';
+import { categories } from '@/lib/constants';
 import { useFormContext } from 'react-hook-form';
 import CategoryStepItem from './CategoryStepItem';
 

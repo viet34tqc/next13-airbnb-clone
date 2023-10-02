@@ -1,7 +1,7 @@
 'use client';
 
+import { categories } from '../../../../lib/constants';
 import CategoryBox from './CategoryBox';
-import { categories } from './constants';
 
 const Categories = () => {
   return (

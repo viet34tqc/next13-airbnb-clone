@@ -1,12 +1,12 @@
 import { siteConfig } from '@/config/siteConfig';
 import { useModalStoreActions } from '@/store/useModalStore';
-import { Bars3Icon, UserCircleIcon } from '@heroicons/react/24/solid';
+import { Bars3Icon } from '@heroicons/react/24/solid';
 import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import UserAvatar from '@/components/UserAvatar';
 import {
   CustomDropdown,
   CustomDropdownContent,
@@ -42,11 +42,7 @@ const UserMenuDropdown = ({ user }: Props) => {
       >
         <Bars3Icon className="w-6" />
         <div className="hidden md:block text-gray-400">
-          {user?.image ? (
-            <Image width={32} height={32} src={user.image} alt="user avatar" />
-          ) : (
-            <UserCircleIcon fill="currentColor" className="w-8" />
-          )}
+          <UserAvatar userImage={user?.image} />
         </div>
       </CustomDropdownTrigger>
       <CustomDropdownContent
