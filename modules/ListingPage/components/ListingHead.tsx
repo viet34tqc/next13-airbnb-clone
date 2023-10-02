@@ -1,4 +1,3 @@
-import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import useCountries from '@/hooks/useCountries';
 import FavoriteButton from '@/modules/HomePage/components/Listings/FavoriteButton';
 import { User } from '@prisma/client';
@@ -25,10 +24,10 @@ const ListingHead = ({
 
   return (
     <>
-      <ModalHeading
-        title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
-      />
+      <header>
+        <h1 className="text-2xl font-bold">{title}</h1>
+        <div className="font-light text-neutral-500 mt-2">{`${location?.region}, ${location?.label}`}</div>
+      </header>
       <div
         className="
           w-full

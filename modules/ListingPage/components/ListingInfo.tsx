@@ -32,18 +32,17 @@ const ListingInfo = ({
 
   return (
     <div className="col-span-4 flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2">
         <div
           className="
             text-xl
             font-semibold
             flex
-            flex-row
             items-center
             gap-2
           "
         >
-          <div>Hosted by {user?.name}</div>
+          <h3>Hosted by {user?.name}</h3>
           <UserAvatar userImage={user?.image} />
         </div>
         <div
@@ -56,11 +55,11 @@ const ListingInfo = ({
             text-neutral-500
           "
         >
-          <div>{guestCount} guests</div>
-          <div>{roomCount} rooms</div>
-          <div>{bathroomCount} bathrooms</div>
+          <span>{guestCount} guests</span>
+          <span>{roomCount} rooms</span>
+          <span>{bathroomCount} bathrooms</span>
         </div>
-      </div>
+      </section>
       <hr />
       {category && (
         <ListingCategory
@@ -70,7 +69,7 @@ const ListingInfo = ({
         />
       )}
       <hr />
-      <div className="text-lg font-light text-neutral-500">{description}</div>
+      <section className="text-lg font-light text-neutral-500">{description}</section>
       <hr />
       <Map center={coordinates} />
     </div>
