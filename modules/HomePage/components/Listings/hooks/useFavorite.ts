@@ -47,8 +47,8 @@ const useFavorite = ({ listingId, currentUser }: Props) => {
         });
       }
       const res = await request;
-      const data = await res.json();
       if (!res.ok) {
+        const data = await res.json();
         throw new Error(data.message);
       }
       router.refresh();
