@@ -4,6 +4,7 @@ import { categories } from '@/lib/constants';
 import { Listing, User } from '@prisma/client';
 import ListingHead from './ListingHead';
 import ListingInfo from './ListingInfo';
+import ListingReservation from './ListingReservation';
 
 type Props = {
   listing: Listing & { user: User };
@@ -41,6 +42,16 @@ const ListingView = ({ listing, currentUser }: Props) => {
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+            <div
+              className="
+                order-first
+                mb-10
+                md:order-last
+                md:col-span-3
+              "
+            >
+              <ListingReservation />
+            </div>
           </div>
         </div>
       </div>
