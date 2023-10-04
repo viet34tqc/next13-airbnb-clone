@@ -2,12 +2,15 @@
 
 import Calendar from '@/components/shared/Calendar';
 import Button from '@/components/ui/Button';
+import { useModalStoreActions } from '@/store/useModalStore';
 import { Listing, User } from '@prisma/client';
 import { useState } from 'react';
 import { Range } from 'react-date-range';
+import toast from 'react-hot-toast';
 
 interface Props {
   listing: Listing & { user: User };
+  currentUser: User;
 }
 
 const initialDateRange = {
@@ -16,34 +19,47 @@ const initialDateRange = {
   key: 'selection',
 };
 
-const ListingReservation = ({ listing }: Props) => {
+const ListingReservation = ({ listing, currentUser }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+  const { setModalView } = useModalStoreActions();
+  const handleCreateReservation = () => {
+    if (!currentUser) {
+      return setModalView('LOGIN');
+    }
+    setIsLoading(true);
 
-  const disabledDates = useMemo(() => {
-    let dates: Date[] = [];
-
-    reservations.forEach((reservation: any) => {
-      const range = eachDayOfInterval({
-        start: new Date(reservation.startDate),
-        end: new Date(reservation.endDate),
+    fetch('/api/reservations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        totalPrice,
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+        listingId: listing?.id,
+      }),
+    })
+      .then(() => {
+        toast.success('Listing reserved!');
+        setDateRange(initialDateRange);
+      })
+      .catch(() => {
+        toast.error('Something went wrong.');
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-
-      dates = [...dates, ...range];
-    });
-
-    return dates;
-  }, [reservations]);
+  };
 
   return (
     <div
       className="
-      bg-white
         rounded-xl
         border-[1px]
       border-neutral-200
-        overflow-hidden
       "
     >
       <div
@@ -51,18 +67,13 @@ const ListingReservation = ({ listing }: Props) => {
       flex flex-row items-center gap-1 p-4"
       >
         <div className="text-2xl font-semibold">$ {listing.price}</div>
-        <div className="font-light text-neutral-600">night</div>
+        <div className="font-light text-neutral-600">per night</div>
       </div>
       <hr />
       <Calendar
         value={dateRange}
-        disabledDates={disabledDates}
         onChange={value => setDateRange(value.selection)}
       />
-      <hr />
-      <Button className="p-4" disabled={disabled} onClick={onSubmit}>
-        Reserve
-      </Button>
       <hr />
       <div
         className="
@@ -71,12 +82,20 @@ const ListingReservation = ({ listing }: Props) => {
           flex-row
           items-center
           justify-between
+          flex-wrap
           font-semibold
           text-lg
         "
       >
         <div>Total</div>
         <div>$ {totalPrice}</div>
+        <Button
+          className="block my-4 w-full"
+          disabled={isLoading}
+          onClick={handleCreateReservation}
+        >
+          Reserve
+        </Button>
       </div>
     </div>
   );

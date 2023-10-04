@@ -50,7 +50,7 @@ const ListingView = ({ listing, currentUser }: Props) => {
                 md:col-span-3
               "
             >
-              <ListingReservation />
+              <ListingReservation listing={listing} />
             </div>
           </div>
         </div>
