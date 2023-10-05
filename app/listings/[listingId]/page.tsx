@@ -13,7 +13,7 @@ const ListingPage = async ({ params: { listingId } }: Props) => {
   const listing = await getListingById(listingId);
   const currentUser = await getCurrentUser();
 
-  if (!listing || !currentUser) {
+  if (!listing) {
     return (
       <ErrorMessage title="No data" subtitle="Please try again"></ErrorMessage>
     );

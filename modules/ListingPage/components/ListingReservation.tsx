@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 
 interface Props {
   listing: Listing & { user: User };
-  currentUser: User;
+  currentUser: User | null;
 }
 
 const initialDateRange = {
@@ -24,6 +24,7 @@ const ListingReservation = ({ listing, currentUser }: Props) => {
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
   const { setModalView } = useModalStoreActions();
+  
   const handleCreateReservation = () => {
     if (!currentUser) {
       return setModalView('LOGIN');
@@ -63,8 +64,7 @@ const ListingReservation = ({ listing, currentUser }: Props) => {
       "
     >
       <div
-        className="
-      flex flex-row items-center gap-1 p-4"
+        className="flex flex-row items-center gap-1 p-4"
       >
         <div className="text-2xl font-semibold">$ {listing.price}</div>
         <div className="font-light text-neutral-600">per night</div>
