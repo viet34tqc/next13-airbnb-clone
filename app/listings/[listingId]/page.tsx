@@ -1,5 +1,6 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import getListingById from '@/app/actions/getListingById';
+import getReservations from '@/app/actions/getReservations';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import ListingView from '@/modules/ListingPage/components/ListingView';
 
@@ -11,6 +12,7 @@ type Props = {
 
 const ListingPage = async ({ params: { listingId } }: Props) => {
   const listing = await getListingById(listingId);
+  const reservations = await getReservations(listingId);
   const currentUser = await getCurrentUser();
 
   if (!listing) {
@@ -19,7 +21,13 @@ const ListingPage = async ({ params: { listingId } }: Props) => {
     );
   }
 
-  return <ListingView listing={listing} currentUser={currentUser} />;
+  return (
+    <ListingView
+      listing={listing}
+      currentUser={currentUser}
+      reservations={reservations}
+    />
+  );
 };
 
 export default ListingPage;

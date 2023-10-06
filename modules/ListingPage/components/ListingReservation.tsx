@@ -3,15 +3,17 @@
 import Calendar from '@/components/shared/Calendar';
 import Button from '@/components/ui/Button';
 import { useModalStoreActions } from '@/store/useModalStore';
-import { Listing, User } from '@prisma/client';
-import { differenceInDays } from 'date-fns';
-import { useEffect, useState } from 'react';
+import { Listing, Reservation, User } from '@prisma/client';
+import { differenceInDays, eachDayOfInterval } from 'date-fns';
+import { useRouter } from 'next/navigation';
+import { useEffect, useMemo, useState } from 'react';
 import { Range } from 'react-date-range';
 import toast from 'react-hot-toast';
 
 interface Props {
   listing: Listing & { user: User };
   currentUser: User | null;
+  reservations: Reservation[];
 }
 
 const initialDateRange = {
@@ -20,11 +22,28 @@ const initialDateRange = {
   key: 'selection',
 };
 
-const ListingReservation = ({ listing, currentUser }: Props) => {
+const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
   const { setModalView } = useModalStoreActions();
+
+  // Disable date for the other reservation
+  const disabledDates = useMemo(() => {
+    let dates: Date[] = [];
+
+    reservations?.forEach((reservation: any) => {
+      const range = eachDayOfInterval({
+        start: new Date(reservation.startDate),
+        end: new Date(reservation.endDate),
+      });
+
+      dates = [...dates, ...range];
+    });
+
+    return dates;
+  }, [reservations]);
 
   // Calculate the totalPrice from selected dateRange.
   useEffect(() => {
@@ -39,34 +58,38 @@ const ListingReservation = ({ listing, currentUser }: Props) => {
     }
   }, [dateRange, listing.price]);
 
-  const handleCreateReservation = () => {
+  // TODO: tidy up API
+  const handleCreateReservation = async () => {
     if (!currentUser) {
       return setModalView('LOGIN');
     }
     setIsLoading(true);
-
-    fetch('/api/reservations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        totalPrice,
-        startDate: dateRange.startDate,
-        endDate: dateRange.endDate,
-        listingId: listing?.id,
-      }),
-    })
-      .then(() => {
-        toast.success('Listing reserved!');
-        setDateRange(initialDateRange);
-      })
-      .catch(() => {
-        toast.error('Something went wrong.');
-      })
-      .finally(() => {
-        setIsLoading(false);
+    try {
+      const res = await fetch('/api/reservation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          totalPrice,
+          startDate: dateRange.startDate,
+          endDate: dateRange.endDate,
+          listingId: listing?.id,
+        }),
       });
+      const data = await res.json();
+      if (!res.ok) {
+        setIsLoading(false);
+        throw Error(data.message || 'Something went wrong');
+      }
+      toast.success('Listing reserved!');
+      router.refresh();
+      setDateRange(initialDateRange);
+    } catch (error) {
+      toast(error instanceof Error ? error.message : 'Something went wrong');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -84,6 +107,7 @@ const ListingReservation = ({ listing, currentUser }: Props) => {
       <hr />
       <Calendar
         value={dateRange}
+        disabledDates={disabledDates}
         onChange={value => setDateRange(value.selection)}
       />
       <hr />
