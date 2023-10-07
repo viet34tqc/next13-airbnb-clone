@@ -12,6 +12,7 @@ type Props = {
 
 const ListingPage = async ({ params: { listingId } }: Props) => {
   const listing = await getListingById(listingId);
+  /// We get reservations of the listing to disable those day on the calendar
   const reservations = await getReservations(listingId);
   const currentUser = await getCurrentUser();
 

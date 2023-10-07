@@ -6,7 +6,7 @@ import { useModalStoreActions } from '@/store/useModalStore';
 import { Listing, Reservation, User } from '@prisma/client';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Range } from 'react-date-range';
 import toast from 'react-hot-toast';
 
@@ -22,41 +22,40 @@ const initialDateRange = {
   key: 'selection',
 };
 
+const getReservedDate = (reservations: Reservation[]) => {
+  let dates: Date[] = [];
+
+  reservations?.forEach((reservation: any) => {
+    const range = eachDayOfInterval({
+      start: new Date(reservation.startDate),
+      end: new Date(reservation.endDate),
+    });
+
+    dates = [...dates, ...range];
+  });
+
+  return dates;
+};
+
+const getTotalPrice = (dateRange: Range, listingPrice: number) => {
+  if (dateRange.startDate && dateRange.endDate) {
+    const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
+
+    if (dayCount && listingPrice) {
+      return dayCount * listingPrice;
+    }
+    return listingPrice;
+  }
+};
+
 const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
   const { setModalView } = useModalStoreActions();
 
-  // Disable date for the other reservation
-  const disabledDates = useMemo(() => {
-    let dates: Date[] = [];
-
-    reservations?.forEach((reservation: any) => {
-      const range = eachDayOfInterval({
-        start: new Date(reservation.startDate),
-        end: new Date(reservation.endDate),
-      });
-
-      dates = [...dates, ...range];
-    });
-
-    return dates;
-  }, [reservations]);
-
-  // Calculate the totalPrice from selected dateRange.
-  useEffect(() => {
-    if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
-
-      if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price);
-      } else {
-        setTotalPrice(listing.price);
-      }
-    }
-  }, [dateRange, listing.price]);
+  const reservedDates = getReservedDate(reservations);
+  const totalPrice = getTotalPrice(dateRange, listing.price);
 
   // TODO: tidy up API
   const handleCreateReservation = async () => {
@@ -107,7 +106,7 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
       <hr />
       <Calendar
         value={dateRange}
-        disabledDates={disabledDates}
+        disabledDates={reservedDates}
         onChange={value => setDateRange(value.selection)}
       />
       <hr />
