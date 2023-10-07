@@ -1,16 +1,18 @@
 'use client';
 
 import { categories } from '@/lib/constants';
-import { Listing, User } from '@prisma/client';
+import { Listing, Reservation, User } from '@prisma/client';
 import ListingHead from './ListingHead';
 import ListingInfo from './ListingInfo';
+import ListingReservation from './ListingReservation';
 
 type Props = {
   listing: Listing & { user: User };
   currentUser: User | null;
+  reservations: Reservation[];
 };
 
-const ListingView = ({ listing, currentUser }: Props) => {
+const ListingView = ({ listing, currentUser, reservations }: Props) => {
   const category = categories.find(items => items.label === listing.category);
   return (
     <main className="py-16 md:p-16">
@@ -41,6 +43,20 @@ const ListingView = ({ listing, currentUser }: Props) => {
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+            <div
+              className="
+                order-first
+                mb-10
+                md:order-last
+                md:col-span-3
+              "
+            >
+              <ListingReservation
+                listing={listing}
+                currentUser={currentUser}
+                reservations={reservations}
+              />
+            </div>
           </div>
         </div>
       </div>

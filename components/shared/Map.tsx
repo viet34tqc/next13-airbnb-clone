@@ -30,7 +30,7 @@ const Map = ({ center }: MapProps) => {
       center={(center as L.LatLngExpression) || [51, -0.09]}
       zoom={center ? 4 : 2}
       scrollWheelZoom={false}
-      className="h-[35vh] rounded-lg"
+      className="min-h-[350px] rounded-lg isolate" // isolate to not let the map overlap other element
     >
       <TileLayer url={url} attribution={attribution} />
       {center && <Marker position={center as L.LatLngExpression} />}

@@ -7,6 +7,14 @@ img {
   height: auto;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: bold;
+}
+
+.rdrMonths,
+.rdrMonth.rdrMonth,
+.rdrCalendarWrapper {
+  width: 100%;
 }
