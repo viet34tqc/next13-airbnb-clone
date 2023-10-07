@@ -1,17 +1,16 @@
-import getCurrentUser from '@/app/actions/getCurrentUser';
 import useCountries from '@/hooks/useCountries';
-import { Listing } from '@prisma/client';
+import { Listing, Reservation, User } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import FavoriteButton from './FavoriteButton';
 
 type Props = {
   data: Listing;
+  currentUser: User | null;
+  reservation?: Reservation;
 };
 
-const ListingCard = async ({ data }: Props) => {
-  const currentUser = await getCurrentUser();
-
+const ListingCard = async ({ data, reservation, currentUser }: Props) => {
   const { getByValue } = useCountries();
   const location = getByValue(data.locationValue);
   let USDollar = new Intl.NumberFormat('en-US', {

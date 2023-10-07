@@ -13,7 +13,7 @@ type Props = {
 const ListingPage = async ({ params: { listingId } }: Props) => {
   const listing = await getListingById(listingId);
   /// We get reservations of the listing to disable those day on the calendar
-  const reservations = await getReservations(listingId);
+  const reservations = await getReservations({ listingId });
   const currentUser = await getCurrentUser();
 
   if (!listing) {
@@ -23,11 +23,13 @@ const ListingPage = async ({ params: { listingId } }: Props) => {
   }
 
   return (
-    <ListingView
-      listing={listing}
-      currentUser={currentUser}
-      reservations={reservations}
-    />
+    <main className="py-16 md:p-16">
+      <ListingView
+        listing={listing}
+        currentUser={currentUser}
+        reservations={reservations}
+      />
+    </main>
   );
 };
 

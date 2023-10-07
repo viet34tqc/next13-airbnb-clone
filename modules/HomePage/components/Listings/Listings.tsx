@@ -1,9 +1,11 @@
+import getCurrentUser from '@/app/actions/getCurrentUser';
 import getListings from '@/app/actions/getListings';
 import ListingCard from './ListingCard';
 import NoListings from './NoListings';
 
 const Listings = async () => {
   const listings = await getListings();
+  const currentUser = await getCurrentUser();
 
   if (!listings || !listings.length) {
     return <NoListings />;
@@ -22,7 +24,11 @@ const Listings = async () => {
           "
       >
         {listings.map((listing: any) => (
-          <ListingCard key={listing.id} data={listing} />
+          <ListingCard
+            key={listing.id}
+            data={listing}
+            currentUser={currentUser}
+          />
         ))}
       </div>
     </div>

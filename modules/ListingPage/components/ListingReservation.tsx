@@ -82,7 +82,7 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
         throw Error(data.message || 'Something went wrong');
       }
       toast.success('Listing reserved!');
-      router.refresh();
+      router.push('/trips'); // go to trips page to see all the successful reservation of this user.
       setDateRange(initialDateRange);
     } catch (error) {
       toast(error instanceof Error ? error.message : 'Something went wrong');
