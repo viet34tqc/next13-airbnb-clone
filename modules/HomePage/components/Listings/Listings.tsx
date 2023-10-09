@@ -1,6 +1,6 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import getListings from '@/app/actions/getListings';
-import ListingCard from './ListingCard';
+import HomeListingCard from './HomeListingCard';
 import NoListings from './NoListings';
 
 const Listings = async () => {
@@ -24,7 +24,7 @@ const Listings = async () => {
           "
       >
         {listings.map((listing: any) => (
-          <ListingCard
+          <HomeListingCard
             key={listing.id}
             data={listing}
             currentUser={currentUser}

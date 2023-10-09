@@ -1,6 +1,6 @@
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
-import ListingCard from '@/modules/HomePage/components/Listings/ListingCard';
 import { Reservation, User } from '@prisma/client';
+import TripsListingCard from './TripsListingCard';
 
 type Props = {
   reservations: Reservation[];
@@ -28,7 +28,7 @@ const TripsView = ({ reservations, currentUser }: Props) => {
         "
       >
         {reservations.map((reservation: any) => (
-          <ListingCard
+          <TripsListingCard
             key={reservation.id}
             data={reservation.listing}
             reservation={reservation}
