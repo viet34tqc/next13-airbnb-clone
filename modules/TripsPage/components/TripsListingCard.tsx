@@ -1,8 +1,8 @@
 import ListingCard from '@/components/shared/ListingCard';
 import ListingCardImg from '@/components/shared/ListingCard/ListingCardImg';
 import ListingCardLocation from '@/components/shared/ListingCard/ListingCardLocation';
-import ListingCardPrice from '@/components/shared/ListingCard/ListingCardPrice';
 import ListingCardReservationDate from '@/components/shared/ListingCard/ListingCardReservationDate';
+import ListingCardTotalPrice from '@/components/shared/ListingCard/ListingCardTotalPrice';
 import { Listing, Reservation, User } from '@prisma/client';
 
 type Props = {
@@ -21,7 +21,7 @@ const TripsListingCard = ({ data, reservation, currentUser }: Props) => {
       />
       <ListingCardLocation locationValue={data.locationValue} />
       <ListingCardReservationDate reservation={reservation} />
-      <ListingCardPrice price={data.price} />
+      <ListingCardTotalPrice price={reservation.totalPrice} />
     </ListingCard>
   );
 };

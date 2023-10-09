@@ -1,3 +1,4 @@
+import { formatUSDPrice } from '@/lib/utils';
 import { Listing } from '@prisma/client';
 
 type Props = {
@@ -5,12 +6,12 @@ type Props = {
 };
 
 const ListingCardPrice = ({ price }: Props) => {
-  let USDollar = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumSignificantDigits: 3,
-  });
-  return <span className="font-semibold">{USDollar.format(price)}</span>;
+  return (
+    <div className="flex gap-1">
+      <span className="font-semibold">{formatUSDPrice(price)}</span>
+      <span className="font-light"> / night</span>
+    </div>
+  );
 };
 
 export default ListingCardPrice;
