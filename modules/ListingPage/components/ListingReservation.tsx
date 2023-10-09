@@ -79,13 +79,13 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
       const data = await res.json();
       if (!res.ok) {
         setIsLoading(false);
-        throw Error(data.message || 'Something went wrong');
+        throw Error(data.message);
       }
       toast.success('Listing reserved!');
       router.push('/trips'); // go to trips page to see all the successful reservation of this user.
       setDateRange(initialDateRange);
     } catch (error) {
-      toast(error instanceof Error ? error.message : 'Something went wrong');
+      toast(error instanceof Error ? error.message : 'Failed to make reservation');
     } finally {
       setIsLoading(false);
     }
