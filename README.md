@@ -12,6 +12,11 @@ I make this web app as a learning tutorial of NextJS 13. The functionality is bo
 - Form validation: Zod
 - Image upload: Cloudinary
 
+## Data structure
+
+- Each user will have multiple reservations, listings, favorite listings
+- Each listings will have multiple reservations
+
 ## Features
 
 - Authentication using Next Auth. User can register via Google, Facebook or create their new user

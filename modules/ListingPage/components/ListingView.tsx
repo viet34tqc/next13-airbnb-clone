@@ -15,7 +15,6 @@ type Props = {
 const ListingView = ({ listing, currentUser, reservations }: Props) => {
   const category = categories.find(items => items.label === listing.category);
   return (
-    <main className="py-16 md:p-16">
       <div className="container">
         <div className="flex flex-col gap-6">
           <ListingHead
@@ -60,7 +59,6 @@ const ListingView = ({ listing, currentUser, reservations }: Props) => {
           </div>
         </div>
       </div>
-    </main>
   );
 };
 

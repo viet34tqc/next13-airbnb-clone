@@ -1,11 +1,21 @@
 import { db } from '@/lib/db';
 
-export default async function getReservation(listingId: string) {
+type Params = {
+  listingId?: string;
+  userId?: string;
+};
+
+export default async function getReservations({ listingId, userId }: Params) {
+  const query: Record<string, string> = {};
+  if (listingId) {
+    query.listingId = listingId;
+  }
+  if (userId) {
+    query.userId = userId;
+  }
   try {
     const reservations = await db.reservation.findMany({
-      where: {
-        listingId: listingId,
-      },
+      where: query,
       include: {
         listing: true,
       },
