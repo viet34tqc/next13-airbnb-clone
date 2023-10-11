@@ -24,15 +24,17 @@ const ListingCardImg = ({ imageSrc, currentUser, listingId }: Props) => {
         src={imageSrc}
         alt="Listing"
       />
-      <div
-        className="
+      {currentUser && (
+        <div
+          className="
           absolute
           top-3
           right-3
         "
-      >
-        <FavoriteButton currentUser={currentUser} listingId={listingId} />
-      </div>
+        >
+          <FavoriteButton currentUser={currentUser} listingId={listingId} />
+        </div>
+      )}
     </div>
   );
 };

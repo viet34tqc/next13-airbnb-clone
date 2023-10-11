@@ -18,7 +18,7 @@ const TripsListingCard = ({ data, reservation, currentUser }: Props) => {
       <ListingCard listingId={data.id}>
         <ListingCardImg
           imageSrc={data.imageSrc}
-          currentUser={currentUser}
+          currentUser={null}
           listingId={data.id}
         />
         <ListingCardLocation locationValue={data.locationValue} />
