@@ -64,7 +64,7 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
     }
     setIsLoading(true);
     try {
-      const res = await fetch('/api/reservation', {
+      const res = await fetch('/api/reservations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

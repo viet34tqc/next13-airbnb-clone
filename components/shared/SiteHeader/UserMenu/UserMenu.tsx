@@ -5,6 +5,7 @@ import { useModalStoreActions } from '@/store/useModalStore';
 import { User } from 'next-auth';
 import UserMenuDropdown from './UserMenuDropdown';
 
+// TODO: Hide User menu when navigate to other pages.
 const UserMenu = ({ user }: { user: User | null }) => {
   const { setModalView } = useModalStoreActions();
   return (

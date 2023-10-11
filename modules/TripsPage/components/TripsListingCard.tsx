@@ -14,17 +14,19 @@ type Props = {
 
 const TripsListingCard = ({ data, reservation, currentUser }: Props) => {
   return (
-    <ListingCard listingId={data.id}>
-      <ListingCardImg
-        imageSrc={data.imageSrc}
-        currentUser={currentUser}
-        listingId={data.id}
-      />
-      <ListingCardLocation locationValue={data.locationValue} />
-      <ListingCardReservationDate reservation={reservation} />
-      <ListingCardTotalPrice price={reservation.totalPrice} />
+    <div className="flex flex-col gap-2">
+      <ListingCard listingId={data.id}>
+        <ListingCardImg
+          imageSrc={data.imageSrc}
+          currentUser={currentUser}
+          listingId={data.id}
+        />
+        <ListingCardLocation locationValue={data.locationValue} />
+        <ListingCardReservationDate reservation={reservation} />
+        <ListingCardTotalPrice price={reservation.totalPrice} />
+      </ListingCard>
       <ReservationCancelButton reservationId={reservation.id} />
-    </ListingCard>
+    </div>
   );
 };
 
