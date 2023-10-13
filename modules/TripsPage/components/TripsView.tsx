@@ -1,5 +1,6 @@
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import { Reservation, User } from '@prisma/client';
+import { PropsWithChildren } from 'react';
 import TripsListingCard from './TripsListingCard';
 
 type Props = {
@@ -7,13 +8,10 @@ type Props = {
   currentUser: User | null;
 };
 
-const TripsView = ({ reservations, currentUser }: Props) => {
+const TripsView = ({ reservations, currentUser, children }: PropsWithChildren<Props>) => {
   return (
     <div className="container">
-      <ModalHeading
-        title="Trips"
-        subtitle="Where you've been and where you're going"
-      />
+      {children}
       <div
         className="
           mt-10
@@ -21,7 +19,6 @@ const TripsView = ({ reservations, currentUser }: Props) => {
           grid-cols-1
           sm:grid-cols-2
           md:grid-cols-3
-          lg:grid-cols-4
           xl:grid-cols-5
           2xl:grid-cols-6
           gap-8

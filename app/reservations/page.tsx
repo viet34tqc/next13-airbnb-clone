@@ -4,18 +4,18 @@ import TripsView from '@/modules/TripsPage/components/TripsView';
 import getCurrentUser from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
 
-const TripsPage = async () => {
+const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
     return <ErrorMessage title="Unauthorized" subtitle="login"></ErrorMessage>;
   }
-  const reservations = await getReservations({ userId: currentUser.id });
+  const reservations = await getReservations({ authorId: currentUser.id });
 
   if (!reservations.length) {
     return (
       <ErrorMessage
-        title="No trips found"
-        subtitle="Looks like you havent reserved any trips."
+        title="No reservations found"
+        subtitle="Looks like you have no reservations on your properties."
       ></ErrorMessage>
     );
   }
@@ -23,12 +23,12 @@ const TripsPage = async () => {
     <main className="py-16 md:p-16">
       <TripsView currentUser={currentUser} reservations={reservations}>
         <ModalHeading
-          title="Trips"
-          subtitle="Where you've been and where you're going"
+          title="Reservations"
+          subtitle="Bookings on your properties"
         />
       </TripsView>
     </main>
   );
 };
 
-export default TripsPage;
+export default ReservationsPage;
