@@ -1,27 +1,27 @@
-import ListingCard from '@/components/shared/ListingCard';
 import ListingCardCategory from '@/components/shared/ListingCard/ListingCardCategory';
 import ListingCardImg from '@/components/shared/ListingCard/ListingCardImg';
 import ListingCardLocation from '@/components/shared/ListingCard/ListingCardLocation';
 import ListingCardPrice from '@/components/shared/ListingCard/ListingCardPrice';
+import ListingCardWrapper from '@/components/shared/ListingCard/ListingCardWrapper';
 import { Listing, User } from '@prisma/client';
 
 type Props = {
-  data: Listing;
+  listing: Listing;
   currentUser: User | null;
 };
 
-const HomeListingCard = async ({ data, currentUser }: Props) => {
+const HomeListingCard = async ({ listing, currentUser }: Props) => {
   return (
-    <ListingCard listingId={data.id}>
+    <ListingCardWrapper listingId={listing.id}>
       <ListingCardImg
-        imageSrc={data.imageSrc}
+        imageSrc={listing.imageSrc}
         currentUser={currentUser}
-        listingId={data.id}
+        listingId={listing.id}
       />
-      <ListingCardLocation locationValue={data.locationValue} />
-      <ListingCardCategory category={data.category} />
-      <ListingCardPrice price={data.price} />
-    </ListingCard>
+      <ListingCardLocation locationValue={listing.locationValue} />
+      <ListingCardCategory category={listing.category} />
+      <ListingCardPrice price={listing.price} />
+    </ListingCardWrapper>
   );
 };
 

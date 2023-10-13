@@ -23,10 +23,10 @@ const Listings = async () => {
               gap-8
           "
       >
-        {listings.map((listing: any) => (
+        {listings.map((listing) => (
           <HomeListingCard
             key={listing.id}
-            data={listing}
+            listing={listing}
             currentUser={currentUser}
           />
         ))}

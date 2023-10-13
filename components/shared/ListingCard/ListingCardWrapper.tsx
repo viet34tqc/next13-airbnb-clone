@@ -6,7 +6,7 @@ type Props = {
   listingId: Listing['id'];
 };
 
-const ListingCard = async ({
+const ListingCardWrapper = async ({
   listingId,
   children,
 }: PropsWithChildren<Props>) => {
@@ -17,4 +17,4 @@ const ListingCard = async ({
   );
 };
 
-export default ListingCard;
+export default ListingCardWrapper;
