@@ -1,4 +1,5 @@
 import ErrorMessage from '@/components/shared/ErrorMessage';
+import ErrorMessageWithLogin from '@/components/shared/ErrorMessageWithLogin';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import TripsView from '@/modules/TripsPage/components/TripsView';
 import getCurrentUser from '../actions/getCurrentUser';
@@ -6,8 +7,11 @@ import getReservations from '../actions/getReservations';
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
+
   if (!currentUser) {
-    return <ErrorMessage title="Unauthorized" subtitle="login"></ErrorMessage>;
+    return (
+      <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
+    );
   }
   const reservations = await getReservations({ userId: currentUser.id });
 
