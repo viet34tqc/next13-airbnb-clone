@@ -1,26 +1,25 @@
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import ErrorMessageWithLogin from '@/components/shared/ErrorMessageWithLogin';
 import Button from '@/components/ui/Button';
-import FavoritesView from '@/modules/FavoritesPage/FavoritesView';
+import PropertiesView from '@/modules/PropertiesPage/PropertiesView';
 import Link from 'next/link';
 import getCurrentUser from '../actions/getCurrentUser';
-import getFavoriteListings from '../actions/getFavoriteListings';
+import getListings from '../actions/getListings';
 
-const FavoritesPage = async () => {
-  const favoriteListings = await getFavoriteListings();
+const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
-
   if (!currentUser) {
     return (
       <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
     );
   }
+  const listings = await getListings({ userId: currentUser.id });
 
-  if (!favoriteListings.length) {
+  if (!listings.length) {
     return (
       <ErrorMessage
-        title="No favorite listings"
-        subtitle="Please come back to homepage to add your favorite listings"
+        title="No properties found"
+        subtitle="Looks like you have no properties."
       >
         <Link href="/">
           <Button>Go to homepage</Button>
@@ -30,12 +29,9 @@ const FavoritesPage = async () => {
   }
   return (
     <main className="py-16 md:p-16">
-      <FavoritesView
-        favoriteListings={favoriteListings}
-        currentUser={currentUser}
-      />
+      <PropertiesView listings={listings} currentUser={currentUser} />
     </main>
   );
 };
 
-export default FavoritesPage;
+export default PropertiesPage;

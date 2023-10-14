@@ -1,15 +1,13 @@
-'use client';
-
 import { UserOrNull } from '@/lib/types/auth';
 import { Listing } from '@prisma/client';
-import HomeListingCard from './HomeListingCard';
+import HomeListingCard from '../HomePage/components/Listings/HomeListingCard';
 
 type Props = {
   listings: Array<Listing>;
   currentUser: UserOrNull;
 };
 
-const Listings = async ({ listings, currentUser }: Props) => {
+const PropertiesView = ({ listings, currentUser }: Props) => {
   return (
     <div className="container">
       <div
@@ -34,4 +32,4 @@ const Listings = async ({ listings, currentUser }: Props) => {
   );
 };
 
-export default Listings;
+export default PropertiesView;

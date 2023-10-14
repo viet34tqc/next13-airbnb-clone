@@ -1,12 +1,22 @@
+import { ListingsParams } from '@/lib/types/listings';
 import Categories from '@/modules/HomePage/components/Categories/Categories';
 import Listings from '@/modules/HomePage/components/Listings';
+import NoListings from '@/modules/HomePage/components/Listings/NoListings';
+import getCurrentUser from './actions/getCurrentUser';
+import getListings from './actions/getListings';
 
-export default function Home() {
+export default async function Home({ params }: { params: ListingsParams }) {
+  const listings = await getListings(params);
+  const currentUser = await getCurrentUser();
+
+  if (!listings || !listings.length) {
+    return <NoListings />;
+  }
   return (
     <>
       <Categories />
       <main className="flex min-h-screen flex-col items-center justify-between py-16 md:p-16">
-        <Listings />
+        <Listings listings={listings} currentUser={currentUser} />
       </main>
     </>
   );
