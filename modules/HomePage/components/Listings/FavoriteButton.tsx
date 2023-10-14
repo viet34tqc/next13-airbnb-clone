@@ -23,7 +23,11 @@ const FavoriteButton = ({ currentUser, listingId }: Props) => {
     <button
       disabled={isLoading}
       className=" relative hover:opacity-80 transition"
-      onClick={toggleFavorite}
+      onClick={e => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleFavorite();
+      }}
     >
       <HeartIcon
         className={cn('h-6 w-6 text-white', { 'fill-white': isFavorite })}
