@@ -1,11 +1,11 @@
-import { User } from '@prisma/client';
+import { UserOrNull } from '@/lib/types/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import HeaderSearch from './HeaderSearch';
 import UserMenu from './UserMenu/UserMenu';
 
 type Props = {
-  user: User | null;
+  user: UserOrNull;
 };
 
 const SiteHeader = ({ user }: Props) => {

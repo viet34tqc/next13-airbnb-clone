@@ -3,13 +3,14 @@ import ListingCardLocation from '@/components/shared/ListingCard/ListingCardLoca
 import ListingCardReservationDate from '@/components/shared/ListingCard/ListingCardReservationDate';
 import ListingCardTotalPrice from '@/components/shared/ListingCard/ListingCardTotalPrice';
 import ListingCardWrapper from '@/components/shared/ListingCard/ListingCardWrapper';
-import { Listing, Reservation, User } from '@prisma/client';
+import { UserOrNull } from '@/lib/types/auth';
+import { Listing, Reservation } from '@prisma/client';
 import ReservationCancelButton from './ReservationCancelButton';
 
 type Props = {
   data: Listing;
   reservation: Reservation;
-  currentUser: User | null;
+  currentUser: UserOrNull;
 };
 
 const TripsListingCard = ({ data, reservation, currentUser }: Props) => {

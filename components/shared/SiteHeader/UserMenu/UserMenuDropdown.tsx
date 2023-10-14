@@ -1,7 +1,6 @@
 import { siteConfig } from '@/config/siteConfig';
 import { useModalStoreActions } from '@/store/useModalStore';
 import { Bars3Icon } from '@heroicons/react/24/solid';
-import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -12,9 +11,11 @@ import {
   CustomDropdownContent,
   CustomDropdownTrigger,
 } from '@/components/ui/DropDown';
+import { UserOrNull } from '@/lib/types/auth';
 import MenuItem from '../MenuItem';
+
 type Props = {
-  user: User | null;
+  user: UserOrNull;
 };
 
 const UserMenuDropdown = ({ user }: Props) => {

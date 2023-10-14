@@ -1,6 +1,6 @@
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import ErrorMessageWithLogin from '@/components/shared/ErrorMessageWithLogin';
-import ModalHeading from '@/components/ui/Modal/ModalHeading';
+import PageHeader from '@/components/shared/PageHeader';
 import TripsView from '@/modules/TripsPage/components/TripsView';
 import getCurrentUser from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
@@ -26,7 +26,7 @@ const TripsPage = async () => {
   return (
     <main className="py-16 md:p-16">
       <TripsView currentUser={currentUser} reservations={reservations}>
-        <ModalHeading
+        <PageHeader
           title="Trips"
           subtitle="Where you've been and where you're going"
         />

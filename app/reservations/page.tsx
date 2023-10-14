@@ -4,6 +4,7 @@ import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import TripsView from '@/modules/TripsPage/components/TripsView';
 import getCurrentUser from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
+import PageHeader from '@/components/shared/PageHeader';
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -25,7 +26,7 @@ const ReservationsPage = async () => {
   return (
     <main className="py-16 md:p-16">
       <TripsView currentUser={currentUser} reservations={reservations}>
-        <ModalHeading
+        <PageHeader
           title="Reservations"
           subtitle="Bookings on your properties"
         />

@@ -1,14 +1,18 @@
-import ModalHeading from '@/components/ui/Modal/ModalHeading';
-import { Reservation, User } from '@prisma/client';
+import { UserOrNull } from '@/lib/types/auth';
+import { Reservation } from '@prisma/client';
 import { PropsWithChildren } from 'react';
 import TripsListingCard from './TripsListingCard';
 
 type Props = {
   reservations: Reservation[];
-  currentUser: User | null;
+  currentUser: UserOrNull;
 };
 
-const TripsView = ({ reservations, currentUser, children }: PropsWithChildren<Props>) => {
+const TripsView = ({
+  reservations,
+  currentUser,
+  children,
+}: PropsWithChildren<Props>) => {
   return (
     <div className="container">
       {children}

@@ -2,6 +2,7 @@
 
 import Calendar from '@/components/shared/Calendar';
 import Button from '@/components/ui/Button';
+import { UserOrNull } from '@/lib/types/auth';
 import { useModalStoreActions } from '@/store/useModalStore';
 import { Listing, Reservation, User } from '@prisma/client';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
@@ -12,7 +13,7 @@ import toast from 'react-hot-toast';
 
 interface Props {
   listing: Listing & { user: User };
-  currentUser: User | null;
+  currentUser: UserOrNull;
   reservations: Reservation[];
 }
 
@@ -85,7 +86,9 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
       router.push('/trips'); // go to trips page to see all the successful reservation of this user.
       setDateRange(initialDateRange);
     } catch (error) {
-      toast(error instanceof Error ? error.message : 'Failed to make reservation');
+      toast(
+        error instanceof Error ? error.message : 'Failed to make reservation'
+      );
     } finally {
       setIsLoading(false);
     }

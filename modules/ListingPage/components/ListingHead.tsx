@@ -1,6 +1,7 @@
+import PageHeader from '@/components/shared/PageHeader';
 import useCountries from '@/hooks/useCountries';
+import { UserOrNull } from '@/lib/types/auth';
 import FavoriteButton from '@/modules/HomePage/components/Listings/FavoriteButton';
-import { User } from '@prisma/client';
 import Image from 'next/image';
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
   locationValue: string;
   imageSrc: string;
   id: string;
-  currentUser: User | null;
+  currentUser: UserOrNull;
 };
 
 const ListingHead = ({
@@ -24,10 +25,10 @@ const ListingHead = ({
 
   return (
     <>
-      <header>
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <div className="font-light text-neutral-500 mt-2">{`${location?.region}, ${location?.label}`}</div>
-      </header>
+      <PageHeader
+        title={title}
+        subtitle={`${location?.region}, ${location?.label}`}
+      />
       <div
         className="
           w-full

@@ -1,11 +1,12 @@
+import { UserOrNull } from '@/lib/types/auth';
 import FavoriteButton from '@/modules/HomePage/components/Listings/FavoriteButton';
-import { Listing, User } from '@prisma/client';
+import { Listing } from '@prisma/client';
 import Image from 'next/image';
 
 type Props = {
   imageSrc: Listing['imageSrc'];
   listingId: Listing['id'];
-  currentUser: User | null;
+  currentUser: UserOrNull;
 };
 
 const ListingCardImg = ({ imageSrc, currentUser, listingId }: Props) => {

@@ -1,14 +1,14 @@
 'use client';
 
+import { UserOrNull } from '@/lib/types/auth';
 import useModalStore from '@/store/useModalStore';
-import { User } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 type Props = {
   listingId: string;
-  currentUser: User | null;
+  currentUser: UserOrNull;
 };
 
 /**

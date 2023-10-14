@@ -1,9 +1,10 @@
-import { Listing, User } from '@prisma/client';
+import { UserOrNull } from '@/lib/types/auth';
+import { Listing } from '@prisma/client';
 import HomeListingCard from '../HomePage/components/Listings/HomeListingCard';
 
 type Props = {
   favoriteListings: Array<Listing>;
-  currentUser: User;
+  currentUser: UserOrNull;
 };
 
 const FavoritesView = ({ favoriteListings, currentUser }: Props) => {
