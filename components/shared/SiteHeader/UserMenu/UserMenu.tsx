@@ -1,6 +1,6 @@
 'use client';
 
-import RentModal from '@/components/modals/RentModal';
+import NewListingModal from '@/components/modals/NewListingModal';
 import { UserOrNull } from '@/lib/types/auth';
 import { useModalStoreActions } from '@/store/useModalStore';
 import UserMenuDropdown from './UserMenuDropdown';
@@ -29,7 +29,7 @@ const UserMenu = ({ user }: { user: UserOrNull }) => {
       </button>
       <UserMenuDropdown user={user} />
       {/* We render Rent Modal differently to save the selected choice for each step in the modal */}
-      <RentModal />
+      <NewListingModal />
     </div>
   );
 };

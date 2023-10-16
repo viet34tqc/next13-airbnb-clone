@@ -13,9 +13,9 @@ import {
 import StepsNavigation from './components/StepsNavigation';
 import StepsContextProvider from './context/StepsContext';
 import Steps from './steps/Steps';
-import { rentModalSchema } from './validationSchema';
+import { newListingModalSchema } from './validationSchema';
 
-export type RentModalValues = z.infer<typeof rentModalSchema>;
+export type NewListingModalValues = z.infer<typeof newListingModalSchema>;
 
 const defaultValues = {
   category: '',
@@ -29,10 +29,10 @@ const defaultValues = {
   description: '',
 };
 
-const RentModal = () => {
-  const methods = useForm<RentModalValues>({
+const NewListingModal = () => {
+  const methods = useForm<NewListingModalValues>({
     defaultValues,
-    resolver: zodResolver(rentModalSchema),
+    resolver: zodResolver(newListingModalSchema),
   });
 
   const modalView = useModalView();
@@ -59,4 +59,4 @@ const RentModal = () => {
   );
 };
 
-export default RentModal;
+export default NewListingModal;

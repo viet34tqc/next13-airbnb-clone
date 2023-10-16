@@ -1,7 +1,7 @@
 import { CountrySelectSchema } from '@/components/shared/CountrySelect';
 import { z } from 'zod';
 
-export const rentModalSchema = z.object({
+export const newListingModalSchema = z.object({
   category: z.string().min(1, 'Please select a category'),
   location: CountrySelectSchema.extend({
     value: z.string().min(1, 'Please select location for your house'),
