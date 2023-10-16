@@ -13,7 +13,7 @@ const Steps = () => {
   const { step } = useStepsContext();
   const Step = stepComponent[step];
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <Step />
     </div>
   );

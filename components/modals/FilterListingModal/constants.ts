@@ -4,7 +4,7 @@ export const FILTER_STEPS = [
   'InfoFilter',
 ] as const;
 
-export const validationFieldsEachStep = {
+export const filterStepsValidation = {
   Location: 'location',
   Info: ['guestCount', 'roomCount', 'bathroomCount'],
 };

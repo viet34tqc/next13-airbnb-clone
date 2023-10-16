@@ -6,11 +6,12 @@ import {
   CustomDialogPortal,
 } from '@/components/ui/Modal/Modal';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { NewListingModalValues } from '../NewListingModal/NewListingModal';
 import StepsNavigation from '../components/StepsNavigation';
 import StepsContextProvider from '../context/StepsContext';
 import SubmitButton from './components/SubmitButton';
+import { filterStepsValidation } from './constants';
 import Steps from './steps/Steps';
 import { filterListingSchema } from './validationSchema';
 
@@ -37,8 +38,13 @@ const FilterListingModal = () => {
         <CustomDialogOverlay />
         <CustomDialogContent>
           <StepsContextProvider>
-            <Steps />
-            <StepsNavigation submitButton={<SubmitButton />} />
+            <FormProvider {...methods}>
+              <Steps />
+              <StepsNavigation
+                submitButton={<SubmitButton />}
+                stepsValidation={filterStepsValidation}
+              />
+            </FormProvider>
           </StepsContextProvider>
           <CustomDialogClose />
         </CustomDialogContent>

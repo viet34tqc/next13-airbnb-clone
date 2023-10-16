@@ -6,7 +6,7 @@ export const STEPS = [
   'Description',
 ] as const;
 
-export const validationFieldsEachStep = {
+export const stepsValidation = {
   Category: 'category',
   Location: 'location',
   Info: ['guestCount', 'roomCount', 'bathroomCount'],

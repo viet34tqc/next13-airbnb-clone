@@ -13,6 +13,7 @@ import {
 import StepsNavigation from '../components/StepsNavigation';
 import StepsContextProvider from '../context/StepsContext';
 import SubmitButton from './components/SubmitButton';
+import { stepsValidation } from './constants';
 import Steps from './steps/Steps';
 import { newListingModalSchema } from './validationSchema';
 
@@ -49,7 +50,10 @@ const NewListingModal = () => {
             <StepsContextProvider>
               <FormProvider {...methods}>
                 <Steps />
-                <StepsNavigation submitButton={<SubmitButton />} />
+                <StepsNavigation
+                  submitButton={<SubmitButton />}
+                  stepsValidation={stepsValidation}
+                />
               </FormProvider>
             </StepsContextProvider>
             <CustomDialogClose />
