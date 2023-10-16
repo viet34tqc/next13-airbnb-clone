@@ -1,10 +1,14 @@
 'use client';
 
 import SearchIcon from '@/icons/SearchIcon';
+import { useModalStoreActions } from '@/store/useModalStore';
 
 const HeaderSearch = () => {
+  const { setModalView } = useModalStoreActions();
+
   return (
     <div
+      onClick={() => setModalView('FILTER_LISTING')}
       className="
         border-[1px]
         w-full

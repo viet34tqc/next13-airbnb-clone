@@ -6,8 +6,8 @@ import { CustomDialog } from './Modal';
 
 const LoginModal = dynamic(() => import('../../auth/modals/LoginModal'));
 const RegisterModal = dynamic(() => import('../../auth/modals/RegisterModal'));
-const NewListingModal = dynamic(
-  () => import('@/components/modals/NewListingModal/NewListingModal')
+const FilterListingModal = dynamic(
+  () => import('@/components/modals/FilterListingModal')
 );
 
 const ModalController = () => {
@@ -19,6 +19,7 @@ const ModalController = () => {
     <CustomDialog open={isOpen} onOpenChange={() => setModalView(null)}>
       {modalView === 'REGISTER' && <RegisterModal />}
       {modalView === 'LOGIN' && <LoginModal />}
+      {modalView === 'FILTER_LISTING' && <FilterListingModal />}
     </CustomDialog>
   );
 };
