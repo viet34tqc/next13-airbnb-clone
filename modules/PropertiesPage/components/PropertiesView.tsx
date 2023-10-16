@@ -1,6 +1,6 @@
 import { UserOrNull } from '@/lib/types/auth';
 import { Listing } from '@prisma/client';
-import HomeListingCard from '../HomePage/components/Listings/HomeListingCard';
+import PropertiesListingCard from './PropertiesListingCard';
 
 type Props = {
   listings: Array<Listing>;
@@ -21,7 +21,7 @@ const PropertiesView = ({ listings, currentUser }: Props) => {
           "
       >
         {listings.map(listing => (
-          <HomeListingCard
+          <PropertiesListingCard
             key={listing.id}
             listing={listing}
             currentUser={currentUser}

@@ -13,7 +13,7 @@ type Props = {
   currentUser: UserOrNull;
 };
 
-const TripsListingCard = ({ data, reservation, currentUser }: Props) => {
+const TripsListingCard = ({ data, reservation }: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <ListingCardWrapper listingId={data.id}>
