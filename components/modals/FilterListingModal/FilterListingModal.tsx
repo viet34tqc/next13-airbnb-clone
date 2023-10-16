@@ -17,9 +17,10 @@ import { filterListingSchema } from './validationSchema';
 
 const defaultValues = {
   location: defaultCountryOption,
-  date: {
+  dateRange: {
     startDate: new Date(),
     endDate: new Date(),
+    key: 'selection',
   },
   guestCount: 1,
   roomCount: 1,

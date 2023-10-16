@@ -1,7 +1,6 @@
 import Button from '@/components/ui/Button';
 import { ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { STEPS } from '../NewListingModal/constants';
 import { useStepsContext } from '../context/StepsContext';
 
 type Props = {
@@ -11,10 +10,11 @@ type Props = {
 
 const StepsNavigation = ({ submitButton, stepsValidation }: Props) => {
   const { step, handlePreviousStep, handleNextStep } = useStepsContext();
-  const stepName = STEPS[step];
+  const steps = Object.keys(stepsValidation);
+  const stepName = steps[step];
   const stepValidation = stepsValidation[stepName];
 
-  const actionLabel = step === STEPS.length - 1 ? 'Create' : 'Next';
+  const actionLabel = step === steps.length - 1 ? 'Create' : 'Next';
   const secondaryActionLabel = step === 0 ? null : 'Back';
   const { trigger } = useFormContext();
 
@@ -33,7 +33,7 @@ const StepsNavigation = ({ submitButton, stepsValidation }: Props) => {
         </Button>
       )}
 
-      {step === STEPS.length - 1 ? (
+      {step === steps.length - 1 ? (
         submitButton
       ) : (
         <Button type="button" onClick={handleClickNext}>

@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic';
 import { useStepsContext } from '../../context/StepsContext';
-import { FILTER_STEPS } from '../constants';
+import { filterStepsValidation } from '../constants';
 
-const stepComponent = FILTER_STEPS.map(step =>
+const stepComponent = Object.keys(filterStepsValidation).map(step =>
   dynamic(() => import(`./${step}`))
 );
 
