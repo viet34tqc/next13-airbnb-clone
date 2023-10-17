@@ -1,12 +1,4 @@
-export const STEPS = [
-  'Category',
-  'Location',
-  'Info',
-  'Image',
-  'Description',
-] as const;
-
-export const validationFieldsEachStep = {
+export const stepsValidation = {
   Category: 'category',
   Location: 'location',
   Info: ['guestCount', 'roomCount', 'bathroomCount'],

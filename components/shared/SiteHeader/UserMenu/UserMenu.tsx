@@ -23,7 +23,7 @@ const UserMenu = ({ user }: { user: UserOrNull }) => {
             transition
             cursor-pointer
           "
-        onClick={() => setModalView(!user ? 'LOGIN' : 'RENT')}
+        onClick={() => setModalView(!user ? 'LOGIN' : 'NEW_LISTING')}
       >
         Airbnb your home
       </button>

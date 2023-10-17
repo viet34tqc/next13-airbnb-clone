@@ -1,17 +1,15 @@
 import dynamic from 'next/dynamic';
 import { useStepsContext } from '../../context/StepsContext';
+import { filterStepsValidation } from '../constants';
 
-const stepComponent = [
-  dynamic(() => import(`./CategoryStep`)),
-  dynamic(() => import(`./LocationStep`)),
-  dynamic(() => import(`./InfoStep`)),
-  dynamic(() => import(`./ImageStep`)),
-  dynamic(() => import(`./DescriptionStep`)),
-];
+const stepComponent = Object.keys(filterStepsValidation).map(step =>
+  dynamic(() => import(`./${step}`))
+);
 
 const Steps = () => {
   const { step } = useStepsContext();
   const Step = stepComponent[step];
+
   return (
     <div className="flex flex-col gap-4">
       <Step />

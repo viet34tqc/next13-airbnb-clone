@@ -10,8 +10,10 @@ import {
   CustomDialogOverlay,
   CustomDialogPortal,
 } from '../../ui/Modal/Modal';
-import StepsNavigation from './components/StepsNavigation';
-import StepsContextProvider from './context/StepsContext';
+import StepsNavigation from '../components/StepsNavigation';
+import StepsContextProvider from '../context/StepsContext';
+import SubmitButton from './components/SubmitButton';
+import { stepsValidation } from './constants';
 import Steps from './steps/Steps';
 import { newListingModalSchema } from './validationSchema';
 
@@ -36,7 +38,7 @@ const NewListingModal = () => {
   });
 
   const modalView = useModalView();
-  const isOpen = modalView === 'RENT';
+  const isOpen = modalView === 'NEW_LISTING';
   const { setModalView } = useModalStoreActions();
 
   return (
@@ -48,7 +50,10 @@ const NewListingModal = () => {
             <StepsContextProvider>
               <FormProvider {...methods}>
                 <Steps />
-                <StepsNavigation />
+                <StepsNavigation
+                  submitButton={<SubmitButton />}
+                  stepsValidation={stepsValidation}
+                />
               </FormProvider>
             </StepsContextProvider>
             <CustomDialogClose />

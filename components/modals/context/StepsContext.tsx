@@ -31,7 +31,7 @@ const StepsContextProvider = ({ children }: PropsWithChildren) => {
 export default StepsContextProvider;
 export const useStepsContext = () => {
   const context = useContext(StepsContext) as TStepsContextValue;
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useStepsContext must be used within a SomethingProvider');
   }
   return context;
