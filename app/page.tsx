@@ -5,8 +5,12 @@ import NoListings from '@/modules/HomePage/components/Listings/NoListings';
 import getCurrentUser from './actions/getCurrentUser';
 import getListings from './actions/getListings';
 
-export default async function Home({ params }: { params: ListingsParams }) {
-  const listings = await getListings(params);
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: ListingsParams;
+}) {
+  const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
   if (!listings || !listings.length) {

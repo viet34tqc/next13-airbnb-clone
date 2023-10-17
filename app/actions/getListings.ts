@@ -2,6 +2,7 @@ import { db } from '@/lib/db';
 import { ListingsParams } from '@/lib/types/listings';
 
 export default async function getListings(params: ListingsParams) {
+  console.log('params', params)
   const query: Record<string, any> = {};
   if (params?.userId) {
     query.userId = params.userId;
