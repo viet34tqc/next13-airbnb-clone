@@ -6,6 +6,7 @@ import getCurrentUser from './actions/getCurrentUser';
 import getListings from './actions/getListings';
 
 export default async function Home({
+  // Must be searchParams, not params, otherwise it wont work
   searchParams,
 }: {
   searchParams: ListingsParams;
