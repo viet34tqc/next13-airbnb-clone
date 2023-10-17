@@ -5,7 +5,6 @@ import {
   CustomDialogOverlay,
   CustomDialogPortal,
 } from '@/components/ui/Modal/Modal';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { NewListingModalValues } from '../NewListingModal/NewListingModal';
 import StepsNavigation from '../components/StepsNavigation';
@@ -13,7 +12,6 @@ import StepsContextProvider from '../context/StepsContext';
 import SubmitButton from './components/SubmitButton';
 import { filterStepsValidation } from './constants';
 import Steps from './steps/Steps';
-import { filterListingSchema } from './validationSchema';
 
 const defaultValues = {
   location: defaultCountryOption,
@@ -28,9 +26,10 @@ const defaultValues = {
 };
 
 const FilterListingModal = () => {
+  // User's filter can be empty
+  // So I'm not gonna apply validation here
   const methods = useForm<NewListingModalValues>({
     defaultValues,
-    resolver: zodResolver(filterListingSchema),
   });
 
   return (
@@ -43,6 +42,7 @@ const FilterListingModal = () => {
               <Steps />
               <StepsNavigation
                 submitButton={<SubmitButton buttonLabel="Filter" />}
+                hasValidation={false}
                 stepsValidation={filterStepsValidation}
               />
             </FormProvider>
