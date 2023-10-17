@@ -6,9 +6,14 @@ import { useStepsContext } from '../context/StepsContext';
 type Props = {
   submitButton: ReactNode;
   stepsValidation: Record<string, string | Array<string>>;
+  hasValidation?: boolean;
 };
 
-const StepsNavigation = ({ submitButton, stepsValidation }: Props) => {
+const StepsNavigation = ({
+  submitButton,
+  stepsValidation,
+  hasValidation = true,
+}: Props) => {
   const { step, handlePreviousStep, handleNextStep } = useStepsContext();
   const steps = Object.keys(stepsValidation);
   const stepName = steps[step];
@@ -36,7 +41,10 @@ const StepsNavigation = ({ submitButton, stepsValidation }: Props) => {
       {step === steps.length - 1 ? (
         submitButton
       ) : (
-        <Button type="button" onClick={handleClickNext}>
+        <Button
+          type="button"
+          onClick={hasValidation ? handleClickNext : handleNextStep}
+        >
           {actionLabel}
         </Button>
       )}

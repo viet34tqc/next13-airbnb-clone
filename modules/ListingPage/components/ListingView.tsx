@@ -1,6 +1,7 @@
 'use client';
 
 import { categories } from '@/lib/constants';
+import { UserOrNull } from '@/lib/types/auth';
 import { Listing, Reservation, User } from '@prisma/client';
 import ListingHead from './ListingHead';
 import ListingInfo from './ListingInfo';
