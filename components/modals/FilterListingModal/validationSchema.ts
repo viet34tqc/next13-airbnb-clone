@@ -5,7 +5,7 @@ export const filterListingSchema = z.object({
   location: CountrySelectSchema.extend({
     value: z.string().min(1, 'Please select location for your house'),
   }),
-  date: z.object({
+  dateRange: z.object({
     startDate: z.date(),
     endDate: z.date(),
   }),

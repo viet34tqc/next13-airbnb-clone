@@ -42,7 +42,7 @@ const FilterListingModal = () => {
             <FormProvider {...methods}>
               <Steps />
               <StepsNavigation
-                submitButton={<SubmitButton />}
+                submitButton={<SubmitButton buttonLabel="Filter" />}
                 stepsValidation={filterStepsValidation}
               />
             </FormProvider>
