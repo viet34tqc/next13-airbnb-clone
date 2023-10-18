@@ -3,7 +3,7 @@ import { useModalStoreActions } from '@/store/useModalStore';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 import UserAvatar from '@/components/UserAvatar';
 import {
@@ -19,11 +19,22 @@ type Props = {
 };
 
 const UserMenuDropdown = ({ user }: Props) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useReducer(
+    state => !state,
+    false
+  );
   const { setModalView } = useModalStoreActions();
 
   return (
-    <CustomDropdown open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+    <CustomDropdown
+      open={isDropdownOpen}
+      onOpenChange={() => {
+        setTimeout(() => {
+          document.body.style.pointerEvents = 'auto';
+        }, 0);
+        setIsDropdownOpen();
+      }}
+    >
       <CustomDropdownTrigger
         className="
           p-4
@@ -79,7 +90,7 @@ const UserMenuDropdown = ({ user }: Props) => {
               <MenuItem
                 label="Login"
                 onClick={() => {
-                  setIsDropdownOpen(false);
+                  setIsDropdownOpen();
                   setModalView('LOGIN');
                 }}
               />
