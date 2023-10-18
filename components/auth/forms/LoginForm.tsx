@@ -41,7 +41,7 @@ const LoginForm = () => {
 
       if (callback?.error) {
         if (callback.error === 'CredentialsSignin') {
-          toast.error('Wrong credentials'); // TODO: put this into constants
+          toast.error('Wrong credentials');
         } else {
           toast.error(callback.error);
         }

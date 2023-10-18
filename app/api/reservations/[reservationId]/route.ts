@@ -1,4 +1,5 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import { COMMON_ERROR_MESSAGE, USER_NOT_FOUND_MESSAGE } from '@/lib/constants';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
@@ -20,7 +21,10 @@ export async function DELETE(request: Request, { params }: Params) {
 
     const currentUser = await getCurrentUser();
     if (!currentUser) {
-      return NextResponse.json({ error: 'User not found' }, { status: 401 });
+      return NextResponse.json(
+        { error: USER_NOT_FOUND_MESSAGE },
+        { status: 401 }
+      );
     }
 
     await db.reservation.deleteMany({
@@ -41,7 +45,7 @@ export async function DELETE(request: Request, { params }: Params) {
     }
 
     return NextResponse.json(
-      { message: 'Something went wrong' },
+      { message: COMMON_ERROR_MESSAGE },
       { status: 500 }
     );
   }

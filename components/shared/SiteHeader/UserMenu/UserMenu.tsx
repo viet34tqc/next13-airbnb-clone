@@ -5,7 +5,6 @@ import { UserOrNull } from '@/lib/types/auth';
 import { useModalStoreActions } from '@/store/useModalStore';
 import UserMenuDropdown from './UserMenuDropdown';
 
-// TODO: Hide User menu when navigate to other pages.
 const UserMenu = ({ user }: { user: UserOrNull }) => {
   const { setModalView } = useModalStoreActions();
   return (

@@ -3,6 +3,7 @@ import { hash } from 'bcrypt';
 import { z } from 'zod';
 
 import { registerSchema } from '@/components/auth/authSchema';
+import { COMMON_ERROR_MESSAGE } from '@/lib/constants';
 import { db } from '@/lib/db';
 
 export async function POST(req: Request) {
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
       );
     }
 
-    return new Response(JSON.stringify({ message: 'Something went wrong.' }), {
+    return new Response(JSON.stringify({ message: COMMON_ERROR_MESSAGE }), {
       status: 400,
     });
   }

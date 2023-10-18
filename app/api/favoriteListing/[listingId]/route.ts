@@ -1,4 +1,5 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import { COMMON_ERROR_MESSAGE, USER_NOT_FOUND_MESSAGE } from '@/lib/constants';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
@@ -20,7 +21,10 @@ export async function PUT(request: Request) {
 
     const currentUser = await getCurrentUser();
     if (!currentUser) {
-      return NextResponse.json({ error: 'User not found' }, { status: 401 });
+      return NextResponse.json(
+        { error: USER_NOT_FOUND_MESSAGE },
+        { status: 401 }
+      );
     }
 
     const favoriteListings = [...currentUser.favoriteListings, listingId];
@@ -44,7 +48,7 @@ export async function PUT(request: Request) {
     }
 
     return NextResponse.json(
-      { message: 'Something went wrong' },
+      { message: COMMON_ERROR_MESSAGE },
       { status: 500 }
     );
   }
@@ -62,7 +66,10 @@ export async function DELETE(request: Request, { params }: FavoriteParams) {
 
     const currentUser = await getCurrentUser();
     if (!currentUser) {
-      return NextResponse.json({ error: 'User not found' }, { status: 401 });
+      return NextResponse.json(
+        { error: USER_NOT_FOUND_MESSAGE },
+        { status: 401 }
+      );
     }
 
     const favoriteListings = currentUser.favoriteListings.filter(
@@ -88,7 +95,7 @@ export async function DELETE(request: Request, { params }: FavoriteParams) {
     }
 
     return NextResponse.json(
-      { message: 'Something went wrong' },
+      { message: COMMON_ERROR_MESSAGE },
       { status: 500 }
     );
   }

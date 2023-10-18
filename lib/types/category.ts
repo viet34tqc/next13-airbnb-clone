@@ -1,3 +1,3 @@
-import { categories } from '../constants';
+import { categories } from '../categories';
 
 export type Category = (typeof categories)[0];
