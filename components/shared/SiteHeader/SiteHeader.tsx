@@ -11,8 +11,8 @@ type Props = {
 const SiteHeader = ({ user }: Props) => {
   return (
     <header className="sticky bg-white z-10 shadow-sm py-4">
-      <div className="container flex justify-between">
-        <Link href="/" className="hidden md:flex items-center cursor-pointer">
+      <div className="container flex justify-between items-center gap-0 sm:gap-2">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo.png"
             alt="Site Logo"

@@ -43,13 +43,12 @@ const HeaderSearch = () => {
     <div
       onClick={() => setModalView('FILTER_LISTING')}
       className="
-        border-[1px]
-        w-full
-        md:w-auto
-        py-2
+        sm:border-[1px]
+        sm:py-2
+        sm:px-6
         rounded-full
-        shadow-sm
-        hover:shadow-md
+        sm:shadow-sm
+        sm:hover:shadow-md
         transition
         cursor-pointer
       "
@@ -57,17 +56,17 @@ const HeaderSearch = () => {
       <div className="flex flex-row items-center justify-between">
         <div
           className="
+            hidden sm:block
             text-sm
             font-semibold
-            px-6
+            pr-6
           "
         >
           {locationLabel}
         </div>
         <div
           className="
-            hidden
-            sm:block
+            hidden sm:block
             text-sm
             font-semibold
             px-6
@@ -80,27 +79,24 @@ const HeaderSearch = () => {
         </div>
         <div
           className="
+            hidden sm:block
             text-sm
             pl-6
             pr-2
             text-gray-600
-            flex
-            flex-row
-            items-center
-            gap-3
           "
         >
-          <div className="hidden sm:block">{guestLabel}</div>
-          <div
-            className="
+          {guestLabel}
+        </div>
+        <div
+          className="
               p-2
               bg-rose-500
               rounded-full
               text-white
             "
-          >
-            <MagnifyingGlassIcon className="w-4 h-4" />
-          </div>
+        >
+          <MagnifyingGlassIcon className="w-4 h-4" />
         </div>
       </div>
     </div>

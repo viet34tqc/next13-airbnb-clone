@@ -37,7 +37,7 @@ const UserMenuDropdown = ({ user }: Props) => {
     >
       <CustomDropdownTrigger
         className="
-          p-4
+          p-1
           md:py-1
           md:px-2
           border-[1px]
