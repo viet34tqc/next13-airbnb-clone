@@ -97,7 +97,7 @@ const UserMenuDropdown = ({ user }: Props) => {
               <MenuItem
                 label="Sign up"
                 onClick={() => {
-                  setIsDropdownOpen(false);
+                  setIsDropdownOpen();
                   setModalView('REGISTER');
                 }}
               />

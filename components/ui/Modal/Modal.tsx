@@ -1,5 +1,5 @@
-import CloseIcon from '@/icons/CloseIcon';
 import { cn } from '@/lib/utils';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import React from 'react';
 
@@ -50,7 +50,7 @@ const CustomDialogClose = React.forwardRef<
     ref={ref}
     {...props}
   >
-    <CloseIcon className="h-4 w-4" />
+    <XMarkIcon className="h-4 w-4" />
     <span className="sr-only">Close</span>
   </DialogPrimitive.Close>
 ));

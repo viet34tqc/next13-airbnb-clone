@@ -1,8 +1,8 @@
 'use client';
 
 import useCountries from '@/hooks/useCountries';
-import SearchIcon from '@/icons/SearchIcon';
 import { useModalStoreActions } from '@/store/useModalStore';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { differenceInDays } from 'date-fns';
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
@@ -99,7 +99,7 @@ const HeaderSearch = () => {
               text-white
             "
           >
-            <SearchIcon className="w-4 h-4" />
+            <MagnifyingGlassIcon className="w-4 h-4" />
           </div>
         </div>
       </div>
