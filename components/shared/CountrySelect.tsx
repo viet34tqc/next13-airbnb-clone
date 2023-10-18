@@ -1,17 +1,10 @@
 'use client';
 
 import useCountries from '@/hooks/useCountries';
+import { CountrySelectSchema } from '@/lib/schemas';
 import { ChangeEvent } from 'react';
 import { z } from 'zod';
 import Select from '../ui/Form/Select';
-
-export const CountrySelectSchema = z.object({
-  flag: z.string(),
-  label: z.string(),
-  latlng: z.array(z.number()),
-  region: z.string(),
-  value: z.string(),
-});
 
 export const defaultCountryOption = {
   flag: '',

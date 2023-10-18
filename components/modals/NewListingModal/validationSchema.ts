@@ -1,4 +1,4 @@
-import { CountrySelectSchema } from '@/components/shared/CountrySelect';
+import { CountrySelectSchema } from '@/lib/schemas';
 import { z } from 'zod';
 
 export const newListingModalSchema = z.object({
