@@ -15,7 +15,6 @@ export async function POST(req: Request) {
 
     const body = await req.json();
     // If there is empty value return error
-    // TODO: using Zod for validation
     const isAllHaveValue = Object.values(body).every(value => !!value);
     if (!isAllHaveValue) {
       return NextResponse.json({ error: 'Missing data' }, { status: 401 });

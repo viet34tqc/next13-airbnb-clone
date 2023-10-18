@@ -1,4 +1,5 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import { newListingModalSchema } from '@/components/modals/NewListingModal/validationSchema';
 import { COMMON_ERROR_MESSAGE, USER_NOT_FOUND_MESSAGE } from '@/lib/constants';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
@@ -17,9 +18,8 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     // If there is empty value return error
-    // TODO: using Zod for validation
-    const isAllHaveValue = Object.values(body).every(value => !!value);
-    if (!isAllHaveValue) {
+    const zodParse = newListingModalSchema.safeParse(body)
+    if (!zodParse.success) {
       return NextResponse.json({ error: 'Missing data' }, { status: 401 });
     }
 
