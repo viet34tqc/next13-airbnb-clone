@@ -18,8 +18,6 @@ const TripsListingCard = ({ data, reservation }: Props) => {
         <div className="relative">
           <ListingCardImg
             imageSrc={data.imageSrc}
-            currentUser={null}
-            listingId={data.id}
           />
         </div>
         <ListingCardLocation locationValue={data.locationValue} />

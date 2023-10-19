@@ -1,3 +1,5 @@
+import GridListingLayout from '@/components/shared/GridListingLayout';
+import PageHeader from '@/components/shared/PageHeader';
 import { UserOrNull } from '@/lib/types/auth';
 import { Listing } from '@prisma/client';
 import PropertiesListingCard from './PropertiesListingCard';
@@ -9,17 +11,9 @@ type Props = {
 
 const PropertiesView = ({ listings, currentUser }: Props) => {
   return (
-    <div className="container">
-      <div
-        className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            md:grid-cols-3
-            xl:grid-cols-5
-              gap-8
-          "
-      >
+    <>
+      <PageHeader title="Properties" subtitle="List of your properties" />
+      <GridListingLayout>
         {listings.map(listing => (
           <PropertiesListingCard
             key={listing.id}
@@ -27,8 +21,8 @@ const PropertiesView = ({ listings, currentUser }: Props) => {
             currentUser={currentUser}
           />
         ))}
-      </div>
-    </div>
+      </GridListingLayout>
+    </>
   );
 };
 

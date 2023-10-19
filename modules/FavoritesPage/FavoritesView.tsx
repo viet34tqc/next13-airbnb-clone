@@ -1,3 +1,5 @@
+import GridListingLayout from '@/components/shared/GridListingLayout';
+import PageHeader from '@/components/shared/PageHeader';
 import { UserOrNull } from '@/lib/types/auth';
 import { Listing } from '@prisma/client';
 import HomeListingCard from '../HomePage/components/Listings/HomeListingCard';
@@ -9,17 +11,9 @@ type Props = {
 
 const FavoritesView = ({ favoriteListings, currentUser }: Props) => {
   return (
-    <div className="container">
-      <div
-        className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            md:grid-cols-3
-            xl:grid-cols-5
-              gap-8
-          "
-      >
+    <>
+      <PageHeader title="Favorites" subtitle="List of your favorite listings" />
+      <GridListingLayout>
         {favoriteListings.map(listing => (
           <HomeListingCard
             key={listing.id}
@@ -27,8 +21,8 @@ const FavoritesView = ({ favoriteListings, currentUser }: Props) => {
             currentUser={currentUser}
           />
         ))}
-      </div>
-    </div>
+      </GridListingLayout>
+    </>
   );
 };
 

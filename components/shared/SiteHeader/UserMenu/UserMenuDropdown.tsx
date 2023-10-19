@@ -75,7 +75,7 @@ const UserMenuDropdown = ({ user }: Props) => {
             <>
               {siteConfig.mainNav.map(item => (
                 <Link key={item.href} href={item.href}>
-                  <MenuItem label={item.title} />
+                  <MenuItem label={item.title} onClick={setIsDropdownOpen} />
                 </Link>
               ))}
               <hr />
