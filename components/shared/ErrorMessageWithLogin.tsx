@@ -9,11 +9,16 @@ type Props = {
   subtitle: string;
 };
 
-const ErrorMessageWithLogin = ({ title, subtitle }: Props) => {
+// This component was used for protected routes
+// I have replaced it with nextjs middleware to redirect unauthenticated users to homepage
+const ErrorMessageWithLogin = ({
+  title = 'Unauthorized',
+  subtitle = 'Please login',
+}: Props) => {
   const { setModalView } = useModalStoreActions();
 
   return (
-    <ErrorMessage title="Unauthorized" subtitle="Please login">
+    <ErrorMessage title={title} subtitle={subtitle}>
       <Button onClick={() => setModalView('LOGIN')}>Login</Button>
     </ErrorMessage>
   );

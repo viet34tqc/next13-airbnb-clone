@@ -58,7 +58,6 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
   const reservedDates = getReservedDate(reservations);
   const totalPrice = getTotalPrice(dateRange, listing.price);
 
-  // TODO: tidy up API
   const handleCreateReservation = async () => {
     if (!currentUser) {
       return setModalView('LOGIN');

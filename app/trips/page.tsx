@@ -1,5 +1,4 @@
 import ErrorMessage from '@/components/shared/ErrorMessage';
-import ErrorMessageWithLogin from '@/components/shared/ErrorMessageWithLogin';
 import PageHeader from '@/components/shared/PageHeader';
 import TripsView from '@/modules/TripsPage/components/TripsView';
 import getCurrentUser from '../actions/getCurrentUser';
@@ -8,12 +7,13 @@ import getReservations from '../actions/getReservations';
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser) {
+  // This code is no longer needed because I replace it with nextjs middleware
+  /* if (!currentUser) {
     return (
       <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
     );
-  }
-  const reservations = await getReservations({ userId: currentUser.id });
+  } */
+  const reservations = currentUser ? await getReservations({ userId: currentUser.id }) : [];
 
   if (!reservations.length) {
     return (

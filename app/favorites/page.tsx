@@ -1,5 +1,4 @@
 import ErrorMessage from '@/components/shared/ErrorMessage';
-import ErrorMessageWithLogin from '@/components/shared/ErrorMessageWithLogin';
 import Button from '@/components/ui/Button';
 import FavoritesView from '@/modules/FavoritesPage/FavoritesView';
 import Link from 'next/link';
@@ -7,14 +6,14 @@ import getCurrentUser from '../actions/getCurrentUser';
 import getFavoriteListings from '../actions/getFavoriteListings';
 
 const FavoritesPage = async () => {
-  const favoriteListings = await getFavoriteListings();
   const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
+  // This code is no longer needed because I replace it with nextjs middleware
+  /* if (!currentUser) {
     return (
       <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
     );
-  }
+  } */
+  const favoriteListings = await getFavoriteListings();
 
   if (!favoriteListings.length) {
     return (

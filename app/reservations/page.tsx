@@ -8,13 +8,13 @@ import PageHeader from '@/components/shared/PageHeader';
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
-  // TODO: try middleware
-  if (!currentUser) {
+  // This code is no longer needed because I replace it with nextjs middleware
+  /* if (!currentUser) {
     return (
       <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
     );
-  }
-  const reservations = await getReservations({ authorId: currentUser.id });
+  } */
+  const reservations = currentUser ? await getReservations({ authorId: currentUser.id }) : [];
 
   if (!reservations.length) {
     return (

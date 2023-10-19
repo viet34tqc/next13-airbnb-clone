@@ -1,5 +1,4 @@
 import ErrorMessage from '@/components/shared/ErrorMessage';
-import ErrorMessageWithLogin from '@/components/shared/ErrorMessageWithLogin';
 import Button from '@/components/ui/Button';
 import PropertiesView from '@/modules/PropertiesPage/components/PropertiesView';
 import Link from 'next/link';
@@ -8,12 +7,15 @@ import getListings from '../actions/getListings';
 
 const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
-  if (!currentUser) {
+  // This code is no longer needed because I replace it with nextjs middleware
+  /* if (!currentUser) {
     return (
       <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
     );
-  }
-  const listings = await getListings({ userId: currentUser.id });
+  } */
+  const listings = currentUser
+    ? await getListings({ userId: currentUser.id })
+    : [];
 
   if (!listings.length) {
     return (
