@@ -8,6 +8,7 @@ import PageHeader from '@/components/shared/PageHeader';
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
+  // TODO: try middleware
   if (!currentUser) {
     return (
       <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
