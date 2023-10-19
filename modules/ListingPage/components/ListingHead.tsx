@@ -1,7 +1,7 @@
+import ListingFavoriteButton from '@/components/shared/ListingCard/ListingFavoriteButton';
 import PageHeader from '@/components/shared/PageHeader';
 import useCountries from '@/hooks/useCountries';
 import { UserOrNull } from '@/lib/types/auth';
-import FavoriteButton from '@/modules/HomePage/components/Listings/FavoriteButton';
 import Image from 'next/image';
 
 type Props = {
@@ -51,7 +51,7 @@ const ListingHead = ({
             right-5
           "
         >
-          <FavoriteButton listingId={id} currentUser={currentUser} />
+          <ListingFavoriteButton listingId={id} currentUser={currentUser} />
         </div>
       </div>
     </>

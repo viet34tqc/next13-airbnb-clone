@@ -3,6 +3,7 @@ import ListingCardImg from '@/components/shared/ListingCard/ListingCardImg';
 import ListingCardLocation from '@/components/shared/ListingCard/ListingCardLocation';
 import ListingCardPrice from '@/components/shared/ListingCard/ListingCardPrice';
 import ListingCardWrapper from '@/components/shared/ListingCard/ListingCardWrapper';
+import ListingFavoriteButton from '@/components/shared/ListingCard/ListingFavoriteButton';
 import { UserOrNull } from '@/lib/types/auth';
 import { Listing } from '@prisma/client';
 import DeleteListingButton from './DeleteListingButton';
@@ -16,11 +17,21 @@ const PropertiesListingCard = ({ listing, currentUser }: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <ListingCardWrapper listingId={listing.id}>
-        <ListingCardImg
-          imageSrc={listing.imageSrc}
-          currentUser={currentUser}
-          listingId={listing.id}
-        />
+        <div className="relative">
+          <ListingCardImg imageSrc={listing.imageSrc} />
+          <div
+            className="
+          absolute
+          top-3
+          right-3
+        "
+          >
+            <ListingFavoriteButton
+              currentUser={currentUser}
+              listingId={listing.id}
+            />
+          </div>
+        </div>
         <ListingCardLocation locationValue={listing.locationValue} />
         <ListingCardCategory category={listing.category} />
         <ListingCardPrice price={listing.price} />

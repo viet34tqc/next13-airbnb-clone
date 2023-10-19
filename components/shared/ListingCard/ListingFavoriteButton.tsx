@@ -3,17 +3,15 @@
 import { UserOrNull } from '@/lib/types/auth';
 import { cn } from '@/lib/utils';
 import { HeartIcon } from '@heroicons/react/24/outline';
-import useFavorite from '../../hooks/useFavorite';
+import { Listing } from '@prisma/client';
+import useFavorite from '../../../modules/HomePage/hooks/useFavorite';
 
-// This component use a hook (client component) => it must be client component
-// => we cannot call `getCurrentUser` here
-// => We need to pass down current User from ListingCard
 type Props = {
   currentUser: UserOrNull;
-  listingId: string;
+  listingId: Listing['id'];
 };
 
-const FavoriteButton = ({ currentUser, listingId }: Props) => {
+const ListingFavoriteButton = ({ currentUser, listingId }: Props) => {
   const { isLoading, isFavorite, toggleFavorite } = useFavorite({
     listingId,
     currentUser,
@@ -36,4 +34,4 @@ const FavoriteButton = ({ currentUser, listingId }: Props) => {
   );
 };
 
-export default FavoriteButton;
+export default ListingFavoriteButton;

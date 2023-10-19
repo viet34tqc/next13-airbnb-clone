@@ -1,15 +1,11 @@
-import { UserOrNull } from '@/lib/types/auth';
-import FavoriteButton from '@/modules/HomePage/components/Listings/FavoriteButton';
 import { Listing } from '@prisma/client';
 import Image from 'next/image';
 
 type Props = {
   imageSrc: Listing['imageSrc'];
-  listingId: Listing['id'];
-  currentUser: UserOrNull;
 };
 
-const ListingCardImg = ({ imageSrc, currentUser, listingId }: Props) => {
+const ListingCardImg = ({ imageSrc }: Props) => {
   return (
     <div className="aspect-square group relative overflow-hidden rounded-xl">
       <Image
@@ -25,17 +21,6 @@ const ListingCardImg = ({ imageSrc, currentUser, listingId }: Props) => {
         src={imageSrc}
         alt="Listing"
       />
-      {currentUser && (
-        <div
-          className="
-          absolute
-          top-3
-          right-3
-        "
-        >
-          <FavoriteButton currentUser={currentUser} listingId={listingId} />
-        </div>
-      )}
     </div>
   );
 };
