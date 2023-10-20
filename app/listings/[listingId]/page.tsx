@@ -3,12 +3,21 @@ import getListingById from '@/app/actions/getListingById';
 import getReservations from '@/app/actions/getReservations';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import ListingView from '@/modules/ListingPage/components/ListingView';
+import { Listing } from '@prisma/client';
 
 type Props = {
   params: {
-    listingId: string;
+    listingId: Listing['id'];
   };
 };
+
+export async function generateMetadata({ params: { listingId } }: Props) {
+  const listing = await getListingById(listingId);
+  return {
+    title: listing?.title,
+    description: listing?.description,
+  };
+}
 
 const ListingPage = async ({ params: { listingId } }: Props) => {
   const listing = await getListingById(listingId);

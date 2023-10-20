@@ -1,10 +1,14 @@
 import ErrorMessage from '@/components/shared/ErrorMessage';
-import ErrorMessageWithLogin from '@/components/shared/ErrorMessageWithLogin';
-import ModalHeading from '@/components/ui/Modal/ModalHeading';
+import PageHeader from '@/components/shared/PageHeader';
 import TripsView from '@/modules/TripsPage/components/TripsView';
+import { Metadata } from 'next';
 import getCurrentUser from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
-import PageHeader from '@/components/shared/PageHeader';
+
+export const metadata: Metadata = {
+  title: 'Reservations',
+  description: 'All the reservations for your listing',
+};
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -14,7 +18,9 @@ const ReservationsPage = async () => {
       <ErrorMessageWithLogin title="Unauthorized" subtitle="Please login" />
     );
   } */
-  const reservations = currentUser ? await getReservations({ authorId: currentUser.id }) : [];
+  const reservations = currentUser
+    ? await getReservations({ authorId: currentUser.id })
+    : [];
 
   if (!reservations.length) {
     return (
