@@ -4,6 +4,7 @@ import { UserOrNull } from '@/lib/types/auth';
 import { cn } from '@/lib/utils';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { Listing } from '@prisma/client';
+import { LoaderIcon } from 'react-hot-toast';
 import useFavorite from '../../../modules/HomePage/hooks/useFavorite';
 
 type Props = {
@@ -17,11 +18,13 @@ const ListingFavoriteButton = ({ currentUser, listingId }: Props) => {
     currentUser,
   });
 
+  if (isLoading) return <LoaderIcon className="!w-5 !h-5" />;
+
   return (
     <button
-      disabled={isLoading}
       className=" relative hover:opacity-80 transition"
       onClick={e => {
+        // This is used to click through the link wrapper
         e.preventDefault();
         e.stopPropagation();
         toggleFavorite();
