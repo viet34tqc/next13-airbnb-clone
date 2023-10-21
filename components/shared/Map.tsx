@@ -25,11 +25,12 @@ const attribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 const Map = ({ center }: MapProps) => {
+  console.log('center', center);
   return (
     <MapContainer
       center={(center as L.LatLngExpression) || [51, -0.09]}
       zoom={center ? 4 : 2}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       className="min-h-[350px] rounded-lg isolate" // isolate to not let the map overlap other element
     >
       <TileLayer url={url} attribution={attribution} />

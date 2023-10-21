@@ -7,10 +7,8 @@ import { z } from 'zod';
 import Select from '../ui/Form/Select';
 
 export const defaultCountryOption = {
-  flag: '',
   label: '',
   latlng: [0, 0],
-  region: '',
   value: '',
 };
 
@@ -22,20 +20,15 @@ type Props = {
 };
 
 const CountrySelect = ({ selectedCountry, onChange }: Props) => {
-  const { getAll } = useCountries();
-  const options = [
-    { value: '', label: 'Select country' },
-    ...getAll().map(({ value, label }) => ({ value, label })),
-  ];
+  const { getOptions, getByValue } = useCountries();
+  const options = getOptions;
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (!e.target.value) {
       onChange(defaultCountryOption);
       return;
     }
-    const selectedItem = getAll().find(
-      country => country.value === e.target.value
-    );
+    const selectedItem = getByValue(e.target.value);
     if (selectedItem) {
       onChange(selectedItem);
     }
