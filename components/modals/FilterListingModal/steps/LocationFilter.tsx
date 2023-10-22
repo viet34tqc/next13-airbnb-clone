@@ -25,7 +25,9 @@ const LocationStep = () => {
         <FieldMess name="location.value" />
       </div>
       <hr />
-      {location.value && <Map center={location?.latlng} />}
+      {location.value && (
+        <Map key={location?.latlng} center={location?.latlng} />
+      )}
     </>
   );
 };
