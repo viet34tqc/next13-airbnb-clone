@@ -11,14 +11,15 @@ import DeleteListingButton from './DeleteListingButton';
 type Props = {
   listing: Listing;
   currentUser: UserOrNull;
+  index: number;
 };
 
-const PropertiesListingCard = ({ listing, currentUser }: Props) => {
+const PropertiesListingCard = ({ listing, currentUser, index }: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <ListingCardWrapper listingId={listing.id}>
         <div className="relative">
-          <ListingCardImg imageSrc={listing.imageSrc} />
+          <ListingCardImg imageSrc={listing.imageSrc} priority={index === 0} />
           <div
             className="
           absolute

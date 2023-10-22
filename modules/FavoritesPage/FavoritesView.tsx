@@ -14,8 +14,9 @@ const FavoritesView = ({ favoriteListings, currentUser }: Props) => {
     <>
       <PageHeader title="Favorites" subtitle="List of your favorite listings" />
       <GridListingLayout>
-        {favoriteListings.map(listing => (
+        {favoriteListings.map((listing, index) => (
           <HomeListingCard
+            index={index}
             key={listing.id}
             listing={listing}
             currentUser={currentUser}

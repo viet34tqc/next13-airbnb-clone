@@ -37,6 +37,7 @@ const ListingHead = ({
       >
         <Image
           src={imageSrc}
+          priority={true}
           fill
           className="object-cover w-full"
           alt="Image"

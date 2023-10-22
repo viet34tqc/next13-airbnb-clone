@@ -14,11 +14,12 @@ const PropertiesView = ({ listings, currentUser }: Props) => {
     <>
       <PageHeader title="Properties" subtitle="List of your properties" />
       <GridListingLayout>
-        {listings.map(listing => (
+        {listings.map((listing, index) => (
           <PropertiesListingCard
             key={listing.id}
             listing={listing}
             currentUser={currentUser}
+            index={index}
           />
         ))}
       </GridListingLayout>

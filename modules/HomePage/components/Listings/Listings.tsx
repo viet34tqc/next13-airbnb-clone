@@ -13,10 +13,11 @@ type Props = {
 const Listings = async ({ listings, currentUser }: Props) => {
   return (
     <GridListingLayout>
-      {listings.map(listing => (
+      {listings.map((listing, index) => (
         <HomeListingCard
           key={listing.id}
           listing={listing}
+          index={index}
           currentUser={currentUser}
         />
       ))}

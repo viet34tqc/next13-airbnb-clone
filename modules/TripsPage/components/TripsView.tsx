@@ -1,27 +1,22 @@
 import GridListingLayout from '@/components/shared/GridListingLayout';
-import { UserOrNull } from '@/lib/types/auth';
-import { Reservation } from '@prisma/client';
+import { Listing, Reservation } from '@prisma/client';
 import { PropsWithChildren } from 'react';
 import TripsListingCard from './TripsListingCard';
 
 type Props = {
-  reservations: Reservation[];
-  currentUser: UserOrNull;
+  reservations: (Reservation & { listing: Listing })[];
 };
 
-const TripsView = ({
-  reservations,
-  currentUser,
-  children,
-}: PropsWithChildren<Props>) => {
+const TripsView = ({ reservations, children }: PropsWithChildren<Props>) => {
   return (
     <>
       <div className="container">{children}</div>
       <GridListingLayout>
-        {reservations.map((reservation: any) => (
+        {reservations.map((reservation, index) => (
           <TripsListingCard
             key={reservation.id}
-            data={reservation.listing}
+            listing={reservation.listing}
+            index={index}
             reservation={reservation}
           />
         ))}

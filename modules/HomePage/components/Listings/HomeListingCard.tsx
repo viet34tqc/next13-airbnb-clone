@@ -10,13 +10,14 @@ import { Listing } from '@prisma/client';
 type Props = {
   listing: Listing;
   currentUser: UserOrNull;
+  index: number;
 };
 
-const HomeListingCard = async ({ listing, currentUser }: Props) => {
+const HomeListingCard = async ({ listing, currentUser, index }: Props) => {
   return (
     <ListingCardWrapper listingId={listing.id}>
       <div className="relative">
-        <ListingCardImg imageSrc={listing.imageSrc} />
+        <ListingCardImg imageSrc={listing.imageSrc} priority={index === 0} />
         <div
           className="
           absolute

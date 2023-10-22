@@ -33,7 +33,7 @@ const TripsPage = async () => {
   }
   return (
     <main className="py-10">
-      <TripsView currentUser={currentUser} reservations={reservations}>
+      <TripsView reservations={reservations}>
         <PageHeader
           title="Trips"
           subtitle="Where you've been and where you're going"
