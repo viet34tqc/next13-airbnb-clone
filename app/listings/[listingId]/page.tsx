@@ -32,7 +32,7 @@ const ListingPage = async ({ params: { listingId } }: Props) => {
   }
 
   return (
-    <main className="py-16 md:p-16">
+    <main className="py-10">
       <ListingView
         listing={listing}
         currentUser={currentUser}

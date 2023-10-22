@@ -34,7 +34,7 @@ const FavoritesPage = async () => {
     );
   }
   return (
-    <main className="py-16 md:p-16">
+    <main className="py-10">
       <FavoritesView
         favoriteListings={favoriteListings}
         currentUser={currentUser}

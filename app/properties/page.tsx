@@ -36,7 +36,7 @@ const PropertiesPage = async () => {
     );
   }
   return (
-    <main className="py-16 md:p-16">
+    <main className="py-10">
       <PropertiesView listings={listings} currentUser={currentUser} />
     </main>
   );

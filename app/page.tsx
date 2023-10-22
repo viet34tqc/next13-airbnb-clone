@@ -26,7 +26,7 @@ export default async function Home({
   return (
     <>
       <Categories />
-      <main className="flex min-h-screen flex-col items-center justify-between py-16 md:p-16">
+      <main className="flex min-h-screen flex-col items-center justify-between py-10">
         <Listings listings={listings} currentUser={currentUser} />
       </main>
     </>

@@ -25,10 +25,7 @@ const ListingHead = ({
 
   return (
     <>
-      <PageHeader
-        title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
-      />
+      <PageHeader title={title} subtitle={location?.label} />
       <div
         className="
           w-full
