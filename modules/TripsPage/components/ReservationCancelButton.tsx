@@ -26,8 +26,8 @@ const ReservationCancelButton = ({ reservationId }: Props) => {
         setIsLoading(false);
         throw Error(data.message);
       }
-      toast.success('Reservation cancelled');
       router.refresh();
+      toast.success('Reservation cancelled');
     } catch (error) {
       toast(
         error instanceof Error ? error.message : 'Failed to cancel reservation'
@@ -38,7 +38,7 @@ const ReservationCancelButton = ({ reservationId }: Props) => {
   };
   return (
     <Button disabled={isLoading} onClick={handleCancelReservation}>
-      Cancel reservation
+      {isLoading ? 'Canceling...' : 'Cancel reservation'}
     </Button>
   );
 };
