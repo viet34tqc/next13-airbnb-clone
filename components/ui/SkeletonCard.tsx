@@ -1,16 +1,10 @@
-import { cn } from '@/lib/utils';
+export const SkeletonCard = () => (
+  <div role="status" className="animate-pulse flex flex-col gap-4">
+    <div className="aspect-square bg-black/50 rounded shadow"></div>
+    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-24"></div>
+    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
+    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
 
-export const SkeletonCard = ({ isLoading }: { isLoading?: boolean }) => (
-  <div
-    className={cn('rounded-2xl bg-gray-900/80 p-4', {
-      'relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent':
-        isLoading,
-    })}
-  >
-    <div className="space-y-3">
-      <div className="h-14 rounded-lg bg-gray-700" />
-      <div className="h-3 w-11/12 rounded-lg bg-gray-700" />
-      <div className="h-3 w-8/12 rounded-lg bg-gray-700" />
-    </div>
+    <span className="sr-only">Loading...</span>
   </div>
 );
