@@ -3,8 +3,10 @@ import Categories from '@/modules/HomePage/components/Categories/Categories';
 import Listings from '@/modules/HomePage/components/Listings';
 import NoListings from '@/modules/HomePage/components/Listings/NoListings';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import getCurrentUser from './actions/getCurrentUser';
 import getListings from './actions/getListings';
+import Loading from './listings/[listingId]/loading';
 
 export const metadata: Metadata = {
   title: 'YAAC-Yet another AirBnb clone',
@@ -25,9 +27,11 @@ export default async function Home({
   }
   return (
     <>
-      <Categories />
-      <main className="flex min-h-screen flex-col items-center justify-between py-10">
-        <Listings listings={listings} currentUser={currentUser} />
+      <main className="flex flex-col gap-10 pb-10">
+        <Categories />
+        <Suspense fallback={<Loading />}>
+          <Listings listings={listings} currentUser={currentUser} />
+        </Suspense>
       </main>
     </>
   );
