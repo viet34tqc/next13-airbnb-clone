@@ -1,4 +1,4 @@
-import Loading from '@/components/ui/loading';
+import SkeletonGrid from '@/components/ui/SkeletonGrid';
 import { ListingsParams } from '@/lib/types/listings';
 import Categories from '@/modules/HomePage/components/Categories/Categories';
 import Listings from '@/modules/HomePage/components/Listings';
@@ -20,7 +20,7 @@ export default async function Home({
     <>
       <main className="flex flex-col gap-10 pb-10">
         <Categories />
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<SkeletonGrid />}>
           <Listings searchParams={searchParams} />
         </Suspense>
       </main>

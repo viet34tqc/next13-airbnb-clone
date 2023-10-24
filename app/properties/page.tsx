@@ -1,5 +1,5 @@
 import PageHeader from '@/components/shared/PageHeader';
-import Loading from '@/components/ui/loading';
+import SkeletonGrid from '@/components/ui/SkeletonGrid';
 import PropertiesView from '@/modules/PropertiesPage/components/PropertiesView';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -13,7 +13,7 @@ const PropertiesPage = async () => {
   return (
     <main className="py-10">
       <PageHeader title="Properties" subtitle="List of your properties" />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<SkeletonGrid />}>
         <PropertiesView />
       </Suspense>
     </main>

@@ -1,5 +1,5 @@
 import PageHeader from '@/components/shared/PageHeader';
-import Loading from '@/components/ui/loading';
+import SkeletonGrid from '@/components/ui/SkeletonGrid';
 import ReservationView from '@/modules/ReservationPage/components/ReservationView';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -13,7 +13,7 @@ const ReservationsPage = async () => {
   return (
     <main className="py-10">
       <PageHeader title="Reservations" subtitle="Bookings on your properties" />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<SkeletonGrid />}>
         <ReservationView />
       </Suspense>
     </main>

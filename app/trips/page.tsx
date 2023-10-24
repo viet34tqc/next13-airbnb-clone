@@ -1,5 +1,5 @@
 import PageHeader from '@/components/shared/PageHeader';
-import Loading from '@/components/ui/loading';
+import SkeletonGrid from '@/components/ui/SkeletonGrid';
 import TripsView from '@/modules/TripsPage/components/TripsView';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -16,7 +16,7 @@ const TripsPage = async () => {
         title="Trips"
         subtitle="Where you've been and where you're going"
       />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<SkeletonGrid />}>
         <TripsView />
       </Suspense>
     </main>
