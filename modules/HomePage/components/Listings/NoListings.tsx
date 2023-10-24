@@ -15,13 +15,9 @@ const NoListings = () => {
       title="No exact matches"
       subtitle="Try changing or removing some of your filters."
     >
-      <div className="w-48 mt-4">
-        {
-          <Button isOutline onClick={() => router.push('/')}>
-            Remove all filters
-          </Button>
-        }
-      </div>
+      <Button className="mt-4" isOutline onClick={() => router.push('/')}>
+        Remove all filters
+      </Button>
     </ErrorMessage>
   );
 };

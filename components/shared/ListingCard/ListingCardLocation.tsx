@@ -9,11 +9,7 @@ const ListingCardLocation = ({ locationValue }: Props) => {
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
 
-  return (
-    <div className="font-semibold text-lg">
-      {location?.region}, {location?.label}
-    </div>
-  );
+  return <div className="font-semibold text-lg">{location?.label}</div>;
 };
 
 export default ListingCardLocation;

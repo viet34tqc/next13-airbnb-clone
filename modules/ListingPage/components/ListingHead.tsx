@@ -25,10 +25,7 @@ const ListingHead = ({
 
   return (
     <>
-      <PageHeader
-        title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
-      />
+      <PageHeader title={title} subtitle={location?.label} />
       <div
         className="
           w-full
@@ -40,6 +37,7 @@ const ListingHead = ({
       >
         <Image
           src={imageSrc}
+          priority={true}
           fill
           className="object-cover w-full"
           alt="Image"

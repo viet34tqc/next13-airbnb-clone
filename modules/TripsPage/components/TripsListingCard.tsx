@@ -1,3 +1,5 @@
+'use client';
+
 import ListingCardImg from '@/components/shared/ListingCard/ListingCardImg';
 import ListingCardLocation from '@/components/shared/ListingCard/ListingCardLocation';
 import ListingCardReservationDate from '@/components/shared/ListingCard/ListingCardReservationDate';
@@ -7,20 +9,19 @@ import { Listing, Reservation } from '@prisma/client';
 import ReservationCancelButton from './ReservationCancelButton';
 
 type Props = {
-  data: Listing;
+  listing: Listing;
   reservation: Reservation;
+  index: number;
 };
 
-const TripsListingCard = ({ data, reservation }: Props) => {
+const TripsListingCard = ({ listing, reservation, index }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <ListingCardWrapper listingId={data.id}>
+      <ListingCardWrapper listingId={listing.id}>
         <div className="relative">
-          <ListingCardImg
-            imageSrc={data.imageSrc}
-          />
+          <ListingCardImg imageSrc={listing.imageSrc} priority={index === 0} />
         </div>
-        <ListingCardLocation locationValue={data.locationValue} />
+        <ListingCardLocation locationValue={listing.locationValue} />
         <ListingCardReservationDate reservation={reservation} />
         <ListingCardTotalPrice price={reservation.totalPrice} />
       </ListingCardWrapper>

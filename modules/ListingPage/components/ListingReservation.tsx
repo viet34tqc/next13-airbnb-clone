@@ -131,7 +131,7 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
           disabled={isLoading}
           onClick={handleCreateReservation}
         >
-          Reserve
+          {isLoading ? 'Reserving' : 'Reserve'}
         </Button>
       </div>
     </div>

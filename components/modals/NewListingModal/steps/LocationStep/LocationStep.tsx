@@ -6,9 +6,7 @@ import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import dynamic from 'next/dynamic';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-const Map = dynamic(() => import('@/components/shared/Map'), {
-  ssr: false, // Need this to make the map to re-render when we change the location
-});
+const Map = dynamic(() => import('@/components/shared/Map'));
 
 const LocationStep = () => {
   const { setValue } = useFormContext();
@@ -25,7 +23,9 @@ const LocationStep = () => {
         onChange={value => setValue('location', value)}
       />
       <FieldMess name="location.value" />
-      {location.value && <Map center={location?.latlng} />}
+      {location.value && (
+        <Map key={location?.latlng} center={location?.latlng} />
+      )}
     </>
   );
 };

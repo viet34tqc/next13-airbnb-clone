@@ -24,7 +24,7 @@ export async function DELETE(request: Request, { params }: Params) {
       );
     }
 
-    await db.listing.deleteMany({
+    await db.listing.delete({
       where: {
         id: listingId,
         userId: currentUser.id,

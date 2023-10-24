@@ -5,6 +5,9 @@ import {
   CustomDialogOverlay,
   CustomDialogPortal,
 } from '@/components/ui/Modal/Modal';
+import useCountries from '@/hooks/useCountries';
+import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { NewListingModalValues } from '../NewListingModal/NewListingModal';
 import StepsNavigation from '../components/StepsNavigation';
@@ -26,10 +29,39 @@ const defaultValues = {
 };
 
 const FilterListingModal = () => {
+  const params = useSearchParams();
+  const { getByValue } = useCountries();
+
+  // Value from params
+  const updatedDefaultValue = useMemo(() => {
+    const locationValue = params?.get('locationValue');
+    const startDate = params?.get('startDate');
+    const endDate = params?.get('endDate');
+    const guestCount = params?.get('guestCount');
+    const roomCount = params?.get('roomCount');
+    const bathroomCount = params?.get('bathroomCount');
+
+    return {
+      location: locationValue
+        ? getByValue(locationValue)
+        : defaultValues.location,
+      dateRange: {
+        startDate: startDate ?? defaultValues.dateRange.startDate,
+        endDate: endDate ?? defaultValues.dateRange.endDate,
+        key: 'selection',
+      },
+      guestCount: guestCount ? +guestCount : defaultValues.guestCount,
+      roomCount: roomCount ? +roomCount : defaultValues.roomCount,
+      bathroomCount: bathroomCount
+        ? +bathroomCount
+        : defaultValues.bathroomCount,
+    };
+  }, [getByValue, params]);
+
   // User's filter can be empty
   // So I'm not gonna apply validation here
   const methods = useForm<NewListingModalValues>({
-    defaultValues,
+    defaultValues: updatedDefaultValue,
   });
 
   return (

@@ -22,6 +22,7 @@ const ErrorMessage = ({
         gap-2
         justify-center
         items-center
+        error-message
       "
     >
       <ModalHeading title={title} subtitle={subtitle} />

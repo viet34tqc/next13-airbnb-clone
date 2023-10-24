@@ -18,3 +18,8 @@ h3 {
 .rdrCalendarWrapper {
   width: 100%;
 }
+
+/* If no listings, hide the header */
+header:has(~ .error-message) {
+  display: none;
+}

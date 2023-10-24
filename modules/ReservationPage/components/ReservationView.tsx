@@ -2,11 +2,10 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import getReservations from '@/app/actions/getReservations';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import GridListingLayout from '@/components/shared/GridListingLayout';
-import TripsListingCard from './TripsListingCard';
+import TripsListingCard from '@/modules/TripsPage/components/TripsListingCard';
 
-const TripsView = async () => {
+const ReservationView = async () => {
   const currentUser = await getCurrentUser();
-
   // This code is no longer needed because I replace it with nextjs middleware
   /* if (!currentUser) {
     return (
@@ -14,14 +13,14 @@ const TripsView = async () => {
     );
   } */
   const reservations = currentUser
-    ? await getReservations({ userId: currentUser.id })
+    ? await getReservations({ authorId: currentUser.id })
     : [];
 
   if (!reservations.length) {
     return (
       <ErrorMessage
-        title="No trips found"
-        subtitle="Looks like you havent reserved any trips."
+        title="No reservations found"
+        subtitle="Looks like you have no reservations on your properties."
       ></ErrorMessage>
     );
   }
@@ -41,4 +40,4 @@ const TripsView = async () => {
   );
 };
 
-export default TripsView;
+export default ReservationView;
