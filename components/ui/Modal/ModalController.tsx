@@ -1,5 +1,6 @@
 'use client';
 
+import NewListingModal from '@/components/modals/NewListingModal';
 import { useModalStoreActions, useModalView } from '@/store/useModalStore';
 import dynamic from 'next/dynamic';
 import { CustomDialog } from './Modal';
@@ -19,6 +20,7 @@ const ModalController = () => {
     <CustomDialog open={isOpen} onOpenChange={() => setModalView(null)}>
       {modalView === 'REGISTER' && <RegisterModal />}
       {modalView === 'LOGIN' && <LoginModal />}
+      {modalView === 'NEW_LISTING' && <NewListingModal />}
       {modalView === 'FILTER_LISTING' && <FilterListingModal />}
     </CustomDialog>
   );

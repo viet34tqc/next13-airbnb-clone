@@ -27,8 +27,6 @@ const UserMenu = ({ user }: { user: UserOrNull }) => {
         Airbnb your home
       </button>
       <UserMenuDropdown user={user} />
-      {/* We render Rent Modal differently to save the selected choice for each step in the modal */}
-      <NewListingModal />
     </div>
   );
 };

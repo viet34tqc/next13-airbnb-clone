@@ -9,7 +9,7 @@ import useCountries from '@/hooks/useCountries';
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { NewListingModalValues } from '../NewListingModal/NewListingModal';
+import { ListingFormValues } from '../NewListingModal/NewListingModal';
 import StepsNavigation from '../components/StepsNavigation';
 import StepsContextProvider from '../context/StepsContext';
 import SubmitButton from './components/SubmitButton';
@@ -60,7 +60,7 @@ const FilterListingModal = () => {
 
   // User's filter can be empty
   // So I'm not gonna apply validation here
-  const methods = useForm<NewListingModalValues>({
+  const methods = useForm<ListingFormValues>({
     defaultValues: updatedDefaultValue,
   });
 
