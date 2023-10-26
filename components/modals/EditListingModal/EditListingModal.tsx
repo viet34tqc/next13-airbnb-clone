@@ -1,22 +1,20 @@
 import { defaultCountryOption } from '@/components/shared/CountrySelect';
+import { useCurrentEditedListing } from '@/store/useListingStore';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
-import { z } from 'zod';
 import {
   CustomDialogClose,
   CustomDialogContent,
   CustomDialogOverlay,
   CustomDialogPortal,
 } from '../../ui/Modal/Modal';
-import StepsNavigation from '../components/StepsNavigation';
-import StepsContextProvider from '../context/StepsContext';
-import SubmitButton from '../NewListingModal/components/SubmitButton';
 import { stepsValidation } from '../NewListingModal/constants';
 import Steps from '../NewListingModal/steps/Steps';
-import { newListingModalSchema } from '../NewListingModal/validationSchema';
-import { useCurrentEditedListing } from '@/store/useListingStore';
-
-export type ListingFormValues = z.infer<typeof newListingModalSchema>;
+import { listingFormSchema } from '../NewListingModal/validationSchema';
+import StepsNavigation from '../components/StepsNavigation';
+import StepsContextProvider from '../context/StepsContext';
+import { ListingFormValues } from '../types';
+import SubmitButton from './components/SubmitButton';
 
 const defaultValues = {
   category: '',
@@ -32,10 +30,13 @@ const defaultValues = {
 
 const EditListingModal = () => {
   const editedListing = useCurrentEditedListing();
+
   const methods = useForm<ListingFormValues>({
     defaultValues: editedListing ?? defaultValues,
-    resolver: zodResolver(newListingModalSchema),
+    resolver: zodResolver(listingFormSchema),
   });
+  
+  if (!editedListing) return null;
 
   return (
     <CustomDialogPortal>
@@ -46,7 +47,7 @@ const EditListingModal = () => {
             <FormProvider {...methods}>
               <Steps />
               <StepsNavigation
-                submitButton={<SubmitButton />}
+                submitButton={<SubmitButton listingId={editedListing.id} />}
                 stepsValidation={stepsValidation}
               />
             </FormProvider>

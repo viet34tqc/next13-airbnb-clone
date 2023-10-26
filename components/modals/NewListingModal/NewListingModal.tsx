@@ -18,7 +18,7 @@ import StepsContextProvider from '../context/StepsContext';
 import SubmitButton from './components/SubmitButton';
 import { stepsValidation } from './constants';
 import Steps from './steps/Steps';
-import { ListingFormValues, newListingModalSchema } from './validationSchema';
+import { ListingFormValues, listingFormSchema } from './validationSchema';
 
 const defaultValues = {
   category: '',
@@ -38,7 +38,7 @@ const NewListingModal = () => {
 
   const methods = useForm<ListingFormValues>({
     defaultValues: currentCreatedListing ?? defaultValues,
-    resolver: zodResolver(newListingModalSchema),
+    resolver: zodResolver(listingFormSchema),
   });
 
   return (

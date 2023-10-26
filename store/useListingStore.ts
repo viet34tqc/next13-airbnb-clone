@@ -1,12 +1,15 @@
-import { ListingFormValues } from '@/components/modals/NewListingModal/validationSchema';
+import {
+  EditedListingValues,
+  ListingFormValues,
+} from '@/components/modals/types';
 import { create } from 'zustand';
 
 type TListingStore = {
-  currentEditedListing: ListingFormValues | null;
+  currentEditedListing: EditedListingValues | null;
   currentCreatedListing: ListingFormValues | null;
   actions: {
+    setCurrentEditedListing: (listing: EditedListingValues) => void;
     setCurrentCreatedListing: (listing: ListingFormValues) => void;
-    setCurrentEditedListing: (listing: ListingFormValues) => void;
   };
 };
 
@@ -14,10 +17,10 @@ const useListingStore = create<TListingStore>(set => ({
   currentEditedListing: null,
   currentCreatedListing: null,
   actions: {
+    setCurrentEditedListing: (listing: EditedListingValues) =>
+      set(state => ({ ...state, currentEditedListing: listing })),
     setCurrentCreatedListing: (listing: ListingFormValues) =>
       set(state => ({ ...state, currentCreatedListing: listing })),
-    setCurrentEditedListing: (listing: ListingFormValues) =>
-      set(state => ({ ...state, currentEditedListing: listing })),
   },
 }));
 

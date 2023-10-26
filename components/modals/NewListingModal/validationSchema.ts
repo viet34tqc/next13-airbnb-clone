@@ -1,7 +1,7 @@
 import { CountrySelectSchema } from '@/lib/schemas';
 import { z } from 'zod';
 
-export const newListingModalSchema = z.object({
+export const listingFormSchema = z.object({
   category: z.string().min(1, 'Please select a category'),
   location: CountrySelectSchema.extend({
     value: z.string().min(1, 'Please select location for your house'),
@@ -15,4 +15,3 @@ export const newListingModalSchema = z.object({
   description: z.string().min(1, 'Description is required'),
 });
 
-export type ListingFormValues = z.infer<typeof newListingModalSchema>;

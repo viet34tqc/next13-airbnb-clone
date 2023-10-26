@@ -15,12 +15,11 @@ const EditListingButton = ({ listing }: Props) => {
   const { setModalView } = useModalStoreActions();
   const { setCurrentEditedListing } = useListingStoreActions();
 
-  const { id, createdAt, userId, ...extractedInfo } = listing;
+  const { createdAt, userId, locationValue, ...extractedInfo } = listing;
   const listingFormData = {
     ...extractedInfo,
-    location: getByValue(extractedInfo.locationValue),
+    location: getByValue(listing.locationValue),
   };
-  delete (listingFormData as Partial<Listing>).locationValue;
   return (
     <Button
       isOutline
