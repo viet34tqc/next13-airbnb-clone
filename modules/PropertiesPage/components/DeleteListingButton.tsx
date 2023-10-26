@@ -38,7 +38,7 @@ const DeleteListingButton = ({ listingId }: Props) => {
   };
   return (
     <Button disabled={isLoading} onClick={handleCancelReservation}>
-      Delete Listing
+      Delete
     </Button>
   );
 };
