@@ -4,13 +4,11 @@ import { PropsWithChildren } from 'react';
 
 const AuthFormFooter = ({ children }: PropsWithChildren) => {
   return (
-    <div className="flex flex-col gap-4 mt-3">
+    <div className="flex flex-col gap-4 mt-2">
       <hr />
+      <div className="text-center">Or</div>
       <Button isOutline onClick={() => signIn('google')}>
         Continue with Google
-      </Button>
-      <Button isOutline onClick={() => signIn('github')}>
-        Continue with Github
       </Button>
       <div
         className="

@@ -13,9 +13,9 @@ type Params = {
 export async function PUT(request: Request, { params }: Params) {
   try {
     const { listingId } = params;
-    if (!listingId) {
+    if (listingId) {
       return NextResponse.json(
-        { error: 'Missing listing ID' },
+        { message: 'Missing listing ID' },
         { status: 400 }
       );
     }
@@ -23,7 +23,7 @@ export async function PUT(request: Request, { params }: Params) {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
       return NextResponse.json(
-        { error: USER_NOT_FOUND_MESSAGE },
+        { message: USER_NOT_FOUND_MESSAGE },
         { status: 401 }
       );
     }

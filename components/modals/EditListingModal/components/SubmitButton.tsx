@@ -21,7 +21,6 @@ const SubmitButton = ({ buttonLabel = 'Submit', listingId }: Props) => {
   const { handleSubmit, reset } = useFormContext();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log('data', data);
     setIsLoading(true);
 
     try {

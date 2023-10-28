@@ -14,7 +14,7 @@ export async function PUT(request: Request) {
     const { listingId } = await request.json();
     if (!listingId) {
       return NextResponse.json(
-        { error: 'Missing listing ID' },
+        { message: 'Missing listing ID' },
         { status: 400 }
       );
     }
@@ -22,7 +22,7 @@ export async function PUT(request: Request) {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
       return NextResponse.json(
-        { error: USER_NOT_FOUND_MESSAGE },
+        { message: USER_NOT_FOUND_MESSAGE },
         { status: 401 }
       );
     }
