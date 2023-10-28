@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
       return NextResponse.json(
-        { error: USER_NOT_FOUND_MESSAGE },
+        { message: USER_NOT_FOUND_MESSAGE },
         { status: 401 }
       );
     }
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     // If there is empty value return error
     const isAllHaveValue = Object.values(body).every(value => !!value);
     if (!isAllHaveValue) {
-      return NextResponse.json({ error: 'Missing data' }, { status: 401 });
+      return NextResponse.json({ message: 'Missing data' }, { status: 401 });
     }
 
     const { listingId, startDate, endDate, totalPrice } = body;

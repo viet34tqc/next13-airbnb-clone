@@ -1,10 +1,5 @@
-'use client';
-
 import { defaultCountryOption } from '@/components/shared/CountrySelect';
-import {
-  useCurrentCreatedListing,
-  useListingStoreActions,
-} from '@/store/useListingStore';
+import { useCurrentEditedListing } from '@/store/useListingStore';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
@@ -13,13 +8,13 @@ import {
   CustomDialogOverlay,
   CustomDialogPortal,
 } from '../../ui/Modal/Modal';
+import { stepsValidation } from '../NewListingModal/constants';
+import Steps from '../NewListingModal/steps/Steps';
+import { listingFormSchema } from '../NewListingModal/validationSchema';
 import StepsNavigation from '../components/StepsNavigation';
 import StepsContextProvider from '../context/StepsContext';
 import { ListingFormValues } from '../types';
 import SubmitButton from './components/SubmitButton';
-import { stepsValidation } from './constants';
-import Steps from './steps/Steps';
-import { listingFormSchema } from './validationSchema';
 
 const defaultValues = {
   category: '',
@@ -33,34 +28,26 @@ const defaultValues = {
   description: '',
 };
 
-const NewListingModal = () => {
-  const currentCreatedListing = useCurrentCreatedListing();
-  const { setCurrentCreatedListing } = useListingStoreActions();
+const EditListingModal = () => {
+  const editedListing = useCurrentEditedListing();
 
   const methods = useForm<ListingFormValues>({
-    defaultValues: currentCreatedListing ?? defaultValues,
+    defaultValues: editedListing ?? defaultValues,
     resolver: zodResolver(listingFormSchema),
   });
+  
+  if (!editedListing) return null;
 
   return (
     <CustomDialogPortal>
       <div className="fixed inset-0 z-50 flex justify-center items-center">
         <CustomDialogOverlay />
-        <CustomDialogContent
-          // Save the data when modal is close
-          // So the user won't have to implement all the steps from start
-          onCloseAutoFocus={() => {
-            const { watch } = methods;
-            const values = watch();
-
-            setCurrentCreatedListing(values);
-          }}
-        >
+        <CustomDialogContent>
           <StepsContextProvider>
             <FormProvider {...methods}>
               <Steps />
               <StepsNavigation
-                submitButton={<SubmitButton />}
+                submitButton={<SubmitButton listingId={editedListing.id} />}
                 stepsValidation={stepsValidation}
               />
             </FormProvider>
@@ -72,4 +59,4 @@ const NewListingModal = () => {
   );
 };
 
-export default NewListingModal;
+export default EditListingModal;

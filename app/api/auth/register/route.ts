@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { registerSchema } from '@/components/auth/authSchema';
 import { COMMON_ERROR_MESSAGE } from '@/lib/constants';
 import { db } from '@/lib/db';
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
@@ -20,23 +21,26 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify(createdUser), { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(
-        JSON.stringify({
+      return NextResponse.json(
+        {
           message: 'The provided entities are unprocessable or invalid.',
-        }),
+        },
         { status: 422 }
       );
     }
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      return new Response(
-        JSON.stringify({ message: 'The provided email already exists.' }),
+      return NextResponse.json(
+        { message: 'The provided email already exists.' },
         { status: 409 }
       );
     }
 
-    return new Response(JSON.stringify({ message: COMMON_ERROR_MESSAGE }), {
-      status: 400,
-    });
+    return NextResponse.json(
+      { message: COMMON_ERROR_MESSAGE },
+      {
+        status: 400,
+      }
+    );
   }
 }

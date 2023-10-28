@@ -7,6 +7,7 @@ import ListingFavoriteButton from '@/components/shared/ListingCard/ListingFavori
 import { UserOrNull } from '@/lib/types/auth';
 import { Listing } from '@prisma/client';
 import DeleteListingButton from './DeleteListingButton';
+import EditListingButton from './EditListingButton';
 
 type Props = {
   listing: Listing;
@@ -37,7 +38,10 @@ const PropertiesListingCard = ({ listing, currentUser, index }: Props) => {
         <ListingCardCategory category={listing.category} />
         <ListingCardPrice price={listing.price} />
       </ListingCardWrapper>
-      <DeleteListingButton listingId={listing.id} />
+      <div className="grid grid-cols-2 gap-2">
+        <DeleteListingButton listingId={listing.id} />
+        <EditListingButton listing={listing} />
+      </div>
     </div>
   );
 };
