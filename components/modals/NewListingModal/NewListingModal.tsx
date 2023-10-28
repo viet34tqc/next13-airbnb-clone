@@ -15,10 +15,11 @@ import {
 } from '../../ui/Modal/Modal';
 import StepsNavigation from '../components/StepsNavigation';
 import StepsContextProvider from '../context/StepsContext';
+import { ListingFormValues } from '../types';
 import SubmitButton from './components/SubmitButton';
 import { stepsValidation } from './constants';
 import Steps from './steps/Steps';
-import { ListingFormValues, listingFormSchema } from './validationSchema';
+import { listingFormSchema } from './validationSchema';
 
 const defaultValues = {
   category: '',
