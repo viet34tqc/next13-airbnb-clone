@@ -1,6 +1,6 @@
 'use client';
 
-import { PhotoIcon } from '@heroicons/react/24/outline';
+import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { CldUploadWidget } from 'next-cloudinary';
 import Image from 'next/image';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -54,16 +54,15 @@ const ImageUpload = () => {
             <PhotoIcon className="h-6 w-6 text-gray-500" />
             <div className="font-semibold text-lg">Click to upload</div>
             {value && (
-              <div
-                className="
-              absolute inset-0 w-full h-full"
-              >
+              <div className="absolute inset-0">
                 <Image
                   fill
                   style={{ objectFit: 'cover' }}
                   src={value}
                   alt="House"
                 />
+                {/* Add an Close Icon here to let user know that they can re-select the image */}
+                <XMarkIcon className="absolute top-2 right-2 w-6 h-6" />
               </div>
             )}
           </div>
