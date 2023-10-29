@@ -51,6 +51,9 @@ const HeaderSearch = () => {
         sm:hover:shadow-md
         transition
         cursor-pointer
+        ml-auto
+        mr-2
+        sm:m-0
       "
     >
       <div className="flex flex-row items-center justify-between">

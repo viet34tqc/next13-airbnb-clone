@@ -15,6 +15,9 @@ const EditListingModal = dynamic(
 const FilterListingModal = dynamic(
   () => import('@/components/modals/FilterListingModal')
 );
+const IntructionModal = dynamic(
+  () => import('@/components/modals/IntructionModal')
+);
 
 const ModalController = () => {
   const modalView = useModalView();
@@ -28,6 +31,7 @@ const ModalController = () => {
       {modalView === 'NEW_LISTING' && <NewListingModal />}
       {modalView === 'EDIT_LISTING' && <EditListingModal />}
       {modalView === 'FILTER_LISTING' && <FilterListingModal />}
+      {modalView === 'INTRUCTION_MODAL' && <IntructionModal />}
     </CustomDialog>
   );
 };

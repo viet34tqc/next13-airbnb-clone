@@ -31,7 +31,7 @@ const CustomDialogContent = React.forwardRef<
   <DialogPrimitive.Content
     ref={ref}
     className={cn(
-      'bg-white overflow-y-auto max-h-full fixed z-50 grid w-full max-w-[800px] scale-100 gap-4 border p-6 opacity-100 shadow-lg sm:rounded-lg',
+      'bg-white overflow-y-auto max-h-full fixed z-50 grid w-[95%] sm:w-full max-w-[800px] scale-100 gap-4 border p-6 opacity-100 shadow-lg sm:rounded-lg',
       className
     )}
     {...props}

@@ -1,6 +1,5 @@
 'use client';
 
-import NewListingModal from '@/components/modals/NewListingModal';
 import { UserOrNull } from '@/lib/types/auth';
 import { useModalStoreActions } from '@/store/useModalStore';
 import UserMenuDropdown from './UserMenuDropdown';
