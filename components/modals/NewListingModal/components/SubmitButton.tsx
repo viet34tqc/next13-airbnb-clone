@@ -2,7 +2,7 @@
 
 import Button from '@/components/ui/Button';
 import { useModalStoreActions } from '@/store/useModalStore';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FieldValues, useFormContext } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -13,6 +13,7 @@ type Props = {
 
 const SubmitButton = ({ buttonLabel = 'Submit' }: Props) => {
   const router = useRouter();
+  const pathName = usePathname();
 
   const [isLoading, setIsLoading] = useState(false);
   const { setModalView } = useModalStoreActions();
@@ -37,7 +38,11 @@ const SubmitButton = ({ buttonLabel = 'Submit' }: Props) => {
       }
       toast.success('Created listing successfully!');
       reset();
-      router.replace('/');
+      // If we are on the properties page, refresh the properties page
+      if (pathName !== '/properties') {
+        router.replace('/');
+      }
+      router.refresh();
       setModalView(null);
     } catch (error) {
       if (error instanceof Error) {
