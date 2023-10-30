@@ -17,6 +17,10 @@ const IntructionModal = () => {
               Authentication using Next Auth. User can register via Google,
               Facebook or create their new user
             </li>
+            <li>
+              We can search for listings. The logic is in the `getListings.ts`
+              file.
+            </li>
             <li>Logged-in user can submit, edit, delete their listings</li>
             <li>Logged-in user can add listings to their favorites</li>
             <li>Logged-in user can make reservation for a listing</li>

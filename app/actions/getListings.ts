@@ -20,22 +20,22 @@ export default async function getListings(params: ListingsParams) {
     query.category = category;
   }
 
-  // gt means greater than
+  // gte means greater than
   if (roomCount) {
     query.roomCount = {
-      gt: +roomCount,
+      gte: +roomCount,
     };
   }
 
   if (guestCount) {
     query.guestCount = {
-      gt: +guestCount,
+      gte: +guestCount,
     };
   }
 
   if (bathroomCount) {
     query.bathroomCount = {
-      gt: +bathroomCount,
+      gte: +bathroomCount,
     };
   }
 
@@ -49,12 +49,12 @@ export default async function getListings(params: ListingsParams) {
         some: {
           OR: [
             {
-              endDate: { gt: startDate },
-              startDate: { lt: startDate },
+              endDate: { gte: startDate },
+              startDate: { lte: startDate },
             },
             {
-              startDate: { lt: endDate },
-              endDate: { gt: endDate },
+              startDate: { lte: endDate },
+              endDate: { gte: endDate },
             },
           ],
         },
