@@ -2,6 +2,7 @@ import FieldControl from '@/components/ui/Form/FieldControl';
 import FieldMess from '@/components/ui/Form/FieldMess';
 import Input from '@/components/ui/Form/Input';
 import Label from '@/components/ui/Form/Label';
+import TextArea from '@/components/ui/Form/Texarea';
 import ModalHeading from '@/components/ui/Modal/ModalHeading';
 import { useFormContext } from 'react-hook-form';
 
@@ -22,8 +23,8 @@ const DescriptionStep = () => {
       </FieldControl>
       <FieldControl>
         <div className="relative">
-          <Label>Description</Label>
-          <Input {...register('description')} required />
+          <Label className="-translate-y-11">Description</Label>
+          <TextArea {...register('description')} required />
         </div>
         <FieldMess name="description" />
       </FieldControl>
