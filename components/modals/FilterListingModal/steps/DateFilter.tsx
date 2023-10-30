@@ -22,7 +22,7 @@ const DateStep = () => {
       />
       <Calendar
         onChange={value => setValue('dateRange', value.selection)}
-        ranges={[formatedDateRangeInUTC]}
+        ranges={[formatedDateRange]}
       />
     </div>
   );

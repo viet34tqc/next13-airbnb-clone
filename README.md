@@ -10,7 +10,7 @@ I make this web app as a learning tutorial of NextJS 13. The app functionality i
 - Styling: Radix UI and TailwindCSS
 - Form: React Hook Form
 - Form validation: Zod
-- Image upload: Cloudinary
+- Image upload service: Cloudinary
 
 ## Data structure
 
@@ -26,3 +26,17 @@ I make this web app as a learning tutorial of NextJS 13. The app functionality i
 - Logged-in user can make reservation for a listing.
 - After you make a reservation, there is page named `trips` to display all of your reservations. There, you can cancel your reservation.
 - The host of the listing also has a page called `reservations` where all of the reservations for his listing are displayed.
+
+## What I've learned
+
+- Authentication using Next Auth
+- NextJS's server component: move the fetching data to the server component
+- Learn how to use Zustand to manage state
+- New folder structure:
+  - `/app`: where we define apis and page routes
+  - `/components`: contains UI components. It's further subdivided into ui for generic UI components and shared for components that might be reused across different parts of application.
+  - `/modules`: contains the logic of each page. Each module has its own folder, containing subdirectories for its components, hooks...
+  - `/store`: state management stores used for the entire application.
+  - `/lib`: utils functions, types, schemas...
+  - `/hooks`: custom hooks that are used throughout your application.
+  - `/config`: anything related to your app configuration
