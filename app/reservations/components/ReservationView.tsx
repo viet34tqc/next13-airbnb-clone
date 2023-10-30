@@ -1,8 +1,8 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import getReservations from '@/app/actions/getReservations';
+import TripsListingCard from '@/app/trips/components/TripsListingCard';
 import ErrorMessage from '@/components/shared/ErrorMessage';
 import GridListingLayout from '@/components/shared/GridListingLayout';
-import TripsListingCard from '@/modules/TripsPage/components/TripsListingCard';
 
 const ReservationView = async () => {
   const currentUser = await getCurrentUser();

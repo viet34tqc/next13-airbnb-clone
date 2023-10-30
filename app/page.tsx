@@ -1,9 +1,9 @@
 import SkeletonGrid from '@/components/ui/SkeletonGrid';
 import { ListingsParams } from '@/lib/types/listings';
-import Categories from '@/modules/HomePage/components/Categories/Categories';
-import Listings from '@/modules/HomePage/components/Listings';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import Categories from './home/components/Categories';
+import Listings from './home/components/Listings';
 
 export const metadata: Metadata = {
   title: 'YAAC-Yet another AirBnb clone',

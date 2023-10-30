@@ -1,6 +1,6 @@
 import PageHeader from '@/components/shared/PageHeader';
 import SkeletonGrid from '@/components/ui/SkeletonGrid';
-import ReservationView from '@/modules/ReservationPage/components/ReservationView';
+import ReservationView from '@/app/reservations/components/ReservationView';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 

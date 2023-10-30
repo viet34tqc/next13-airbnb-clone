@@ -1,6 +1,6 @@
+import FavoritesView from '@/app/favorites/FavoritesView';
 import PageHeader from '@/components/shared/PageHeader';
 import SkeletonGrid from '@/components/ui/SkeletonGrid';
-import FavoritesView from '@/modules/FavoritesPage/FavoritesView';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 

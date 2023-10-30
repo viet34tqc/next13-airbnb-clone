@@ -4,7 +4,7 @@ import ErrorMessage from '@/components/shared/ErrorMessage';
 import GridListingLayout from '@/components/shared/GridListingLayout';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
-import HomeListingCard from '../HomePage/components/Listings/HomeListingCard';
+import HomeListingCard from '../home/components/Listings/HomeListingCard';
 
 const FavoritesView = async () => {
   const currentUser = await getCurrentUser();

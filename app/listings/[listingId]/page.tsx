@@ -2,7 +2,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import getListingById from '@/app/actions/getListingById';
 import getReservations from '@/app/actions/getReservations';
 import ErrorMessage from '@/components/shared/ErrorMessage';
-import ListingView from '@/modules/ListingPage/components/ListingView';
+import ListingView from '@/app/listings/[listingId]/components/ListingView';
 import { Listing } from '@prisma/client';
 
 type Props = {

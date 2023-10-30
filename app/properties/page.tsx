@@ -1,6 +1,6 @@
 import PageHeader from '@/components/shared/PageHeader';
 import SkeletonGrid from '@/components/ui/SkeletonGrid';
-import PropertiesView from '@/modules/PropertiesPage/components/PropertiesView';
+import PropertiesView from '@/app/properties/components/PropertiesView';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 

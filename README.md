@@ -34,9 +34,8 @@ I make this web app as a learning tutorial of NextJS 13. The app functionality i
 - How to use middleware to deal with protected routes.
 - How to use Zustand to manage state
 - New folder structure:
-  - `/app`: where we define apis and page routes
+  - `/app`: where we define apis and page routes. Each route's folder includes its own folders like: `components`, `hooks`...
   - `/components`: contains UI components. It's further subdivided into ui for generic UI components and shared for components that might be reused across different parts of application.
-  - `/modules`: contains the logic of each page. Each module has its own folder, containing subdirectories for its components, hooks...
   - `/store`: state management stores used for the entire application.
   - `/lib`: utils functions, types, schemas...
   - `/hooks`: custom hooks that are used throughout your application.

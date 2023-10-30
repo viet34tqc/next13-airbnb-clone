@@ -1,6 +1,6 @@
+import TripsView from '@/app/trips/components/TripsView';
 import PageHeader from '@/components/shared/PageHeader';
 import SkeletonGrid from '@/components/ui/SkeletonGrid';
-import TripsView from '@/modules/TripsPage/components/TripsView';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 

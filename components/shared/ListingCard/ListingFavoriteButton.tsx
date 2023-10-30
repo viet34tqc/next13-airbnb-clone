@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { Listing } from '@prisma/client';
 import { LoaderIcon } from 'react-hot-toast';
-import useFavorite from '../../../modules/HomePage/hooks/useFavorite';
+import useFavorite from '../../../app/home/hooks/useFavorite';
 
 type Props = {
   currentUser: UserOrNull;
