@@ -31,7 +31,8 @@ I make this web app as a learning tutorial of NextJS 13. The app functionality i
 
 - Authentication using Next Auth
 - NextJS's server component: move the fetching data to the server component
-- Learn how to use Zustand to manage state
+- How to use middleware to deal with protected routes.
+- How to use Zustand to manage state
 - New folder structure:
   - `/app`: where we define apis and page routes
   - `/components`: contains UI components. It's further subdivided into ui for generic UI components and shared for components that might be reused across different parts of application.
