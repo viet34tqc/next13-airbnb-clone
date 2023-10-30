@@ -1,3 +1,4 @@
+import SiteFooter from '@/components/shared/SiteFooter';
 import SiteHeader from '@/components/shared/SiteHeader';
 import ModalController from '@/components/ui/Modal/ModalController';
 import { Inter } from 'next/font/google';
@@ -26,6 +27,7 @@ export default async function RootLayout({
           <Toaster />
           <SiteHeader user={currentUser} />
           {children}
+          <SiteFooter />
           <ModalController />
         </NextAuthProvider>
       </body>
