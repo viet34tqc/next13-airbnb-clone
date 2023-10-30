@@ -6,16 +6,17 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 interface CalendarProps {
-  value: Range;
-  onChange: (value: RangeKeyDict) => void;
+  ranges: Range[];
+  onChange: (range: RangeKeyDict) => void;
   disabledDates?: Date[];
 }
 
-const Calendar = ({ value, onChange, disabledDates }: CalendarProps) => {
+const Calendar = ({ ranges, onChange, disabledDates }: CalendarProps) => {
+  console.log('ranges', ranges);
   return (
     <DateRange
       rangeColors={['#262626']}
-      ranges={[value]}
+      ranges={ranges}
       date={new Date()}
       onChange={onChange}
       direction="vertical"

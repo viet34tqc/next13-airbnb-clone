@@ -7,6 +7,13 @@ type Props = {};
 const DateStep = () => {
   const { setValue } = useFormContext();
   const dateRange = useWatch({ name: 'dateRange' });
+  // We need to convert the date to UTC format because we have formatted the date in ISO format when we we submit the filter.
+  const formatedDateRangeInUTC = {
+    ...dateRange,
+    startDate: new Date(dateRange.startDate),
+    endDate: new Date(dateRange.endDate),
+  };
+
   return (
     <div>
       <ModalHeading
@@ -15,7 +22,7 @@ const DateStep = () => {
       />
       <Calendar
         onChange={value => setValue('dateRange', value.selection)}
-        value={dateRange}
+        ranges={[formatedDateRangeInUTC]}
       />
     </div>
   );

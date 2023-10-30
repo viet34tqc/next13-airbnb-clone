@@ -107,9 +107,9 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
       </div>
       <hr />
       <Calendar
-        value={dateRange}
+        ranges={[dateRange]}
         disabledDates={reservedDates}
-        onChange={value => setDateRange(value.selection)}
+        onChange={rangeKeyDict => setDateRange(rangeKeyDict.selection)}
       />
       <hr />
       <div
