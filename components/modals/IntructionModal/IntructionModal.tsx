@@ -17,6 +17,7 @@ const IntructionModal = () => {
               Authentication using Next Auth. User can register via Google,
               Facebook or create their new user
             </li>
+            <li>Listing category filter: double click on the selected item to reset the filter</li>
             <li>
               We can search for listings. The logic is in the `getListings.ts`
               file.
