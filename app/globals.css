@@ -20,6 +20,6 @@ h3 {
 }
 
 /* If no listings, hide the header */
-header:has(~ .error-message) {
+.page-header:has(~ .error-message) {
   display: none;
 }

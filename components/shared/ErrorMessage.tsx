@@ -16,7 +16,7 @@ const ErrorMessage = ({
   return (
     <div
       className="
-        h-[60vh]
+        h-[80vh]
         flex
         flex-col
         gap-2
