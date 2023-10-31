@@ -20,7 +20,7 @@ const PropertiesListingCard = ({ listing, currentUser, index }: Props) => {
     <div className="flex flex-col gap-2">
       <ListingCardWrapper listingId={listing.id}>
         <div className="relative">
-          <ListingCardImg imageSrc={listing.imageSrc} priority={index === 0} />
+          <ListingCardImg imageSrc={listing.imageSrc} priority={index <= 5} />
           <div
             className="
           absolute

@@ -17,7 +17,7 @@ const HomeListingCard = async ({ listing, currentUser, index }: Props) => {
   return (
     <ListingCardWrapper listingId={listing.id}>
       <div className="relative">
-        <ListingCardImg imageSrc={listing.imageSrc} priority={index === 0} />
+        <ListingCardImg imageSrc={listing.imageSrc} priority={index <= 5} />
         <div
           className="
           absolute
