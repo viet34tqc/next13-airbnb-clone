@@ -21,7 +21,7 @@ type Props = {
 
 const CountrySelect = ({ selectedCountry, onChange }: Props) => {
   const { getOptions, getByValue } = useCountries();
-  const options = getOptions;
+  const options = [{ value: '', label: 'Select your country' }, ...getOptions];
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (!e.target.value) {
