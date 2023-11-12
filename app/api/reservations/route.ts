@@ -3,6 +3,9 @@ import { COMMON_ERROR_MESSAGE, USER_NOT_FOUND_MESSAGE } from '@/lib/constants';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
+
+// THIS API IS NOT IN USED ANYMORE
+// I have replaced it with server action
 export async function POST(req: Request) {
   try {
     const currentUser = await getCurrentUser();
