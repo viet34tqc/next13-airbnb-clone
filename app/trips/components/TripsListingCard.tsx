@@ -6,7 +6,7 @@ import ListingCardReservationDate from '@/components/shared/ListingCard/ListingC
 import ListingCardTotalPrice from '@/components/shared/ListingCard/ListingCardTotalPrice';
 import ListingCardWrapper from '@/components/shared/ListingCard/ListingCardWrapper';
 import { Listing, Reservation } from '@prisma/client';
-import ReservationCancelButton from './ReservationCancelButton';
+import CancelReservationButton from './CancelReservationButton';
 
 type Props = {
   listing: Listing;
@@ -25,7 +25,7 @@ const TripsListingCard = ({ listing, reservation, index }: Props) => {
         <ListingCardReservationDate reservation={reservation} />
         <ListingCardTotalPrice price={reservation.totalPrice} />
       </ListingCardWrapper>
-      <ReservationCancelButton reservationId={reservation.id} />
+      <CancelReservationButton reservationId={reservation.id} />
     </div>
   );
 };

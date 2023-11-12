@@ -9,6 +9,8 @@ type Params = {
   };
 };
 
+// THIS API IS NOT IN USED ANYMORE
+// I have replaced it with server action
 export async function DELETE(request: Request, { params }: Params) {
   try {
     const { reservationId } = params;
