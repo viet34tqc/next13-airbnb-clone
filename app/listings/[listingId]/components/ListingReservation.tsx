@@ -6,7 +6,7 @@ import { UserOrNull } from '@/lib/types/auth';
 import { useModalStoreActions } from '@/store/useModalStore';
 import { Listing, Reservation, User } from '@prisma/client';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Range } from 'react-date-range';
 import { useFormState, useFormStatus } from 'react-dom';
 import toast from 'react-hot-toast';
@@ -78,9 +78,11 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
     message: undefined,
   });
 
-  if (state.message) {
-    toast(state.message);
-  }
+  useEffect(() => {
+    if (state.message) {
+      toast(state.message);
+    }
+  }, [state]);
 
   const handleCreateReservation = async () => {
     if (!currentUser) {

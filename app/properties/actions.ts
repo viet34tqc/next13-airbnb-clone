@@ -2,10 +2,10 @@
 
 import { USER_NOT_FOUND_MESSAGE } from '@/lib/constants';
 import { db } from '@/lib/db';
-import { revalidatePath } from 'next/cache';
 import getCurrentUser from '../actions/getCurrentUser';
 
 type State = {
+  error?: boolean;
   message?: string;
 };
 export async function deleteListing(listingId: string, prevState: State) {
@@ -21,10 +21,11 @@ export async function deleteListing(listingId: string, prevState: State) {
         userId: currentUser.id,
       },
     });
-    revalidatePath('/properties');
+    // revalidatePath('/properties');
     return { message: 'Delete listing successfully' };
   } catch (error) {
     return {
+      error: true,
       message: error instanceof Error ? error.message : 'Database error',
     };
   }
