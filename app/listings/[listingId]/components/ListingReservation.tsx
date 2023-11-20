@@ -6,6 +6,7 @@ import { UserOrNull } from '@/lib/types/auth';
 import { useModalStoreActions } from '@/store/useModalStore';
 import { Listing, Reservation, User } from '@prisma/client';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
+import router from 'next/router';
 import { useEffect, useState } from 'react';
 import { Range } from 'react-date-range';
 import { useFormState, useFormStatus } from 'react-dom';
@@ -78,12 +79,6 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
     message: undefined,
   });
 
-  useEffect(() => {
-    if (state.message) {
-      toast(state.message);
-    }
-  }, [state]);
-
   const handleCreateReservation = async () => {
     if (!currentUser) {
       return setModalView('LOGIN');
@@ -95,6 +90,14 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
       listingId: listing?.id,
     });
   };
+
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.message);
+    } else if (state.message) {
+      toast.success(state.message);
+    }
+  }, [state]);
 
   return (
     <form

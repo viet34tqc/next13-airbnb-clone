@@ -22,6 +22,7 @@ type createReservationState = {
   validationErrors?: {
     [K in keyof NewReservationData]?: string[];
   };
+  error?: boolean;
   message?: string;
 };
 
@@ -62,6 +63,7 @@ export async function createReservation(
     });
   } catch (error) {
     return {
+      error: true,
       message:
         error instanceof Error ? error.message : 'Failed to make reservation',
     };
