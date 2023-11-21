@@ -5,25 +5,25 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import toast from 'react-hot-toast';
-import { deleteListing } from '../actions';
+import { cancelReservation } from '../actions';
 
 type Props = {
-  listingId: string;
+  reservationId: string;
 };
 
 const SubmitButton = () => {
   const { pending } = useFormStatus();
   return (
-    <Button disabled={pending} type="submit">
-      {pending ? 'Deleting' : 'Delete'}
+    <Button type="submit" disabled={pending}>
+      {pending ? 'Canceling...' : 'Cancel reservation'}
     </Button>
   );
 };
 
-const DeleteListingButton = ({ listingId }: Props) => {
+const CancelReservationButton = ({ reservationId }: Props) => {
   const router = useRouter();
-  const deleteListingWithId = deleteListing.bind(null, listingId);
-  const [state, dispatch] = useFormState(deleteListingWithId, {
+  const cancelReservationWithId = cancelReservation.bind(null, reservationId);
+  const [state, dispatch] = useFormState(cancelReservationWithId, {
     message: '',
   });
 
@@ -31,6 +31,9 @@ const DeleteListingButton = ({ listingId }: Props) => {
     if (state.error) {
       toast.error(state.message);
     } else if (state.message) {
+      // This is like a workaround to display the toast when we submit the form
+      // Normally, we can `revalidatePath` in the server action
+      // However, that will make this button component unmount and the toast will never be shown
       router.refresh();
       toast.success(state.message);
     }
@@ -43,4 +46,4 @@ const DeleteListingButton = ({ listingId }: Props) => {
   );
 };
 
-export default DeleteListingButton;
+export default CancelReservationButton;

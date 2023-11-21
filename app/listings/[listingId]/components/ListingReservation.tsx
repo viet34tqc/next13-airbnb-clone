@@ -6,10 +6,12 @@ import { UserOrNull } from '@/lib/types/auth';
 import { useModalStoreActions } from '@/store/useModalStore';
 import { Listing, Reservation, User } from '@prisma/client';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import router from 'next/router';
+import { useEffect, useState } from 'react';
 import { Range } from 'react-date-range';
+import { useFormState, useFormStatus } from 'react-dom';
 import toast from 'react-hot-toast';
+import { createReservation } from '../actions';
 
 interface Props {
   listing: Listing & { user: User };
@@ -49,52 +51,57 @@ const getTotalPrice = (dateRange: Range, listingPrice: number) => {
   }
 };
 
+const CreateReservationButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button type="submit" className="block my-4 w-full" disabled={pending}>
+      {pending ? 'Reserving' : 'Reserve'}
+    </Button>
+  );
+};
+
 const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
   const { setModalView } = useModalStoreActions();
 
   const reservedDates = getReservedDate(reservations);
   const totalPrice = getTotalPrice(dateRange, listing.price);
 
+  const createReservationWithData = createReservation.bind(null, {
+    totalPrice,
+    startDate: dateRange.startDate,
+    endDate: dateRange.endDate,
+    listingId: listing?.id,
+  });
+  const [state, dispatch] = useFormState(createReservationWithData, {
+    validationErrors: {},
+    message: undefined,
+  });
+
   const handleCreateReservation = async () => {
     if (!currentUser) {
       return setModalView('LOGIN');
     }
-    setIsLoading(true);
-    try {
-      const res = await fetch('/api/reservations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          totalPrice,
-          startDate: dateRange.startDate,
-          endDate: dateRange.endDate,
-          listingId: listing?.id,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setIsLoading(false);
-        throw Error(data.message);
-      }
-      toast.success('Listing reserved!');
-      router.push('/trips'); // go to trips page to see all the successful reservation of this user.
-      setDateRange(initialDateRange);
-    } catch (error) {
-      toast(
-        error instanceof Error ? error.message : 'Failed to make reservation'
-      );
-    } finally {
-      setIsLoading(false);
-    }
+    dispatch({
+      totalPrice,
+      startDate: dateRange.startDate,
+      endDate: dateRange.endDate,
+      listingId: listing?.id,
+    });
   };
 
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.message);
+    } else if (state.message) {
+      toast.success(state.message);
+    }
+  }, [state]);
+
   return (
-    <div
+    <form
+      action={handleCreateReservation}
       className="
         rounded-xl
         border-[1px]
@@ -111,6 +118,20 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
         disabledDates={reservedDates}
         onChange={rangeKeyDict => setDateRange(rangeKeyDict.selection)}
       />
+
+      {state.validationErrors ? (
+        <div
+          id="customer-error"
+          aria-live="polite"
+          className="mt-2 text-sm text-red-500"
+        >
+          {Object.values(state.validationErrors)
+            .flat()
+            .map((error: string) => (
+              <p key={error}>{error}</p>
+            ))}
+        </div>
+      ) : null}
       <hr />
       <div
         className="
@@ -126,15 +147,9 @@ const ListingReservation = ({ listing, currentUser, reservations }: Props) => {
       >
         <div>Total</div>
         <div>$ {totalPrice}</div>
-        <Button
-          className="block my-4 w-full"
-          disabled={isLoading}
-          onClick={handleCreateReservation}
-        >
-          {isLoading ? 'Reserving' : 'Reserve'}
-        </Button>
       </div>
-    </div>
+      <CreateReservationButton />
+    </form>
   );
 };
 
