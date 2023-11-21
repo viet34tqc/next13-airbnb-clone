@@ -1,11 +1,11 @@
 'use client';
 
 import Button from '@/components/ui/Button';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import toast from 'react-hot-toast';
 import { deleteListing } from '../actions';
-import { useRouter } from 'next/navigation';
 
 type Props = {
   listingId: string;
@@ -30,7 +30,7 @@ const DeleteListingButton = ({ listingId }: Props) => {
   useEffect(() => {
     if (state.error) {
       toast.error(state.message);
-    } else {
+    } else if (state.message) {
       router.refresh();
       toast.success(state.message);
     }
